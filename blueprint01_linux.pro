@@ -35,7 +35,8 @@ DISTFILES += \
     images/back.svg \
     images/knob-sel.svg \
     images/button.svg \
-    images/knob.svg
+    images/knob.svg \
+    README.md
 
 HEADERS += \
     backend.h \
