@@ -14,6 +14,10 @@
 #include <QDebug>
 #include <QQuickWindow>
 
+#define BLUEPRINT_ENDPOINT_IN (2 | LIBUSB_ENDPOINT_IN)
+#define BLUEPRINT_ENDPOINT_OUT (2 | LIBUSB_ENDPOINT_OUT)
+#define BLUEPRINT_USB_DATA_PACKET_SIZE 64
+
 static libusb_device **devs;
 static libusb_device_handle *dev_handle;
 static libusb_context *ctx = NULL;
@@ -43,11 +47,11 @@ BackEnd::~BackEnd()
         r = libusb_release_interface(dev_handle, 1); //release the claimed interface
 
         if(r != 0){
-            printf("Cannot release Interface\n");
+            qDebug() << "Cannot release Interface\n";
             return;
         }
 
-        printf("Released Interface\n");
+        qDebug() << "Released Interface\n";
 
         libusb_close(dev_handle);
         libusb_exit(ctx); //close the session
@@ -599,7 +603,7 @@ void BackEnd::senseDeviceStatus(){
         return;
     }
 
-    dev_handle = libusb_open_device_with_vid_pid(ctx, 4660, 1);
+    dev_handle = libusb_open_device_with_vid_pid(ctx, 0x04d8, 0x0053);
     if(dev_handle ==NULL){
         setDeviceStatus("unplugged");
         this->timer->start(50);
@@ -630,63 +634,66 @@ void BackEnd::senseDeviceStatus(){
 
 void BackEnd::readDeviceConfiguration(){
 
-    printf("\nReading device configuration\n");
+    qDebug() << "\nReading device configuration\n";
 
     this->timer->stop();
 
-    unsigned char *data_out = new unsigned char[4]; //data to write
-    unsigned char *data_in  = new unsigned char[4]; //data to read
+    unsigned char data_out[64]; //data to write
+    unsigned char data_in[64]; //data to read
 
     int actual;
     int r;
 
+    memset(data_out,0,sizeof(data_out));
+    memset(data_in,0,sizeof(data_in));
+
     data_out[0]=HOST_REQUIRES_READING; data_out[1]=HOST_REQUIRES_READING;
     data_out[2]=HOST_REQUIRES_READING; data_out[3]=HOST_REQUIRES_READING;
 
-    r = libusb_bulk_transfer(dev_handle, (1 | LIBUSB_ENDPOINT_OUT), data_out, 4, &actual, 0);
+    r = libusb_bulk_transfer(dev_handle, BLUEPRINT_ENDPOINT_OUT, data_out, BLUEPRINT_USB_DATA_PACKET_SIZE, &actual, 0);
 
     if (r != 0){
-        printf(" write error");
+        qDebug() << " write error";
         setDeviceStatus("unplugged");
         this->timer->start(50);
         return;
     }
 
-    printf("\nRead request send");
+    qDebug() << "Read request send";
 
     while ((data_in[2] != OK) && (data_in[3]!=OK)){
-        printf(".");
-        r = libusb_bulk_transfer(dev_handle, (1 | LIBUSB_ENDPOINT_IN), data_in, 4, &actual, 25);
+        qDebug() << ".";
+        r = libusb_bulk_transfer(dev_handle, BLUEPRINT_ENDPOINT_IN, data_in, BLUEPRINT_USB_DATA_PACKET_SIZE, &actual, 25);
         if (r != 0){
             if(r == LIBUSB_ERROR_TIMEOUT){
-                r = libusb_bulk_transfer(dev_handle, (1 | LIBUSB_ENDPOINT_OUT), data_out, 4, &actual, 0);
+                r = libusb_bulk_transfer(dev_handle, BLUEPRINT_ENDPOINT_OUT, data_out, BLUEPRINT_USB_DATA_PACKET_SIZE, &actual, 0);
             } else {
                 setDeviceStatus("unplugged");
-                printf(" read error");
+                qDebug() << "read error";
                 this->timer->start(50);
                 return;
             }
         }
     }
 
-    printf("Ok\n\nReading Data");
+    qDebug() << "Ok\n\nReading Data";
 
     int i = 0;
 
     while((int(data_in[2])!=FINISH) && (int(data_in[3]!=FINISH))){
 
-        r = libusb_bulk_transfer(dev_handle, (1 | LIBUSB_ENDPOINT_IN), data_in, 4, &actual, 0);
+        r = libusb_bulk_transfer(dev_handle, BLUEPRINT_ENDPOINT_IN, data_in, BLUEPRINT_USB_DATA_PACKET_SIZE, &actual, 0);
         if (r != 0){
             setDeviceStatus("unplugged");
-            printf(" read error");
+            qDebug() << " read error";
             this->timer->start(50);
             return;
         }
 
-        interfaceConfig[i] = char(data_in[0]);  printf("\n%i - %i",i,data_in[0]);        //Its read all the package.
-        interfaceConfig[i+1] = char(data_in[1]); printf("\n%i - %i",i+1,data_in[1]);        //ENHANCE: It is better read the address in data_in[0]
-        interfaceConfig[i+2] = char(data_in[2]); printf("\n%i - %i",i+2,data_in[2]);       //and the values in data_in[1:3]
-        interfaceConfig[i+3] = char(data_in[3]); printf("\n%i - %i",i+3,data_in[3]);
+        interfaceConfig[i] = char(data_in[0]);  qDebug() << i << data_in[0];        //Its read all the package.
+        interfaceConfig[i+1] = char(data_in[1]); qDebug() << i+1 << data_in[1];        //ENHANCE: It is better read the address in data_in[0]
+        interfaceConfig[i+2] = char(data_in[2]); qDebug() << i+2 << data_in[2];       //and the values in data_in[1:3]
+        interfaceConfig[i+3] = char(data_in[3]); qDebug() << i+3 << data_in[3];
 
         i = i+4;
 
@@ -695,9 +702,9 @@ void BackEnd::readDeviceConfiguration(){
 
     setDeviceStatus("okData");
 
-    printf("Done\n");
+    qDebug() << "Done\n";
 
-    printf("\nSetting Layout");
+    qDebug() << "\nSetting Layout";
 
     this->timer->start(50);
 
@@ -708,22 +715,22 @@ void BackEnd::setInterface(){
 
     this->timer->stop();
 
-    setControl0Type(int(interfaceConfig[0])); printf(".");
-    setControl1Type(int(interfaceConfig[1])); printf(".");
-    setControl2Type(int(interfaceConfig[2])); printf(".");
-    setControl3Type(int(interfaceConfig[3])); printf(".");
-    setControl4Type(int(interfaceConfig[4])); printf(".");
-    setControl5Type(int(interfaceConfig[5])); printf(".");
-    setControl6Type(int(interfaceConfig[6])); printf(".");
-    setControl7Type(int(interfaceConfig[7])); printf(".");
-    setControl8Type(int(interfaceConfig[8])); printf(".");
-    setControl9Type(int(interfaceConfig[9])); printf(".");
-    setControl10Type(int(interfaceConfig[10])); printf(".");
-    setControl11Type(int(interfaceConfig[11])); printf(".");
-    setControl12Type(int(interfaceConfig[12])); printf(".");
-    setControl13Type(int(interfaceConfig[13])); printf(".");
-    setControl14Type(int(interfaceConfig[14])); printf(".");
-    setControl15Type(int(interfaceConfig[15])); printf(".");
+    setControl0Type(int(interfaceConfig[0])); qDebug() << ".";
+    setControl1Type(int(interfaceConfig[1])); qDebug() << ".";
+    setControl2Type(int(interfaceConfig[2])); qDebug() << ".";
+    setControl3Type(int(interfaceConfig[3])); qDebug() << ".";
+    setControl4Type(int(interfaceConfig[4])); qDebug() << ".";
+    setControl5Type(int(interfaceConfig[5])); qDebug() << ".";
+    setControl6Type(int(interfaceConfig[6])); qDebug() << ".";
+    setControl7Type(int(interfaceConfig[7])); qDebug() << ".";
+    setControl8Type(int(interfaceConfig[8])); qDebug() << ".";
+    setControl9Type(int(interfaceConfig[9])); qDebug() << ".";
+    setControl10Type(int(interfaceConfig[10])); qDebug() << ".";
+    setControl11Type(int(interfaceConfig[11])); qDebug() << ".";
+    setControl12Type(int(interfaceConfig[12])); qDebug() << ".";
+    setControl13Type(int(interfaceConfig[13])); qDebug() << ".";
+    setControl14Type(int(interfaceConfig[14])); qDebug() << ".";
+    setControl15Type(int(interfaceConfig[15])); qDebug() << ".";
 
     if(firstConfiguration){
         firstConfiguration = false;
@@ -733,14 +740,12 @@ void BackEnd::setInterface(){
     selectComponent(0);
 
     setDeviceStatus("working");
-    printf("Done\n");
+    qDebug() << "Done\n";
     this->timer->start(50);
     return;
 }
 
 void BackEnd::senseValue(){
-
-    return;
 
     this->timer->stop();
 
@@ -751,7 +756,7 @@ void BackEnd::senseValue(){
     char tComp;
     char pComp;
 
-    r = libusb_bulk_transfer(dev_handle, (1 | LIBUSB_ENDPOINT_IN), data_in, 4, &actual, 50);
+    r = libusb_bulk_transfer(dev_handle, BLUEPRINT_ENDPOINT_IN, data_in, BLUEPRINT_USB_DATA_PACKET_SIZE, &actual, 50);
 
     if (r == 0) {
 
@@ -831,7 +836,7 @@ void BackEnd::senseValue(){
     } else {
         if(r != LIBUSB_ERROR_TIMEOUT){
             setDeviceStatus("unplugged");
-            printf("error\n");
+            qDebug() << "error\n";
             this->timer->start(50);
             return;
         }
@@ -844,7 +849,7 @@ void BackEnd::syncHost2Device(){
 
     this->timer->stop();
 
-    printf("\nSync\n");
+    qDebug() << "\nSync\n";
 
     setDeviceStatus("sending data");
 
@@ -859,26 +864,26 @@ void BackEnd::syncHost2Device(){
     data_out[2]=HOST_REQUIRES_WRITING;
     data_out[3]=HOST_REQUIRES_WRITING;
 
-    r = libusb_bulk_transfer(dev_handle, (1 | LIBUSB_ENDPOINT_OUT), data_out, 4, &actual, 0);
+    r = libusb_bulk_transfer(dev_handle, BLUEPRINT_ENDPOINT_OUT, data_out, BLUEPRINT_USB_DATA_PACKET_SIZE, &actual, 0);
 
-    printf("\nWrite Request Send\n");
+    qDebug() << "\nWrite Request Send\n";
 
     usleep(100);
     if (r != 0){
-        printf(" write error");
+        qDebug() << " write error";
         setDeviceStatus("unplugged");
         this->timer->start(50);
         return;
     }
 
     while ((int(data_in[2])!=OK) && (int(data_in[3]!=OK))){
-        r = libusb_bulk_transfer(dev_handle, (1 | LIBUSB_ENDPOINT_IN), data_in, 4, &actual, 25);
+        r = libusb_bulk_transfer(dev_handle, BLUEPRINT_ENDPOINT_IN, data_in, BLUEPRINT_USB_DATA_PACKET_SIZE, &actual, 25);
         if (r != 0){
             if(r == LIBUSB_ERROR_TIMEOUT){
-                r = libusb_bulk_transfer(dev_handle, (1 | LIBUSB_ENDPOINT_OUT), data_out, 4, &actual, 0);
+                r = libusb_bulk_transfer(dev_handle, BLUEPRINT_ENDPOINT_OUT, data_out, BLUEPRINT_USB_DATA_PACKET_SIZE, &actual, 0);
             } else {
                 setDeviceStatus("unplugged");
-                printf(" read error");
+                qDebug() << " read error";
                 this->timer->start(50);
                 return;
             }
@@ -886,7 +891,7 @@ void BackEnd::syncHost2Device(){
         //printf("%i | %i | %i | %i\n",int(data_in[0]),int(data_in[1]),int(data_in[2]),int(data_in[3]));
     }
 
-    printf("\nOk\n\nWritting Data");
+    qDebug() << "\nOk\n\nWritting Data";
 
     interfaceConfig[31]=176;
 
@@ -895,29 +900,29 @@ void BackEnd::syncHost2Device(){
         data_out[0]=interfaceConfig[i]; data_out[1]=interfaceConfig[i + 1];         //ENHANCE: It is better send address and values
         data_out[2]=interfaceConfig[i + 2]; data_out[3]=interfaceConfig[i + 3];
 
-        r = libusb_bulk_transfer(dev_handle, (1 | LIBUSB_ENDPOINT_OUT), data_out, 4, &actual, 0);
+        r = libusb_bulk_transfer(dev_handle, BLUEPRINT_ENDPOINT_OUT, data_out, BLUEPRINT_USB_DATA_PACKET_SIZE, &actual, 0);
         if (r != 0){
             setDeviceStatus("unplugged");
-            printf(" read error");
+            qDebug() << " read error";
             this->timer->start(50);
             return;
         }
         usleep(11100); // WE NEED SYNCRONIZE    --  ENHANCE
-        printf(".");
+        qDebug() << ".";
     }
 
     data_out[0]=FINISH; data_out[1]=FINISH;
     data_out[2]=FINISH; data_out[3]=FINISH;
 
-    r = libusb_bulk_transfer(dev_handle, (1 | LIBUSB_ENDPOINT_OUT), data_out, 4, &actual, 0);
+    r = libusb_bulk_transfer(dev_handle, BLUEPRINT_ENDPOINT_OUT, data_out, BLUEPRINT_USB_DATA_PACKET_SIZE, &actual, 0);
     if (r != 0){
         setDeviceStatus("unplugged");
-        printf(" read error");
+        qDebug() << " read error";
         this->timer->start(50);
         return;
     }
 
-    printf("Done\n");
+    qDebug() << "Done\n";
 
     readDeviceConfiguration();
 

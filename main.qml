@@ -259,7 +259,7 @@ Window {
         id: a1Pot
         Button{
             autoExclusive: false
-            display: AbstractButton.IconOnly
+            //display: AbstractButton.IconOnly
             checkable: true
             background: Rectangle {
                 implicitWidth: 81
@@ -278,7 +278,7 @@ Window {
         id: a1Button
         Button{
             autoExclusive: false
-            display: AbstractButton.IconOnly
+            //display: AbstractButton.IconOnly
             checkable: true
             background: Rectangle {
                 implicitWidth: 81
@@ -302,7 +302,7 @@ Window {
         id: a2Pot
         Button{
             autoExclusive: false
-            display: AbstractButton.IconOnly
+            //display: AbstractButton.IconOnly
             checkable: true
             background: Rectangle {
                 implicitWidth: 81
@@ -321,7 +321,7 @@ Window {
         id: a2Button
         Button{
             autoExclusive: false
-            display: AbstractButton.IconOnly
+            //display: AbstractButton.IconOnly
             checkable: true
             background: Rectangle {
                 implicitWidth: 81
@@ -345,7 +345,7 @@ Window {
         id: a3Pot
         Button{
             autoExclusive: false
-            display: AbstractButton.IconOnly
+            //display: AbstractButton.IconOnly
             checkable: true
             background: Rectangle {
                 implicitWidth: 81
@@ -365,7 +365,7 @@ Window {
         id: a3Button
         Button{
             autoExclusive: false
-            display: AbstractButton.IconOnly
+            //display: AbstractButton.IconOnly
             checkable: true
             background: Rectangle {
                 implicitWidth: 81
@@ -389,7 +389,7 @@ Window {
         id: a4Pot
         Button{
             autoExclusive: false
-            display: AbstractButton.IconOnly
+            //display: AbstractButton.IconOnly
             checkable: true
             background: Rectangle {
                 implicitWidth: 81
@@ -409,7 +409,7 @@ Window {
         id: a4Button
         Button{
             autoExclusive: false
-            display: AbstractButton.IconOnly
+            //display: AbstractButton.IconOnly
             checkable: true
             background: Rectangle {
                 implicitWidth: 81
@@ -433,7 +433,7 @@ Window {
         id: b1Pot
         Button{
             autoExclusive: false
-            display: AbstractButton.IconOnly
+            //display: AbstractButton.IconOnly
             checkable: true
             background: Rectangle {
                 implicitWidth: 81
@@ -453,7 +453,7 @@ Window {
         id: b1Button
         Button{
             autoExclusive: false
-            display: AbstractButton.IconOnly
+            //display: AbstractButton.IconOnly
             checkable: true
             background: Rectangle {
                 implicitWidth: 81
@@ -477,7 +477,7 @@ Window {
         id: b2Pot
         Button{
             autoExclusive: false
-            display: AbstractButton.IconOnly
+            //display: AbstractButton.IconOnly
             checkable: true
             background: Rectangle {
                 implicitWidth: 81
@@ -497,7 +497,7 @@ Window {
         id: b2Button
         Button{
             autoExclusive: false
-            display: AbstractButton.IconOnly
+            //display: AbstractButton.IconOnly
             checkable: true
             background: Rectangle {
                 implicitWidth: 81
@@ -521,7 +521,7 @@ Window {
         id: b3Pot
         Button{
             autoExclusive: false
-            display: AbstractButton.IconOnly
+            //display: AbstractButton.IconOnly
             checkable: true
             background: Rectangle {
                 implicitWidth: 81
@@ -541,7 +541,7 @@ Window {
         id: b3Button
         Button{
             autoExclusive: false
-            display: AbstractButton.IconOnly
+            //display: AbstractButton.IconOnly
             checkable: true
             background: Rectangle {
                 implicitWidth: 81
@@ -565,7 +565,7 @@ Window {
         id: b4Pot
         Button{
             autoExclusive: false
-            display: AbstractButton.IconOnly
+            //display: AbstractButton.IconOnly
             checkable: true
             background: Rectangle {
                 implicitWidth: 81
@@ -585,7 +585,7 @@ Window {
         id: b4Button
         Button{
             autoExclusive: false
-            display: AbstractButton.IconOnly
+            //display: AbstractButton.IconOnly
             checkable: true
             background: Rectangle {
                 implicitWidth: 81
@@ -609,7 +609,7 @@ Window {
         id: c1Pot
         Button{
             autoExclusive: false
-            display: AbstractButton.IconOnly
+            //display: AbstractButton.IconOnly
             checkable: true
             background: Rectangle {
                 implicitWidth: 81
@@ -629,7 +629,7 @@ Window {
         id: c1Button
         Button{
             autoExclusive: false
-            display: AbstractButton.IconOnly
+            //display: AbstractButton.IconOnly
             checkable: true
             background: Rectangle {
                 implicitWidth: 81
@@ -653,7 +653,7 @@ Window {
         id: c2Pot
         Button{
             autoExclusive: false
-            display: AbstractButton.IconOnly
+            //display: AbstractButton.IconOnly
             checkable: true
             background: Rectangle {
                 implicitWidth: 81
@@ -673,7 +673,7 @@ Window {
         id: c2Button
         Button{
             autoExclusive: false
-            display: AbstractButton.IconOnly
+            //display: AbstractButton.IconOnly
             checkable: true
             background: Rectangle {
                 implicitWidth: 81
@@ -697,7 +697,7 @@ Window {
         id: c3Pot
         Button{
             autoExclusive: false
-            display: AbstractButton.IconOnly
+            //display: AbstractButton.IconOnly
             checkable: true
             background: Rectangle {
                 implicitWidth: 81
@@ -717,7 +717,7 @@ Window {
         id: c3Button
         Button{
             autoExclusive: false
-            display: AbstractButton.IconOnly
+            //display: AbstractButton.IconOnly
             checkable: true
             background: Rectangle {
                 implicitWidth: 81
@@ -741,7 +741,7 @@ Window {
         id: c4Pot
         Button{
             autoExclusive: false
-            display: AbstractButton.IconOnly
+            //display: AbstractButton.IconOnly
             checkable: true
             background: Rectangle {
                 implicitWidth: 81
@@ -761,7 +761,7 @@ Window {
         id: c4Button
         Button{
             autoExclusive: false
-            display: AbstractButton.IconOnly
+            //display: AbstractButton.IconOnly
             checkable: true
             background: Rectangle {
                 implicitWidth: 81
@@ -785,7 +785,7 @@ Window {
         id: d1Pot
         Button{
             autoExclusive: false
-            display: AbstractButton.IconOnly
+            //display: AbstractButton.IconOnly
             checkable: true
             background: Rectangle {
                 implicitWidth: 81
@@ -805,7 +805,7 @@ Window {
         id: d1Button
         Button{
             autoExclusive: false
-            display: AbstractButton.IconOnly
+            //display: AbstractButton.IconOnly
             checkable: true
             background: Rectangle {
                 implicitWidth: 81
@@ -829,7 +829,7 @@ Window {
         id: d2Pot
         Button{
             autoExclusive: false
-            display: AbstractButton.IconOnly
+            //display: AbstractButton.IconOnly
             checkable: true
             background: Rectangle {
                 implicitWidth: 81
@@ -849,7 +849,7 @@ Window {
         id: d2Button
         Button{
             autoExclusive: false
-            display: AbstractButton.IconOnly
+            //display: AbstractButton.IconOnly
             checkable: true
             background: Rectangle {
                 implicitWidth: 81
@@ -873,7 +873,7 @@ Window {
         id: d3Pot
         Button{
             autoExclusive: false
-            display: AbstractButton.IconOnly
+            //display: AbstractButton.IconOnly
             checkable: true
             background: Rectangle {
                 implicitWidth: 81
@@ -893,7 +893,7 @@ Window {
         id: d3Button
         Button{
             autoExclusive: false
-            display: AbstractButton.IconOnly
+            //display: AbstractButton.IconOnly
             checkable: true
             background: Rectangle {
                 implicitWidth: 81
@@ -917,7 +917,7 @@ Window {
         id: d4Pot
         Button{
             autoExclusive: false
-            display: AbstractButton.IconOnly
+            //display: AbstractButton.IconOnly
             checkable: true
             background: Rectangle {
                 implicitWidth: 81
@@ -937,7 +937,7 @@ Window {
         id: d4Button
         Button{
             autoExclusive: false
-            display: AbstractButton.IconOnly
+            //display: AbstractButton.IconOnly
             checkable: true
             background: Rectangle {
                 implicitWidth: 81
