@@ -7,7 +7,6 @@
 #include <QList>
 #include <QThread>
 
-//#include <libusb-1.0/libusb.h>
 #include <hidapi/hidapi.h>
 
 #include "control_midi.h"
@@ -141,7 +140,7 @@ public:
 
         //   Control_midi control() {return  m_control;}
 
-        bool firstConfiguration;
+        bool set_layout;
 
         unsigned char layout[BLUEPRINT_LAYOUT_DATA_SIZE];
 
@@ -246,7 +245,7 @@ signals:
         void control15TypeChanged();
 
 protected:
-        hid_device *tinami_dev;
+        hid_device *md1_device;
         bool connected;
 
 private:
