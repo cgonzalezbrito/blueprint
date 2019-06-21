@@ -31,9 +31,7 @@ Window {
             case BackEnd.Ready_for_update:
                 deviceStatusLabel.text = "ready for update";
                 break;
-            case BackEnd.Ready_for_update:
-                deviceStatusLabel.text = "ready for update";
-                break;
+
             case BackEnd.Ok_data:
                 deviceStatusLabel.text = "ok Data";
                 break;
@@ -88,10 +86,11 @@ Window {
 
         onControl0TypeChanged:{
             if(backend.control0Type === 2){
-                a1Loader.sourceComponent = a1Pot;
+                a1Loader.sourceComponent = potSelected;
             }
-            if(backend.control0Type === 1)
-                a1Loader.sourceComponent = a1Button;
+            if(backend.control0Type === 1){
+                a1Loader.sourceComponent = buttonSelected;
+                comp_name.text = qsTr("button a1");}
         }
         onControl1TypeChanged:{
             if(backend.control1Type === 2){
@@ -256,6 +255,7 @@ Window {
                 color: a1Pot.down ? "#17a81a" : "transparent"
                 Image { source: "content/images/knob.svg"}
             }
+
             onClicked:{
                 comp_name.text = qsTr("knob a1");
                 backend.selectComponent(0);
@@ -2856,6 +2856,7 @@ Window {
 
                 onClicked: {
                     backend.syncHost2Device();
+                    button.visible = false;
                 }
             }
 
@@ -3144,7 +3145,7 @@ Window {
 
         Text {
             id: preset_txt
-            visible: false
+            visible: true
             x: 107
             y: 486
             color: "#e8ac5b"
@@ -3157,12 +3158,12 @@ Window {
 
         ComboBox {
             id: global_combo
-            visible: false
+            visible: true
             x: 244
             y: 638
             width: 200
             height: 30
-            wheelEnabled: false
+            wheelEnabled: true
             focusPolicy: Qt.StrongFocus
             enabled: true
             font.family: "Arial"
@@ -3189,7 +3190,7 @@ Window {
 
         Text {
             id: global_txt
-            visible: false
+            visible: true
             x: 104
             y: 644
             color: "#e8ac5b"
@@ -3199,213 +3200,232 @@ Window {
             font.pixelSize: 18
             font.family: "Arial"
         }
+        Rectangle {
+           id:presets
+            Button {
+                id: p1
+                visible: true
+                x: 107
+                y: 517
+                width: 33
+                height: 43
+                checkable: true
+                autoExclusive: true
+                checked : true
+                text: qsTr("1")
+                font.family: "Arial"
+                onClicked: backend.setPreset(0)
+            }
 
-        Button {
-            id: p1
-            visible: false
-            x: 107
-            y: 517
-            width: 33
-            height: 43
-            text: qsTr("1")
-            checkable: false
-            font.family: "Arial"
-            onClicked: backend.setPreset(0)
-        }
+            Button {
+                id: p2
+                visible: true
+                x: 155
+                y: 517
+                width: 33
+                height: 43
+                text: qsTr("2")
+                checkable: true
+                autoExclusive: true
+                font.family: "Arial"
+                onClicked: backend.setPreset(1)
+            }
 
-        Button {
-            id: p2
-            visible: false
-            x: 155
-            y: 517
-            width: 33
-            height: 43
-            text: qsTr("2")
-            checkable: false
-            font.family: "Arial"
-            onClicked: backend.setPreset(1)
-        }
+            Button {
+                id: p3
+                visible: true
+                x: 203
+                y: 517
+                width: 33
+                height: 43
+                text: qsTr("3")
+                checkable: true
+                autoExclusive: true
+                font.family: "Arial"
+                onClicked: backend.setPreset(2)
+            }
 
-        Button {
-            id: p3
-            visible: false
-            x: 203
-            y: 517
-            width: 33
-            height: 43
-            text: qsTr("3")
-            checkable: false
-            font.family: "Arial"
-            onClicked: backend.setPreset(2)
-        }
+            Button {
+                id: p4
+                visible: true
+                x: 251
+                y: 517
+                width: 33
+                height: 43
+                text: qsTr("4")
+                checkable: true
+                autoExclusive: true
+                font.family: "Arial"
+                onClicked: backend.setPreset(3)
+            }
 
-        Button {
-            id: p4
-            visible: false
-            x: 251
-            y: 517
-            width: 33
-            height: 43
-            text: qsTr("4")
-            checkable: false
-            font.family: "Arial"
-            onClicked: backend.setPreset(3)
-        }
+            Button {
+                id: p5
+                visible: true
+                x: 299
+                y: 517
+                width: 33
+                height: 43
+                text: qsTr("5")
+                checkable: true
+                autoExclusive: true
+                font.family: "Arial"
+                onClicked: backend.setPreset(4)
+            }
 
-        Button {
-            id: p5
-            visible: false
-            x: 299
-            y: 517
-            width: 33
-            height: 43
-            text: qsTr("5")
-            checkable: false
-            font.family: "Arial"
-            onClicked: backend.setPreset(4)
-        }
+            Button {
+                id: p6
+                visible: true
+                x: 347
+                y: 517
+                width: 33
+                height: 43
+                text: qsTr("6")
+                checkable: true
+                autoExclusive: true
+                font.family: "Arial"
+                onClicked: backend.setPreset(5)
+            }
 
-        Button {
-            id: p6
-            visible: false
-            x: 347
-            y: 517
-            width: 33
-            height: 43
-            text: qsTr("6")
-            checkable: false
-            font.family: "Arial"
-            onClicked: backend.setPreset(5)
-        }
+            Button {
+                id: p7
+                visible: true
+                x: 395
+                y: 517
+                width: 33
+                height: 43
+                text: qsTr("7")
+                checkable: true
+                autoExclusive: true
+                font.family: "Arial"
+                onClicked: backend.setPreset(6)
+            }
 
-        Button {
-            id: p7
-            visible: false
-            x: 395
-            y: 517
-            width: 33
-            height: 43
-            text: qsTr("7")
-            checkable: false
-            font.family: "Arial"
-            onClicked: backend.setPreset(6)
-        }
+            Button {
+                id: p8
+                visible: true
+                x: 443
+                y: 517
+                width: 33
+                height: 43
+                text: qsTr("8")
+                checkable: true
+                autoExclusive: true
+                font.family: "Arial"
+                onClicked: backend.setPreset(7)
+            }
 
-        Button {
-            id: p8
-            visible: false
-            x: 443
-            y: 517
-            width: 33
-            height: 43
-            text: qsTr("8")
-            checkable: false
-            font.family: "Arial"
-            onClicked: backend.setPreset(7)
-        }
+            Button {
+                id: p9
+                visible: true
+                x: 107
+                y: 570
+                width: 33
+                height: 43
+                text: qsTr("9")
+                checkable: true
+                autoExclusive: true
+                font.family: "Arial"
+                onClicked: backend.setPreset(8)
+            }
 
-        Button {
-            id: p9
-            visible: false
-            x: 107
-            y: 570
-            width: 33
-            height: 43
-            text: qsTr("9")
-            checkable: false
-            font.family: "Arial"
-            onClicked: backend.setPreset(8)
-        }
+            Button {
+                id: p10
+                visible: true
+                x: 155
+                y: 570
+                width: 33
+                height: 43
+                text: qsTr("10")
+                checkable: true
+                autoExclusive: true
+                font.family: "Arial"
+                onClicked: backend.setPreset(9)
+            }
 
-        Button {
-            id: p10
-            visible: false
-            x: 155
-            y: 570
-            width: 33
-            height: 43
-            text: qsTr("10")
-            checkable: false
-            font.family: "Arial"
-            onClicked: backend.setPreset(9)
-        }
+            Button {
+                id: p11
+                visible: true
+                x: 203
+                y: 570
+                width: 33
+                height: 43
+                text: qsTr("11")
+                checkable: true
+                autoExclusive: true
+                font.family: "Arial"
+                onClicked: backend.setPreset(10)
+            }
 
-        Button {
-            id: p11
-            visible: false
-            x: 203
-            y: 570
-            width: 33
-            height: 43
-            text: qsTr("11")
-            checkable: false
-            font.family: "Arial"
-            onClicked: backend.setPreset(10)
-        }
+            Button {
+                id: p12
+                visible: true
+                x: 251
+                y: 570
+                width: 33
+                height: 43
+                text: qsTr("12")
+                checkable: true
+                autoExclusive: true
+                font.family: "Arial"
+                onClicked: backend.setPreset(11)
+            }
 
-        Button {
-            id: p12
-            visible: false
-            x: 251
-            y: 570
-            width: 33
-            height: 43
-            text: qsTr("12")
-            checkable: false
-            font.family: "Arial"
-            onClicked: backend.setPreset(11)
-        }
+            Button {
+                id: p13
+                visible: true
+                x: 299
+                y: 570
+                width: 33
+                height: 43
+                text: qsTr("13")
+                checkable: true
+                autoExclusive: true
+                font.family: "Arial"
+                onClicked: backendPreset(12)
+            }
 
-        Button {
-            id: p13
-            visible: false
-            x: 299
-            y: 570
-            width: 33
-            height: 43
-            text: qsTr("13")
-            checkable: false
-            font.family: "Arial"
-            onClicked: backendPreset(12)
-        }
+            Button {
+                id: p14
+                visible: true
+                x: 347
+                y: 570
+                width: 33
+                height: 43
+                text: qsTr("14")
+                checkable: true
+                autoExclusive: true
+                font.family: "Arial"
+                onClicked: backend.setPreset(13)
+            }
 
-        Button {
-            id: p14
-            visible: false
-            x: 347
-            y: 570
-            width: 33
-            height: 43
-            text: qsTr("14")
-            checkable: false
-            font.family: "Arial"
-            onClicked: backend.setPreset(13)
-        }
+            Button {
+                id: p15
+                visible: true
+                x: 395
+                y: 570
+                width: 33
+                height: 43
+                text: qsTr("15")
+                checkable: true
+                autoExclusive: true
+                font.family: "Arial"
+                onClicked: backend.setPreset(14)
+            }
 
-        Button {
-            id: p15
-            visible: false
-            x: 395
-            y: 570
-            width: 33
-            height: 43
-            text: qsTr("15")
-            checkable: false
-            font.family: "Arial"
-            onClicked: backend.setPreset(14)
-        }
-
-        Button {
-            id: p16
-            visible: false
-            x: 443
-            y: 570
-            width: 33
-            height: 43
-            text: qsTr("16")
-            checkable: false
-            font.family: "Arial"
-            onClicked: backend.setPreset(15)
+            Button {
+                id: p16
+                visible: true
+                x: 443
+                y: 570
+                width: 33
+                height: 43
+                text: qsTr("16")
+                checkable: true
+                autoExclusive: true
+                font.family: "Arial"
+                onClicked: backend.setPreset(15)
+            }
         }
 
         Rectangle {
@@ -3415,7 +3435,7 @@ Window {
             width: 1024
             height: 40
             color: "#000000"
-            visible: false
+            visible: true
         }
 
         Text {

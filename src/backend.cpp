@@ -33,6 +33,8 @@ BackEnd::BackEnd(QObject *parent) :
 
         memset(&configuration, 0, sizeof (configuration));
 
+        memset(&preset_array, 0, sizeof (preset_array));
+
         this->timer = new QTimer(this);
         connect(timer, &QTimer::timeout, this, &BackEnd::timer_timeout);
         this->timer->start(50);
@@ -425,9 +427,22 @@ void BackEnd::setPreset(const unsigned char &preset){
         if (preset == m_preset)
                 return;
         m_preset = preset;
-        emit presetChanged();
+        bool already_read = false;
+        for (int i = 0; i < 16; ++i) {
+            if (m_preset == preset_array[i])
+                already_read = true;
+        }
+        if (!already_read){
+            readPreset(m_preset);
+            for (int i = 1; i < 16; ++i) {
+                if (preset_array[i] == 0){
+                    preset_array[i] = m_preset;
+                    break;
+                }
+            }
+        }
         selectComponent(m_component);
-        qDebug() << preset;
+        emit presetChanged();
 }
 
 void BackEnd::setComponentMode(const ComponentMode &deviceMode){
@@ -537,7 +552,6 @@ void BackEnd::selectComponent(const unsigned char &component){
         unsigned char maxValue;
 
         m_component = component;
-        emit componentChanged();
 
         type = layout[BLUEPRINT_CONTROL_TYPE_INDEX + m_component];
         mode = configuration.preset[m_preset].component[m_component].bytes.mode;
@@ -554,11 +568,13 @@ void BackEnd::selectComponent(const unsigned char &component){
         setComponentMode(static_cast<ComponentMode>(mode));
         setComponentButtonBehaviour(static_cast<ComponentButtonBehaviour>(type));
 
+        emit componentChanged();
+
         return;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///                                     SELECT PRESET
+///                                     SELECT  & READ PRESET
 /// \brief BackEnd::readPreset
 ///
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -567,8 +583,6 @@ void BackEnd::readPreset(const unsigned char &preset){
         unsigned char data_out[BLUEPRINT_USB_HID_PACKET_SIZE]; //data to write
         unsigned char data_in[BLUEPRINT_USB_HID_PACKET_SIZE]; //data to read
 
-        int res;
-
         memset(data_out,0,BLUEPRINT_USB_HID_PACKET_SIZE);
         memset(data_in,0,BLUEPRINT_USB_HID_PACKET_SIZE);
 
@@ -576,25 +590,22 @@ void BackEnd::readPreset(const unsigned char &preset){
         data_out[1]=SOF;
         data_out[2]=HOST_REQUIRES_READING;
         data_out[3]=CMD_PRESET;
-        data_out[4]=0;
+        data_out[4]=preset;
 
-        res = hid_write(md1_device,data_out,BLUEPRINT_USB_HID_PACKET_SIZE);
+        hid_write(md1_device,data_out,BLUEPRINT_USB_HID_PACKET_SIZE);
 
-        res = hid_read_timeout(md1_device, data_in, BLUEPRINT_USB_HID_PACKET_SIZE, 1000);
-
-        if (res < 0){
+        if (hid_read_timeout(md1_device, data_in, BLUEPRINT_USB_HID_PACKET_SIZE, 1000) < 0){
                 qDebug() << "read error";
                 setDeviceStatus(Unplugged);
                 this->timer->start(50);
                 return;
         }
 
-        qDebug() << "Read Preset request send";
+        qDebug() << "Read Preset request send" << preset;
 
         while ((data_in[0] != SOF) && (data_in[1] != OK) && (data_in[2] != CMD_PRESET)){
                 qDebug() << "####";
-                res = hid_read_timeout(md1_device, data_in, BLUEPRINT_USB_HID_PACKET_SIZE, 1000);
-                if (res < 0){
+                if (hid_read_timeout(md1_device, data_in, BLUEPRINT_USB_HID_PACKET_SIZE, 1000) < 0){
                         setDeviceStatus(Unplugged);
                         qDebug() << "read error";
                         this->timer->start(50);
@@ -610,9 +621,8 @@ void BackEnd::readPreset(const unsigned char &preset){
         int k = 0;
 
         while(data_in[1] != FINISH){
-                res = hid_read_timeout(md1_device, data_in, BLUEPRINT_USB_HID_PACKET_SIZE, 1000);
 
-                if (res < 0){
+                if (hid_read_timeout(md1_device, data_in, BLUEPRINT_USB_HID_PACKET_SIZE, 1000) < 0){
                         setDeviceStatus(Unplugged);
                         qDebug() << "read error";
                         this->timer->start(50);
@@ -630,7 +640,7 @@ void BackEnd::readPreset(const unsigned char &preset){
 
         }
 
-        setDeviceStatus(Ok_data);
+        //setDeviceStatus(Ok_data);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

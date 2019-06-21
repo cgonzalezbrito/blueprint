@@ -261,6 +261,8 @@ private:
 
         unsigned char m_controlType[16];
 
+        unsigned char preset_array[16];
+
         /*unsigned char *m_value = new unsigned char [16];*/
 
         QTimer *timer;
