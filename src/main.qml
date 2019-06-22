@@ -2856,7 +2856,6 @@ Window {
 
                 onClicked: {
                     backend.syncHost2Device();
-                    button.visible = false;
                 }
             }
 

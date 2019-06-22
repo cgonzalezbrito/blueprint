@@ -55,14 +55,23 @@ public:
         ~BackEnd();
 
         enum DeviceStatus{
-                Unplugged,
-                Ready_for_config,
-                Ready_for_update,
-                Wrong_data,
-                Ok_data,
-                Working,
+            Unplugged,
+            Ready_for_config,
+            Ready_for_update,
+            Wrong_data,
+            Ok_data,
+            Working,
         };
+
         Q_ENUM(DeviceStatus)
+
+        enum ConfigStatus{
+            Request,
+            WaitOK,
+            WaitFinish,
+        };
+
+        Q_ENUM(ConfigStatus)
 
         enum ComponentMode{
                 VoiceNote,
@@ -250,6 +259,7 @@ protected:
 
 private:
         DeviceStatus m_deviceStatus;
+        ConfigStatus conf_state;
         ComponentButtonBehaviour m_componentButtonBehaviour = None;
         ComponentMode m_componentMode;
         unsigned char m_componentData = 0;
@@ -263,13 +273,14 @@ private:
 
         unsigned char preset_array[16];
 
+        unsigned char num_buffer;
         /*unsigned char *m_value = new unsigned char [16];*/
 
         QTimer *timer;
 
         void senseValue();
         void senseDeviceStatus();
-        void readDeviceConfiguration();
+        void readDeviceConfiguration(ConfigStatus &conf_state);
 
         void readPreset(const unsigned char &preset);
 
