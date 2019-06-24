@@ -30,8 +30,7 @@ BackEnd::BackEnd(QObject *parent) :
         setDeviceStatus(Unplugged);       //  Select Variable. Values: "unplugged"; "connected"; "wrongData"; "okData"; "working"
         conf_state = Request;
         memset(layout, 0, sizeof (layout));
-        index_buffer = 0;
-        num_buffer = 0;
+        packet_num_buffer = 0;
         setComponentMinValue(0);
         setComponentMaxValue(127);
 
@@ -41,6 +40,9 @@ BackEnd::BackEnd(QObject *parent) :
         this->timer = new QTimer(this);
         connect(timer, &QTimer::timeout, this, &BackEnd::timer_timeout);
         this->timer->start(10);
+
+        this->timerRead = new QTimer(this);
+        connect(timerRead, &QTimer::timeout, this, &BackEnd::timerRead_timeout);
 }
 
 BackEnd::~BackEnd()
@@ -72,6 +74,11 @@ void BackEnd::timer_timeout(){
         case Ok_data:
                 setLayout();
                 break;
+        case Component:
+                setPreset(0);
+                readPreset(0);
+                setDeviceStatus(Working);
+                break;
         case Working:
                 senseValue();
                 break;
@@ -81,6 +88,27 @@ void BackEnd::timer_timeout(){
         }
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///                                      TIMER TO READ OVERFLOW                                                         //
+/// \brief BackEnd::timer_timeout                                                                                       //
+///                                                                                                                     //
+/// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void BackEnd::timerRead_timeout(){
+        switch (preset_status) {
+        case Request_Preset:
+            redPresetReq(m_preset);
+            break;
+        case WaitOK_Preset:
+            WaitOKPreset();
+            break;
+        case WaitFinish_Preset:
+            WaitFinishPreset(m_preset);
+            break;
+
+        }
+
+}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                       DEVICE STATUS                                                                 //
 /// \brief BackEnd::senseDeviceStatus                                                                                   //
@@ -182,17 +210,16 @@ void BackEnd::readDeviceConfiguration(ConfigStatus &conf_state){
             data_out[0]=0; data_out[1]=SOF; data_out[2]=HOST_REQUIRES_READING; data_out[3]=CMD_LAYOUT; data_out[4]=0;
 
             hid_write(md1_device,data_out,BLUEPRINT_USB_HID_PACKET_SIZE);
+            qDebug() << "Read request send";
             if (hid_read_timeout(md1_device, data_in, BLUEPRINT_USB_HID_PACKET_SIZE, 1000) < 0){
-                    qDebug() << " write error";
                     setDeviceStatus(Unplugged);
                     conf_state = Request;
+                    qDebug() << "read error";
                     this->timer->start(10);
                     return;
             }
-            qDebug() << "Read request send";
-            conf_state = WaitOK;
-            index_buffer = 0;
-            num_buffer = 0;
+            conf_state = WaitFinish;//conf_state = WaitOK;
+            packet_num_buffer = 0;
             this->timer->start(10);
             break;
 
@@ -208,11 +235,10 @@ void BackEnd::readDeviceConfiguration(ConfigStatus &conf_state){
                     return;
             }
             if ((data_in[0] != SOF) && (data_in[1] != OK) && (data_in[2] != CMD_LAYOUT)){
-                qDebug() << "Ok";
-                conf_state = WaitFinish;
+                    qDebug() << "Ok";
+                    conf_state = WaitFinish;
             }
-            index_buffer = 0;
-            num_buffer = 0;
+            packet_num_buffer = 0;
             this->timer->start(10);
             break;
 
@@ -226,25 +252,27 @@ void BackEnd::readDeviceConfiguration(ConfigStatus &conf_state){
                     qDebug() << " write error";
                     setDeviceStatus(Unplugged);
                     conf_state = Request;
-                    this->timer->start(50);
+                    this->timer->start(10);
                     return;
             }
 
             if(data_in[1] == FINISH){
                 setDeviceStatus(Ok_data);
+                conf_state = Request;
                 qDebug() << "Done";
                 this->timer->start(10);
                 break;
             }
 
-            offset = num_buffer * BLUEPRINT_USB_DATA_PACKET_SIZE;
+            offset = packet_num_buffer * BLUEPRINT_USB_DATA_PACKET_SIZE;
 
             for (int i = 0; i < BLUEPRINT_USB_DATA_PACKET_SIZE; i++) {
                     layout[offset + i] = data_in[i];
                     qDebug() << offset + i << layout[offset + i];
             }
 
-            num_buffer = num_buffer+1;
+            packet_num_buffer = packet_num_buffer+1;
+            this->timer->start(10);
             break;
         }
         return;
@@ -279,15 +307,12 @@ void BackEnd::setLayout(){
 
         if(!set_layout){
                 set_layout = true;
-                sleep(1);
+                //sleep(1);
         }
-        setPreset(0);
-        readPreset(0);
-        selectComponent(0);
 
-        setDeviceStatus(Working);
         qDebug() << "Done\n";
-        this->timer->start(50);
+        setDeviceStatus(Component);
+        this->timer->start(10);
         return;
 }
 
@@ -454,8 +479,24 @@ void BackEnd::setPreset(const unsigned char &preset){
                 }
             }
         }
-        selectComponent(m_component);
+        //selectComponent(0);
         emit presetChanged();
+        emit control0TypeChanged();
+        emit control1TypeChanged();
+        emit control2TypeChanged();
+        emit control3TypeChanged();
+        emit control4TypeChanged();
+        emit control5TypeChanged();
+        emit control6TypeChanged();
+        emit control7TypeChanged();
+        emit control8TypeChanged();
+        emit control9TypeChanged();
+        emit control10TypeChanged();
+        emit control11TypeChanged();
+        emit control12TypeChanged();
+        emit control13TypeChanged();
+        emit control14TypeChanged();
+        emit control15TypeChanged();
 }
 
 void BackEnd::setComponentMode(const ComponentMode &deviceMode){
@@ -566,6 +607,8 @@ void BackEnd::selectComponent(const unsigned char &component){
 
         m_component = component;
 
+        qDebug()<< "Selecting component" << component;
+
         type = layout[BLUEPRINT_CONTROL_TYPE_INDEX + m_component];
         mode = configuration.preset[m_preset].component[m_component].bytes.mode;
         channel = configuration.preset[m_preset].component[m_component].bytes.channel;
@@ -593,69 +636,103 @@ void BackEnd::selectComponent(const unsigned char &component){
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void BackEnd::readPreset(const unsigned char &preset){
+
+        this->timer->stop();
+        m_preset = preset;
+        packet_num_buffer = 0;
+        this ->timerRead->start(10);
+        return;
+
+}
+
+void BackEnd::redPresetReq(const unsigned char &preset){
+
+        this ->timerRead->stop();
+
         unsigned char data_out[BLUEPRINT_USB_HID_PACKET_SIZE]; //data to write
         unsigned char data_in[BLUEPRINT_USB_HID_PACKET_SIZE]; //data to read
 
         memset(data_out,0,BLUEPRINT_USB_HID_PACKET_SIZE);
         memset(data_in,0,BLUEPRINT_USB_HID_PACKET_SIZE);
 
-        data_out[0]=0;
-        data_out[1]=SOF;
-        data_out[2]=HOST_REQUIRES_READING;
-        data_out[3]=CMD_PRESET;
-        data_out[4]=preset;
+        data_out[0]=0; data_out[1]=SOF; data_out[2]=HOST_REQUIRES_READING; data_out[3]=CMD_PRESET; data_out[4]=preset;
 
-        hid_write(md1_device,data_out,BLUEPRINT_USB_HID_PACKET_SIZE);
+        hid_write(md1_device,data_out,BLUEPRINT_USB_HID_PACKET_SIZE);if (hid_read_timeout(md1_device, data_in, BLUEPRINT_USB_HID_PACKET_SIZE, 1000) < 0){
+            setDeviceStatus(Unplugged);
+            conf_state = Request;
+            qDebug() << "read error";
+            this->timer->start(10);
+            return;
+        }
+
+        qDebug() << "Read Preset request send" << preset;
+        preset_status = WaitFinish_Preset;//preset_status = WaitOK_Preset;
+        this ->timerRead->start(10);
+        return;
+
+}
+
+void BackEnd::WaitOKPreset(){
+
+        this ->timerRead->stop();
+
+        unsigned char data_in[BLUEPRINT_USB_HID_PACKET_SIZE]; //data to read
+
+        memset(data_in,0,BLUEPRINT_USB_HID_PACKET_SIZE);
+
+        qDebug() << "#";
+        if (hid_read_timeout(md1_device, data_in, BLUEPRINT_USB_HID_PACKET_SIZE, 1000) < 0){
+                setDeviceStatus(Unplugged);
+                qDebug() << "read error";
+                this->timer->start(10);
+                return;
+        }
+        for (int i = 0; i < 64; ++i) {
+                qDebug() << data_in[i];
+        }
+        if((data_in[0] != SOF) && (data_in[1] != OK) && (data_in[2] != CMD_PRESET)){
+            qDebug() << "Ok";
+            preset_status = WaitFinish_Preset;
+        }
+
+        this ->timerRead->start(10);
+        return;
+
+}
+
+void BackEnd::WaitFinishPreset(const unsigned char &preset){
+
+        this -> timerRead->stop();
+
+        unsigned char data_in[BLUEPRINT_USB_HID_PACKET_SIZE]; //data to read
+
+        memset(data_in,0,BLUEPRINT_USB_HID_PACKET_SIZE);
+
+        qDebug() << "Ok\n\nReading Data";
 
         if (hid_read_timeout(md1_device, data_in, BLUEPRINT_USB_HID_PACKET_SIZE, 1000) < 0){
-                qDebug() << "read error";
                 setDeviceStatus(Unplugged);
+                qDebug() << "read error";
                 this->timer->start(50);
                 return;
         }
 
-        qDebug() << "Read Preset request send" << preset;
-
-        while ((data_in[0] != SOF) && (data_in[1] != OK) && (data_in[2] != CMD_PRESET)){
-                qDebug() << "####";
-                if (hid_read_timeout(md1_device, data_in, BLUEPRINT_USB_HID_PACKET_SIZE, 1000) < 0){
-                        setDeviceStatus(Unplugged);
-                        qDebug() << "read error";
-                        this->timer->start(50);
-                        return;
-                }
-                for (int i = 0; i < 64; ++i) {
-                        qDebug() << data_in[i];
-                }
+        if(data_in[1] == FINISH){
+                preset_status = Request_Preset;
+                this ->timerRead->stop();
+                selectComponent(0);
+                this->timer->start(10);
+                return;
         }
 
-        qDebug() << "Ok\n\nReading Data";
-
-        int k = 0;
-
-        while(data_in[1] != FINISH){
-
-                if (hid_read_timeout(md1_device, data_in, BLUEPRINT_USB_HID_PACKET_SIZE, 1000) < 0){
-                        setDeviceStatus(Unplugged);
-                        qDebug() << "read error";
-                        this->timer->start(50);
-                        return;
-                }
-
-                if(data_in[1] == FINISH)
-                        break;
-
-                for (int i = 0; i < BLUEPRINT_USB_DATA_PACKET_SIZE; i++) {
-                        configuration.preset[preset].packet[k].data[i] = data_in[i];
-                }
-
-                k = k + 1;
-
+        for (int i = 0; i < BLUEPRINT_USB_DATA_PACKET_SIZE; i++) {
+                configuration.preset[preset].packet[packet_num_buffer].data[i] = data_in[i];
         }
 
-        //setDeviceStatus(Ok_data);
+        packet_num_buffer = packet_num_buffer + 1;
+        this -> timerRead -> start(10);
+        return;
 }
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// \brief BackEnd::syncHost2Device
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -799,7 +876,8 @@ void BackEnd::syncHost2Device(){
 //////////////////////////////////////////////////
 
 void BackEnd::senseValue(){
-        this->timer->stop();
+        return;
+        /*this->timer->stop();
 
         unsigned char data_in[BLUEPRINT_USB_HID_PACKET_SIZE];
 
@@ -809,7 +887,7 @@ void BackEnd::senseValue(){
                 this->timer->start(50);
                 return;
         }
-        this->timer->start(50);
-        return;
+        this->timer->start(10);
+        return;*/
 }
 

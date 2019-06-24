@@ -60,6 +60,7 @@ public:
             Ready_for_update,
             Wrong_data,
             Ok_data,
+            Component,
             Working,
         };
 
@@ -72,6 +73,15 @@ public:
         };
 
         Q_ENUM(ConfigStatus)
+
+        enum ReadPresetStatus{
+            Request_Preset,
+            WaitOK_Preset,
+            WaitFinish_Preset,
+
+        };
+
+        Q_ENUM(ReadPresetStatus)
 
         enum ComponentMode{
                 VoiceNote,
@@ -225,6 +235,7 @@ public slots:
 
 private slots:
         void timer_timeout();
+        void timerRead_timeout();
 
 signals:
         void deviceStatusChanged();
@@ -260,6 +271,7 @@ protected:
 private:
         DeviceStatus m_deviceStatus;
         ConfigStatus conf_state;
+        ReadPresetStatus preset_status;
         ComponentButtonBehaviour m_componentButtonBehaviour = None;
         ComponentMode m_componentMode;
         unsigned char m_componentData = 0;
@@ -273,16 +285,20 @@ private:
 
         unsigned char preset_array[16];
 
-        unsigned char num_buffer;
+        unsigned char packet_num_buffer;
         /*unsigned char *m_value = new unsigned char [16];*/
 
         QTimer *timer;
+        QTimer *timerRead;
 
         void senseValue();
         void senseDeviceStatus();
         void readDeviceConfiguration(ConfigStatus &conf_state);
 
         void readPreset(const unsigned char &preset);
+        void redPresetReq(const unsigned char &preset);
+        void WaitOKPreset();
+        void WaitFinishPreset(const unsigned char &preset);
 
         std::vector <unsigned char> change_index;
 

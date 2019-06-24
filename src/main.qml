@@ -85,9 +85,7 @@ Window {
         }
 
         onControl0TypeChanged:{
-            if(backend.control0Type === 2){
-                a1Loader.sourceComponent = potSelected;
-            }
+            if(backend.control0Type === 2) a1Loader.sourceComponent = potSelected;
             if(backend.control0Type === 1){
                 a1Loader.sourceComponent = buttonSelected;
                 comp_name.text = qsTr("button a1");}
