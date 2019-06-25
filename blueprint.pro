@@ -44,7 +44,7 @@ INCLUDEPATH += ./3rdparty
 # OS is being used
 #-------------------------------------------------
 win32: LIBS += $$PWD/3rdparty/hidapi/win32/libhidapi.a
-macx: LIBS += -L../hidapi/mac/release
+macx: LIBS += $$PWD/3rdparty/hidapi/mac/libhidapi.a
 unix: !macx: LIBS += $$PWD/3rdparty/hidapi/gnu_linux/libhidapi-libusb.a
 
 #-------------------------------------------------
