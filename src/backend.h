@@ -78,10 +78,22 @@ public:
             Request_Preset,
             WaitOK_Preset,
             WaitFinish_Preset,
-
         };
 
         Q_ENUM(ReadPresetStatus)
+
+        enum SyncStatus{
+            Request_Sync,
+            WaitOK_Sync,
+            SendLayout_Sync,
+            SendFinish_Sync,
+            SendReqPreset_Sync,
+            WaitOK1_Sync,
+            SendPreset_Sync,
+            SendFinish1_Sync,
+        };
+
+        Q_ENUM(SyncStatus)
 
         enum ComponentMode{
                 VoiceNote,
@@ -92,6 +104,7 @@ public:
                 VoicePitchBend,
         };
         Q_ENUM(ComponentMode)
+
 
         enum ComponentButtonBehaviour
         {
@@ -236,6 +249,7 @@ public slots:
 private slots:
         void timer_timeout();
         void timerRead_timeout();
+        void timerSync_timeout();
 
 signals:
         void deviceStatusChanged();
@@ -272,6 +286,7 @@ private:
         DeviceStatus m_deviceStatus;
         ConfigStatus conf_state;
         ReadPresetStatus preset_status;
+        SyncStatus sync_status;
         ComponentButtonBehaviour m_componentButtonBehaviour = None;
         ComponentMode m_componentMode;
         unsigned char m_componentData = 0;
@@ -290,6 +305,7 @@ private:
 
         QTimer *timer;
         QTimer *timerRead;
+        QTimer *timerSync;
 
         void senseValue();
         void senseDeviceStatus();
@@ -299,6 +315,15 @@ private:
         void redPresetReq(const unsigned char &preset);
         void WaitOKPreset();
         void WaitFinishPreset(const unsigned char &preset);
+
+        void syncReq();
+        void WaitOKSync();
+        void SendLayoutSync();
+        void SendFinishSync();
+        void SendReqPresetSync();
+        void WaitOK1Sync();
+        void SendPresetSync();
+        void SendFinish1Sync();
 
         std::vector <unsigned char> change_index;
 
