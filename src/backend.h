@@ -50,6 +50,8 @@ class BackEnd : public QObject
         Q_PROPERTY(unsigned char control14Type READ control14Type WRITE setControl14Type NOTIFY control14TypeChanged)
         Q_PROPERTY(unsigned char control15Type READ control15Type WRITE setControl15Type NOTIFY control15TypeChanged)
 
+        Q_PROPERTY(bool synchronizing READ synchronizing WRITE setSynchronizing NOTIFY synchronizingChanged)
+
 public:
         explicit BackEnd(QObject *parent = nullptr);
         ~BackEnd();
@@ -205,6 +207,8 @@ public:
         unsigned char control14Type() const { return m_controlType[14];}
         unsigned char control15Type() const { return m_controlType[15];}
 
+        bool synchronizing() {return m_sync;}
+
         Control_midi *this_control = new Control_midi();
 
         void pollUSB(uint16_t deviceVIDtoPoll, uint16_t devicePIDtoPoll);
@@ -246,6 +250,8 @@ public slots:
         void setControl15Type(const unsigned char &controlType);
         void setLayout();
 
+        void setSynchronizing(bool &sync);
+
 private slots:
         void timer_timeout();
         void timerRead_timeout();
@@ -277,6 +283,7 @@ signals:
         void control13TypeChanged();
         void control14TypeChanged();
         void control15TypeChanged();
+        void synchronizingChanged();
 
 protected:
         hid_device *md1_device;
@@ -301,6 +308,8 @@ private:
         unsigned char preset_array[16];
 
         unsigned char packet_num_buffer;
+
+        bool m_sync;
         /*unsigned char *m_value = new unsigned char [16];*/
 
         QTimer *timer;

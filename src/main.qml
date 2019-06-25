@@ -205,6 +205,16 @@ Window {
             if(backend.control15Type === 1)
                 d4Loader.sourceComponent = d4Button;
         }
+
+        onSynchronizingChanged: {
+            if(!backend.synchronizing){
+                clock.visible = false;
+                button.visible = true;
+            } else {
+                clock.visible = true;
+                button.visible = false;
+            }
+        }
     }
 
     Component{
@@ -2855,6 +2865,15 @@ Window {
                 onClicked: {
                     backend.syncHost2Device();
                 }
+            }
+
+            Image {
+                id: clock
+                x: 160
+                y: 620
+
+                source: "content/images/clock.svg"
+                visible: false
             }
 
             RangeSlider {

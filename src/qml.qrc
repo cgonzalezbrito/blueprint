@@ -15,5 +15,6 @@
         <file>content/images/Knob-w-back.svg</file>
         <file>content/images/knobS.svg</file>
         <file>content/images/buttonS.svg</file>
+        <file>content/images/clock.svg</file>
     </qresource>
 </RCC>

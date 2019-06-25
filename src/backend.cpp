@@ -36,6 +36,8 @@ BackEnd::BackEnd(QObject *parent) :
         setComponentMinValue(0);
         setComponentMaxValue(127);
 
+        m_sync = false;
+
         memset(&configuration, 0, sizeof (configuration));
         memset(&preset_array, 0, sizeof (preset_array));
 
@@ -496,6 +498,14 @@ void BackEnd::setControl15Type(const unsigned char &controlType){
         return;
 }
 
+void BackEnd::setSynchronizing(bool &sync){
+        if (sync == m_sync)
+            return;
+        m_sync = sync;
+        emit synchronizingChanged();
+        return;
+}
+
 ///////////////////////////////////////////////////////////////
 ///
 ///             Attributes
@@ -780,6 +790,8 @@ void BackEnd::WaitFinishPreset(const unsigned char &preset){
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void BackEnd::syncHost2Device(){
+        bool temp_variable = true;
+        setSynchronizing(temp_variable);
         this->timer->stop();
         packet_num_buffer = 0;
         this ->timerSync->start(10);
@@ -977,6 +989,8 @@ void BackEnd::SendFinish1Sync(){
         setDeviceStatus(Working);
 
         sync_status = Request_Sync;
+        bool temp_variable = false;
+        setSynchronizing(temp_variable);
         this ->timerSync->stop();
         this->timer->start(10);
         return;
