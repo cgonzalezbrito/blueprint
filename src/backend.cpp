@@ -794,7 +794,7 @@ void BackEnd::syncHost2Device(){
         setSynchronizing(temp_variable);
         this->timer->stop();
         packet_num_buffer = 0;
-        this ->timerSync->start(10);
+        this ->timerSync->start(1);
         return;
 }
 
@@ -916,7 +916,7 @@ void BackEnd::SendReqPresetSync(){
         qDebug() << "Write Preset Request Send";
 
         QThread::msleep(500);
-        sync_status = WaitOK1_Sync;
+        sync_status = SendPreset_Sync;
         return;
 }
 
@@ -961,9 +961,9 @@ void BackEnd::SendPresetSync(){
                 this->timer->start(10);
                 return;
         }
-        QThread::msleep(100);
         ++packet_num_buffer;
-        if(packet_num_buffer > 4){
+        QThread::msleep(100);
+        if(packet_num_buffer >= 4){
             sync_status = SendFinish1_Sync;
             packet_num_buffer = 0;
         }
@@ -986,6 +986,7 @@ void BackEnd::SendFinish1Sync(){
         }
 
         qDebug() << "Already sync!";
+        QThread::msleep(500);
         setDeviceStatus(Working);
 
         sync_status = Request_Sync;
