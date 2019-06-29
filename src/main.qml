@@ -10,6 +10,8 @@ import QtQml 2.1
 import com.tinami.backend 1.0
 //import io.qt.examples.controller 1.0
 
+// Test
+
 Window {
 
     visible: true
