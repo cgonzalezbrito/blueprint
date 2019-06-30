@@ -16,5 +16,6 @@
         <file>content/images/knobS.svg</file>
         <file>content/images/buttonS.svg</file>
         <file>content/images/clock.svg</file>
+        <file>content/PresetButton.qml</file>
     </qresource>
 </RCC>

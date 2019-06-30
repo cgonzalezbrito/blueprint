@@ -10,7 +10,7 @@ import QtQml 2.1
 import com.tinami.backend 1.0
 //import io.qt.examples.controller 1.0
 
-// Test
+import "content"
 
 Window {
 
@@ -3219,228 +3219,196 @@ Window {
             font.family: "Arial"
         }
         Rectangle {
-           id:presets
-            Button {
+            id:presets
+            PresetButton {
                 id: p1
                 visible: true
                 x: 107
                 y: 517
-                width: 33
-                height: 43
                 checkable: true
                 autoExclusive: true
-                checked : true
+                checked: true
                 text: qsTr("1")
                 font.family: "Arial"
                 onClicked: backend.setPreset(0)
             }
 
-            Button {
+            PresetButton {
                 id: p2
                 visible: true
                 x: 155
                 y: 517
-                width: 33
-                height: 43
-                text: qsTr("2")
                 checkable: true
                 autoExclusive: true
+                text: qsTr("2")
                 font.family: "Arial"
                 onClicked: backend.setPreset(1)
             }
 
-            Button {
+            PresetButton {
                 id: p3
                 visible: true
                 x: 203
                 y: 517
-                width: 33
-                height: 43
-                text: qsTr("3")
                 checkable: true
                 autoExclusive: true
+                text: qsTr("3")
                 font.family: "Arial"
                 onClicked: backend.setPreset(2)
             }
 
-            Button {
+            PresetButton {
                 id: p4
                 visible: true
                 x: 251
                 y: 517
-                width: 33
-                height: 43
-                text: qsTr("4")
                 checkable: true
                 autoExclusive: true
+                text: qsTr("4")
                 font.family: "Arial"
                 onClicked: backend.setPreset(3)
             }
 
-            Button {
+            PresetButton {
                 id: p5
                 visible: true
                 x: 299
                 y: 517
-                width: 33
-                height: 43
-                text: qsTr("5")
                 checkable: true
                 autoExclusive: true
+                text: qsTr("5")
                 font.family: "Arial"
                 onClicked: backend.setPreset(4)
             }
 
-            Button {
+            PresetButton {
                 id: p6
                 visible: true
                 x: 347
                 y: 517
-                width: 33
-                height: 43
-                text: qsTr("6")
                 checkable: true
                 autoExclusive: true
+                text: qsTr("6")
                 font.family: "Arial"
                 onClicked: backend.setPreset(5)
             }
 
-            Button {
+            PresetButton {
                 id: p7
                 visible: true
                 x: 395
                 y: 517
-                width: 33
-                height: 43
-                text: qsTr("7")
                 checkable: true
                 autoExclusive: true
+                text: qsTr("7")
                 font.family: "Arial"
                 onClicked: backend.setPreset(6)
             }
 
-            Button {
+            PresetButton {
                 id: p8
                 visible: true
                 x: 443
                 y: 517
-                width: 33
-                height: 43
-                text: qsTr("8")
                 checkable: true
                 autoExclusive: true
+                text: qsTr("8")
                 font.family: "Arial"
                 onClicked: backend.setPreset(7)
             }
 
-            Button {
+            PresetButton {
                 id: p9
                 visible: true
                 x: 107
                 y: 570
-                width: 33
-                height: 43
-                text: qsTr("9")
                 checkable: true
                 autoExclusive: true
+                text: qsTr("9")
                 font.family: "Arial"
                 onClicked: backend.setPreset(8)
             }
 
-            Button {
+            PresetButton {
                 id: p10
                 visible: true
                 x: 155
                 y: 570
-                width: 33
-                height: 43
-                text: qsTr("10")
                 checkable: true
                 autoExclusive: true
+                text: qsTr("10")
                 font.family: "Arial"
                 onClicked: backend.setPreset(9)
             }
 
-            Button {
+            PresetButton {
                 id: p11
                 visible: true
                 x: 203
                 y: 570
-                width: 33
-                height: 43
-                text: qsTr("11")
                 checkable: true
                 autoExclusive: true
+                text: qsTr("11")
                 font.family: "Arial"
                 onClicked: backend.setPreset(10)
             }
 
-            Button {
+            PresetButton {
                 id: p12
                 visible: true
                 x: 251
                 y: 570
-                width: 33
-                height: 43
-                text: qsTr("12")
                 checkable: true
                 autoExclusive: true
+                text: qsTr("12")
                 font.family: "Arial"
                 onClicked: backend.setPreset(11)
             }
 
-            Button {
+            PresetButton {
                 id: p13
                 visible: true
                 x: 299
                 y: 570
-                width: 33
-                height: 43
-                text: qsTr("13")
                 checkable: true
                 autoExclusive: true
+                text: qsTr("13")
                 font.family: "Arial"
-                onClicked: backendPreset(12)
+                onClicked: backend.setPreset(12)
             }
 
-            Button {
+            PresetButton {
                 id: p14
                 visible: true
                 x: 347
                 y: 570
-                width: 33
-                height: 43
-                text: qsTr("14")
                 checkable: true
                 autoExclusive: true
+                text: qsTr("14")
                 font.family: "Arial"
                 onClicked: backend.setPreset(13)
             }
 
-            Button {
+            PresetButton {
                 id: p15
                 visible: true
                 x: 395
                 y: 570
-                width: 33
-                height: 43
-                text: qsTr("15")
                 checkable: true
                 autoExclusive: true
+                text: qsTr("15")
                 font.family: "Arial"
                 onClicked: backend.setPreset(14)
             }
 
-            Button {
+            PresetButton {
                 id: p16
                 visible: true
                 x: 443
                 y: 570
-                width: 33
-                height: 43
-                text: qsTr("16")
                 checkable: true
                 autoExclusive: true
+                text: qsTr("16")
                 font.family: "Arial"
                 onClicked: backend.setPreset(15)
             }
