@@ -2512,7 +2512,8 @@ Window {
                 wheelEnabled: false
                 focusPolicy: Qt.StrongFocus
                 enabled: true
-                font.family: "Arial"
+                font.family: "HelveticaNeueLTStd-Bd"
+                font.pixelSize: 14
                 textRole: "key"
                 background: Rectangle {
                     implicitWidth: 200
@@ -2552,7 +2553,8 @@ Window {
                 wheelEnabled: false
                 focusPolicy: Qt.StrongFocus
                 enabled: true
-                font.family: "Arial"
+                font.family: "HelveticaNeueLTStd-Bd"
+                font.pixelSize: 14
                 background: Rectangle {
                     implicitWidth: 200
                     implicitHeight: 30
@@ -2731,7 +2733,8 @@ Window {
                 wheelEnabled: false
                 focusPolicy: Qt.StrongFocus
                 enabled: true
-                font.family: "Arial"
+                font.family: "HelveticaNeueLTStd-Bd"
+                font.pixelSize: 14
                 background: Rectangle {
                     implicitWidth: 200
                     implicitHeight: 30
@@ -2864,7 +2867,8 @@ Window {
                 wheelEnabled: false
                 focusPolicy: Qt.StrongFocus
                 enabled: true
-                font.family: "Arial"
+                font.family: "HelveticaNeueLTStd-Bd"
+                font.pixelSize: 14
                 textRole: "key"
                 background: Rectangle {
                     implicitWidth: 200
@@ -3221,7 +3225,9 @@ Window {
             wheelEnabled: true
             focusPolicy: Qt.StrongFocus
             enabled: true
-            font.family: "Arial"
+            font.family: "HelveticaNeueLTStd-Bd"
+            font.pixelSize: 14
+
             background: Rectangle {
                 implicitWidth: 200
                 implicitHeight: 30
