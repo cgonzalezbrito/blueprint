@@ -211,10 +211,10 @@ Window {
         onSynchronizingChanged: {
             if(!backend.synchronizing){
                 clock.visible = false;
-                button.visible = true;
+                syncButton.visible = true;
             } else {
                 clock.visible = true;
-                button.visible = false;
+                syncButton.visible = false;
             }
         }
     }
@@ -2509,13 +2509,16 @@ Window {
                 id: componentMode_combo
                 x: 186
                 y: 232
-                width: 200
-                height: 30
                 wheelEnabled: false
                 focusPolicy: Qt.StrongFocus
                 enabled: true
                 font.family: "Arial"
                 textRole: "key"
+                background: Rectangle {
+                    implicitWidth: 200
+                    implicitHeight: 30
+                    color: "#d8d9d1"
+                }
                 model: ListModel{
                     ListElement{ key: "Voice Note"; value: 0 }
                     ListElement{ key: "CC"; value: 2 }
@@ -2546,13 +2549,16 @@ Window {
                 id: componentData_combo
                 x: 186
                 y: 282
-                width: 200
-                height: 30
                 wheelEnabled: false
                 focusPolicy: Qt.StrongFocus
                 enabled: true
-                //editable: true
                 font.family: "Arial"
+                background: Rectangle {
+                    implicitWidth: 200
+                    implicitHeight: 30
+                    color: "#d8d9d1"
+                }
+
                 model: ListModel{
                     ListElement{text: "0"}
                     ListElement{text: "1"}
@@ -2722,12 +2728,15 @@ Window {
                 id: componentChannel_combo
                 x: 186
                 y: 332
-                width: 200
-                height: 30
                 wheelEnabled: false
                 focusPolicy: Qt.StrongFocus
                 enabled: true
                 font.family: "Arial"
+                background: Rectangle {
+                    implicitWidth: 200
+                    implicitHeight: 30
+                    color: "#d8d9d1"
+                }
                 model: ListModel{
                     ListElement{text: "Global"}
                     ListElement{text: "1"}
@@ -2765,21 +2774,29 @@ Window {
                 font.family: "Arial"
             }
 
-            TextInput {
+            TextField {
                 id: componentMinValue_textInput
                 x: 186
                 y: 385
-                width: 200
-                height: 30
                 color: "#d9d1d1"
                 text: backend.componentMinValue //text: rango.first.value
                 inputMask: qsTr("")
-                topPadding: 6
+                topPadding: 10
+                bottomPadding: 9
+                leftPadding: 12
+                rightPadding: 30
                 font.bold: true
                 selectionColor: "#d1d5d9"
                 font.pixelSize: 14
                 font.family: "Arial"
                 inputMethodHints: Qt.ImhFormattedNumbersOnly
+                background: Rectangle {
+                    implicitWidth: 200
+                    implicitHeight: 30
+                    color: "transparent"
+                    border.color: "#d8d9d1"
+                    border.width: 0.5
+                }
 
                 onTextChanged:{
                     backend.setComponentMinValue(text)
@@ -2800,12 +2817,10 @@ Window {
                 font.family: "Arial"
             }
 
-            TextInput {
+            TextField {
                 id: componentMaxValue_textInput
                 x: 186
                 y: 435
-                width: 200
-                height: 30
                 color: "#d9d1d1"
                 text: backend.componentMaxValue//text: rango.second.value
                 inputMask: qsTr("")
@@ -2815,6 +2830,13 @@ Window {
                 font.pixelSize: 14
                 font.family: "Arial"
                 inputMethodHints: Qt.ImhFormattedNumbersOnly
+                background: Rectangle {
+                    implicitWidth: 200
+                    implicitHeight: 30
+                    color: "transparent"
+                    border.color: "#d8d9d1"
+                    border.width: 0.5
+                }
 
                 onTextChanged:{
                     backend.setComponentMaxValue(text)
@@ -2839,13 +2861,16 @@ Window {
                 id: componentButtonBehaviour_combo
                 x: 186
                 y: 542
-                width: 200
-                height: 30
                 wheelEnabled: false
                 focusPolicy: Qt.StrongFocus
                 enabled: true
                 font.family: "Arial"
                 textRole: "key"
+                background: Rectangle {
+                    implicitWidth: 200
+                    implicitHeight: 30
+                    color: "#d8d9d1"
+                }
                 model: ListModel{
                     ListElement{ key: "momentary"; value: 1 }
                     ListElement{ key: "toggle"; value: 2 }
@@ -2856,13 +2881,27 @@ Window {
             }
 
             Button {
-                id: button
+                id: syncButton
                 x: 160
                 y: 628
-                width: 125
                 text: qsTr("sync")
                 focusPolicy: Qt.TabFocus
-                font.family: "Arial"
+                font.family: "HelveticaNeueLTStd-Bd"
+                font.pixelSize: 14
+
+                contentItem: Text {
+                    text: syncButton.text
+                    color: "#1e1e1e"
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    elide: Text.ElideRight
+                }
+
+                background: Rectangle {
+                    implicitWidth: 125
+                    implicitHeight: 40
+                    color: "#e8ac5b"
+                }
 
                 onClicked: {
                     backend.syncHost2Device();
@@ -3179,12 +3218,15 @@ Window {
             visible: true
             x: 244
             y: 638
-            width: 200
-            height: 30
             wheelEnabled: true
             focusPolicy: Qt.StrongFocus
             enabled: true
             font.family: "Arial"
+            background: Rectangle {
+                implicitWidth: 200
+                implicitHeight: 30
+                color: "#d8d9d1"
+            }
             model: ListModel{
                 ListElement{text: "1"}
                 ListElement{text: "2"}
