@@ -87,125 +87,37 @@ Window {
         }
 
         onControl0TypeChanged:{
-            if(backend.control0Type === 2) a1Loader.sourceComponent = potSelected;
-            if(backend.control0Type === 1){
-                a1Loader.sourceComponent = buttonSelected;
-                comp_name.text = qsTr("button a1");}
+
         }
         onControl1TypeChanged:{
-            if(backend.control1Type === 2){
-                a2Loader.sourceComponent = a2Pot;
-            }
-            if(backend.control1Type === 1)
-                a2Loader.sourceComponent = a2Button;
         }
         onControl2TypeChanged:{
-            if(backend.control2Type === 2){
-                a3Loader.sourceComponent = a3Pot;
-            }
-            if(backend.control2Type === 1)
-                a3Loader.sourceComponent = a3Button;
         }
         onControl3TypeChanged:{
-            if(backend.control3Type === 2){
-                a4Loader.sourceComponent = a4Pot;
-            }
-            if(backend.control3Type === 1)
-                a4Loader.sourceComponent = a4Button;
-
         }
         onControl4TypeChanged:{
-            if(backend.control4Type === 2){
-                b1Loader.sourceComponent = b1Pot;
-            }
-            if(backend.control4Type === 1)
-                b1Loader.sourceComponent = b1Button;
         }
         onControl5TypeChanged:{
-            if(backend.control5Type === 2){
-                b2Loader.sourceComponent = b2Pot;
-            }
-            if(backend.control5Type === 1)
-                b2Loader.sourceComponent = b2Button;
-
         }
         onControl6TypeChanged:{
-            if(backend.control6Type === 2){
-                b3Loader.sourceComponent = b3Pot;
-            }
-            if(backend.control6Type === 1)
-                b3Loader.sourceComponent = b3Button;
-
         }
         onControl7TypeChanged:{
-            if(backend.control7Type === 2){
-                b4Loader.sourceComponent = b4Pot;
-            }
-            if(backend.control7Type === 1)
-                b4Loader.sourceComponent = b4Button;
-
         }
         onControl8TypeChanged:{
-            if(backend.control8Type === 2){
-                c1Loader.sourceComponent = c1Pot;
-            }
-            if(backend.control8Type === 1)
-                c1Loader.sourceComponent = c1Button;
-
         }
         onControl9TypeChanged:{
-            if(backend.control9Type === 2){
-                c2Loader.sourceComponent = c2Pot;
-            }
-            if(backend.control9Type === 1)
-                c2Loader.sourceComponent = c2Button;
-
         }
         onControl10TypeChanged:{
-            if(backend.control10Type === 2){
-                c3Loader.sourceComponent = c3Pot;
-            }
-            if(backend.control10Type === 1)
-                c3Loader.sourceComponent = c3Button;
-
         }
         onControl11TypeChanged:{
-            if(backend.control11Type === 2){
-                c4Loader.sourceComponent = c4Pot;
-            }
-            if(backend.control11Type === 1)
-                c4Loader.sourceComponent = c4Button;
-
         }
         onControl12TypeChanged:{
-            if(backend.control12Type === 2){
-                d1Loader.sourceComponent = d1Pot;
-            }
-            if(backend.control12Type === 1)
-                d1Loader.sourceComponent = d1Button;
-
         }
         onControl13TypeChanged:{
-            if(backend.control13Type === 2){
-                d2Loader.sourceComponent = d2Pot;
-            }
-            if(backend.control13Type === 1)
-                d2Loader.sourceComponent = d2Button;
-
         }
         onControl14TypeChanged:{
-            if(backend.control14Type === 2){
-                d3Loader.sourceComponent = d3Pot;
-            }
-            if(backend.control14Type === 1)
-                d3Loader.sourceComponent = d3Button;
         }
         onControl15TypeChanged:{
-            if(backend.control15Type === 2){
-                d4Loader.sourceComponent = d4Pot;
-            }
-            if(backend.control15Type === 1)
-                d4Loader.sourceComponent = d4Button;
         }
 
         onSynchronizingChanged: {
@@ -218,2243 +130,6 @@ Window {
             }
         }
     }
-
-    Component{
-        id: potSelected
-        Button{
-            autoExclusive: false
-            checkable: true
-            background: Rectangle {
-                implicitWidth: 81
-                implicitHeight: 81
-                color: a1Pot.down ? "#17a81a" : "transparent"
-                Image { source: "content/images/knobS.svg"}
-            }
-        }
-    }
-
-    Component{
-        id: buttonSelected
-        Button{
-            autoExclusive: false
-            //display: AbstractButton.IconOnly
-            checkable: true
-            background: Rectangle {
-                implicitWidth: 81
-                implicitHeight: 81
-                color: a1Button.down ? "#17a81a" : "transparent"
-                Image { source: "content/images/buttonS.svg"}
-            }
-        }
-    }
-
-    /*  Component{
-        id: a1Back
-        Image { source: "content/images/Knob-w-back.svg"}
-    }*/
-
-    Component{
-        id: a1Pot
-        Button{
-            autoExclusive: false
-            //display: AbstractButton.IconOnly
-            checkable: true
-            background: Rectangle {
-                implicitWidth: 81
-                implicitHeight: 81
-                color: a1Pot.down ? "#17a81a" : "transparent"
-                Image { source: "content/images/knob.svg"}
-            }
-
-            onClicked:{
-                comp_name.text = qsTr("knob a1");
-                backend.selectComponent(0);
-
-                if(backend.control1Type === 2) a2Loader.sourceComponent = a2Pot;
-                if(backend.control1Type === 1) a2Loader.sourceComponent = a2Button;
-
-                if(backend.control2Type === 2) a3Loader.sourceComponent = a3Pot;
-                if(backend.control2Type === 1) a3Loader.sourceComponent = a3Button;
-
-                if(backend.control3Type === 2) a4Loader.sourceComponent = a4Pot;
-                if(backend.control3Type === 1) a4Loader.sourceComponent = a4Button;
-
-                if(backend.control4Type === 2) b1Loader.sourceComponent = b1Pot;
-                if(backend.control4Type === 1) b1Loader.sourceComponent = b1Button;
-
-                if(backend.control5Type === 2) b2Loader.sourceComponent = b2Pot;
-                if(backend.control5Type === 1) b2Loader.sourceComponent = b2Button;
-
-                if(backend.control6Type === 2) b3Loader.sourceComponent = b3Pot;
-                if(backend.control6Type === 1) b3Loader.sourceComponent = b3Button;
-
-                if(backend.control7Type === 2) b4Loader.sourceComponent = b4Pot;
-                if(backend.control7Type === 1) b4Loader.sourceComponent = b4Button;
-
-                if(backend.control8Type === 2) c1Loader.sourceComponent = c1Pot;
-                if(backend.control8Type === 1) c1Loader.sourceComponent = c1Button;
-
-                if(backend.control9Type === 2) c2Loader.sourceComponent = c2Pot;
-                if(backend.control9Type === 1) c2Loader.sourceComponent = c2Button;
-
-                if(backend.control10Type === 2) c3Loader.sourceComponent = c3Pot;
-                if(backend.control10Type === 1) c3Loader.sourceComponent = c3Button;
-
-                if(backend.control11Type === 2) c4Loader.sourceComponent = c4Pot;
-                if(backend.control11Type === 1) c4Loader.sourceComponent = c4Button;
-
-                if(backend.control12Type === 2) d1Loader.sourceComponent = d1Pot;
-                if(backend.control12Type === 1) d1Loader.sourceComponent = d1Button;
-
-                if(backend.control13Type === 2) d2Loader.sourceComponent = d2Pot;
-                if(backend.control13Type === 1) d2Loader.sourceComponent = d2Button;
-
-                if(backend.control14Type === 2) d3Loader.sourceComponent = d3Pot;
-                if(backend.control14Type === 1) d3Loader.sourceComponent = d3Button;
-
-                if(backend.control15Type === 2) d4Loader.sourceComponent = d4Pot;
-                if(backend.control15Type === 1) d4Loader.sourceComponent = d4Button;
-
-                a1Loader.sourceComponent = potSelected;
-            }
-        }
-    }
-
-    Component{
-        id: a1Button
-        Button{
-            autoExclusive: false
-            //display: AbstractButton.IconOnly
-            checkable: true
-            background: Rectangle {
-                implicitWidth: 81
-                implicitHeight: 81
-                color: a1Button.down ? "#17a81a" : "transparent"
-                Image { source: "content/images/button.svg"}
-            }
-            onClicked:{
-                comp_name.text = qsTr("button a1");
-                backend.selectComponent(0);
-
-                if(backend.control1Type === 2) a2Loader.sourceComponent = a2Pot;
-                if(backend.control1Type === 1) a2Loader.sourceComponent = a2Button;
-
-                if(backend.control2Type === 2) a3Loader.sourceComponent = a3Pot;
-                if(backend.control2Type === 1) a3Loader.sourceComponent = a3Button;
-
-                if(backend.control3Type === 2) a4Loader.sourceComponent = a4Pot;
-                if(backend.control3Type === 1) a4Loader.sourceComponent = a4Button;
-
-                if(backend.control4Type === 2) b1Loader.sourceComponent = b1Pot;
-                if(backend.control4Type === 1) b1Loader.sourceComponent = b1Button;
-
-                if(backend.control5Type === 2) b2Loader.sourceComponent = b2Pot;
-                if(backend.control5Type === 1) b2Loader.sourceComponent = b2Button;
-
-                if(backend.control6Type === 2) b3Loader.sourceComponent = b3Pot;
-                if(backend.control6Type === 1) b3Loader.sourceComponent = b3Button;
-
-                if(backend.control7Type === 2) b4Loader.sourceComponent = b4Pot;
-                if(backend.control7Type === 1) b4Loader.sourceComponent = b4Button;
-
-                if(backend.control8Type === 2) c1Loader.sourceComponent = c1Pot;
-                if(backend.control8Type === 1) c1Loader.sourceComponent = c1Button;
-
-                if(backend.control9Type === 2) c2Loader.sourceComponent = c2Pot;
-                if(backend.control9Type === 1) c2Loader.sourceComponent = c2Button;
-
-                if(backend.control10Type === 2) c3Loader.sourceComponent = c3Pot;
-                if(backend.control10Type === 1) c3Loader.sourceComponent = c3Button;
-
-                if(backend.control11Type === 2) c4Loader.sourceComponent = c4Pot;
-                if(backend.control11Type === 1) c4Loader.sourceComponent = c4Button;
-
-                if(backend.control12Type === 2) d1Loader.sourceComponent = d1Pot;
-                if(backend.control12Type === 1) d1Loader.sourceComponent = d1Button;
-
-                if(backend.control13Type === 2) d2Loader.sourceComponent = d2Pot;
-                if(backend.control13Type === 1) d2Loader.sourceComponent = d2Button;
-
-                if(backend.control14Type === 2) d3Loader.sourceComponent = d3Pot;
-                if(backend.control14Type === 1) d3Loader.sourceComponent = d3Button;
-
-                if(backend.control15Type === 2) d4Loader.sourceComponent = d4Pot;
-                if(backend.control15Type === 1) d4Loader.sourceComponent = d4Button;
-
-                a1Loader.sourceComponent = buttonSelected;
-            }
-        }
-    }
-
-    /*Component{
-        id: a2Back
-        Image { source: "content/images/Knob-w-back.svg"}
-    }*/
-
-    Component{
-        id: a2Pot
-        Button{
-            autoExclusive: false
-            //display: AbstractButton.IconOnly
-            checkable: true
-            background: Rectangle {
-                implicitWidth: 81
-                implicitHeight: 81
-                color: a2Pot.down ? "#17a81a" : "transparent"
-                Image { source: "content/images/knob.svg"}
-            }
-            onClicked:{
-                comp_name.text = qsTr("knob a2");
-                backend.selectComponent(1);
-
-                if(backend.control0Type === 2) a1Loader.sourceComponent = a1Pot;
-                if(backend.control0Type === 1) a1Loader.sourceComponent = a1Button;
-
-                if(backend.control2Type === 2) a3Loader.sourceComponent = a3Pot;
-                if(backend.control2Type === 1) a3Loader.sourceComponent = a3Button;
-
-                if(backend.control3Type === 2) a4Loader.sourceComponent = a4Pot;
-                if(backend.control3Type === 1) a4Loader.sourceComponent = a4Button;
-
-                if(backend.control4Type === 2) b1Loader.sourceComponent = b1Pot;
-                if(backend.control4Type === 1) b1Loader.sourceComponent = b1Button;
-
-                if(backend.control5Type === 2) b2Loader.sourceComponent = b2Pot;
-                if(backend.control5Type === 1) b2Loader.sourceComponent = b2Button;
-
-                if(backend.control6Type === 2) b3Loader.sourceComponent = b3Pot;
-                if(backend.control6Type === 1) b3Loader.sourceComponent = b3Button;
-
-                if(backend.control7Type === 2) b4Loader.sourceComponent = b4Pot;
-                if(backend.control7Type === 1) b4Loader.sourceComponent = b4Button;
-
-                if(backend.control8Type === 2) c1Loader.sourceComponent = c1Pot;
-                if(backend.control8Type === 1) c1Loader.sourceComponent = c1Button;
-
-                if(backend.control9Type === 2) c2Loader.sourceComponent = c2Pot;
-                if(backend.control9Type === 1) c2Loader.sourceComponent = c2Button;
-
-                if(backend.control10Type === 2) c3Loader.sourceComponent = c3Pot;
-                if(backend.control10Type === 1) c3Loader.sourceComponent = c3Button;
-
-                if(backend.control11Type === 2) c4Loader.sourceComponent = c4Pot;
-                if(backend.control11Type === 1) c4Loader.sourceComponent = c4Button;
-
-                if(backend.control12Type === 2) d1Loader.sourceComponent = d1Pot;
-                if(backend.control12Type === 1) d1Loader.sourceComponent = d1Button;
-
-                if(backend.control13Type === 2) d2Loader.sourceComponent = d2Pot;
-                if(backend.control13Type === 1) d2Loader.sourceComponent = d2Button;
-
-                if(backend.control14Type === 2) d3Loader.sourceComponent = d3Pot;
-                if(backend.control14Type === 1) d3Loader.sourceComponent = d3Button;
-
-                if(backend.control15Type === 2) d4Loader.sourceComponent = d4Pot;
-                if(backend.control15Type === 1) d4Loader.sourceComponent = d4Button;
-
-                a2Loader.sourceComponent = potSelected;
-            }
-        }
-    }
-
-    Component{
-        id: a2Button
-        Button{
-            autoExclusive: false
-            //display: AbstractButton.IconOnly
-            checkable: true
-            background: Rectangle {
-                implicitWidth: 81
-                implicitHeight: 81
-                color: a2Button.down ? "#17a81a" : "transparent"
-                Image { source: "content/images/button.svg"}
-            }
-            onClicked:{
-                comp_name.text = qsTr("button a2");
-                backend.selectComponent(1);
-
-                if(backend.control0Type === 2) a1Loader.sourceComponent = a1Pot;
-                if(backend.control0Type === 1) a1Loader.sourceComponent = a1Button;
-
-                if(backend.control2Type === 2) a3Loader.sourceComponent = a3Pot;
-                if(backend.control2Type === 1) a3Loader.sourceComponent = a3Button;
-
-                if(backend.control3Type === 2) a4Loader.sourceComponent = a4Pot;
-                if(backend.control3Type === 1) a4Loader.sourceComponent = a4Button;
-
-                if(backend.control4Type === 2) b1Loader.sourceComponent = b1Pot;
-                if(backend.control4Type === 1) b1Loader.sourceComponent = b1Button;
-
-                if(backend.control5Type === 2) b2Loader.sourceComponent = b2Pot;
-                if(backend.control5Type === 1) b2Loader.sourceComponent = b2Button;
-
-                if(backend.control6Type === 2) b3Loader.sourceComponent = b3Pot;
-                if(backend.control6Type === 1) b3Loader.sourceComponent = b3Button;
-
-                if(backend.control7Type === 2) b4Loader.sourceComponent = b4Pot;
-                if(backend.control7Type === 1) b4Loader.sourceComponent = b4Button;
-
-                if(backend.control8Type === 2) c1Loader.sourceComponent = c1Pot;
-                if(backend.control8Type === 1) c1Loader.sourceComponent = c1Button;
-
-                if(backend.control9Type === 2) c2Loader.sourceComponent = c2Pot;
-                if(backend.control9Type === 1) c2Loader.sourceComponent = c2Button;
-
-                if(backend.control10Type === 2) c3Loader.sourceComponent = c3Pot;
-                if(backend.control10Type === 1) c3Loader.sourceComponent = c3Button;
-
-                if(backend.control11Type === 2) c4Loader.sourceComponent = c4Pot;
-                if(backend.control11Type === 1) c4Loader.sourceComponent = c4Button;
-
-                if(backend.control12Type === 2) d1Loader.sourceComponent = d1Pot;
-                if(backend.control12Type === 1) d1Loader.sourceComponent = d1Button;
-
-                if(backend.control13Type === 2) d2Loader.sourceComponent = d2Pot;
-                if(backend.control13Type === 1) d2Loader.sourceComponent = d2Button;
-
-                if(backend.control14Type === 2) d3Loader.sourceComponent = d3Pot;
-                if(backend.control14Type === 1) d3Loader.sourceComponent = d3Button;
-
-                if(backend.control15Type === 2) d4Loader.sourceComponent = d4Pot;
-                if(backend.control15Type === 1) d4Loader.sourceComponent = d4Button;
-
-                a2Loader.sourceComponent = buttonSelected;
-            }
-        }
-    }
-
-    /*Component{
-        id: a3Back
-        Image { source: "content/images/Knob-w-back.svg"}
-    }*/
-
-    Component{
-        id: a3Pot
-        Button{
-            autoExclusive: false
-            //display: AbstractButton.IconOnly
-            checkable: true
-            background: Rectangle {
-                implicitWidth: 81
-                implicitHeight: 81
-                color: a3Pot.down ? "#17a81a" : "transparent"
-                Image { source: "content/images/knob.svg" }
-            }
-            onClicked:{
-                comp_name.text = qsTr("knob a3")
-                backend.selectComponent(2)
-
-                if(backend.control0Type === 2) a1Loader.sourceComponent = a1Pot;
-                if(backend.control0Type === 1) a1Loader.sourceComponent = a1Button;
-
-                if(backend.control1Type === 2) a2Loader.sourceComponent = a2Pot;
-                if(backend.control1Type === 1) a2Loader.sourceComponent = a2Button;
-
-                if(backend.control3Type === 2) a4Loader.sourceComponent = a4Pot;
-                if(backend.control3Type === 1) a4Loader.sourceComponent = a4Button;
-
-                if(backend.control4Type === 2) b1Loader.sourceComponent = b1Pot;
-                if(backend.control4Type === 1) b1Loader.sourceComponent = b1Button;
-
-                if(backend.control5Type === 2) b2Loader.sourceComponent = b2Pot;
-                if(backend.control5Type === 1) b2Loader.sourceComponent = b2Button;
-
-                if(backend.control6Type === 2) b3Loader.sourceComponent = b3Pot;
-                if(backend.control6Type === 1) b3Loader.sourceComponent = b3Button;
-
-                if(backend.control7Type === 2) b4Loader.sourceComponent = b4Pot;
-                if(backend.control7Type === 1) b4Loader.sourceComponent = b4Button;
-
-                if(backend.control8Type === 2) c1Loader.sourceComponent = c1Pot;
-                if(backend.control8Type === 1) c1Loader.sourceComponent = c1Button;
-
-                if(backend.control9Type === 2) c2Loader.sourceComponent = c2Pot;
-                if(backend.control9Type === 1) c2Loader.sourceComponent = c2Button;
-
-                if(backend.control10Type === 2) c3Loader.sourceComponent = c3Pot;
-                if(backend.control10Type === 1) c3Loader.sourceComponent = c3Button;
-
-                if(backend.control11Type === 2) c4Loader.sourceComponent = c4Pot;
-                if(backend.control11Type === 1) c4Loader.sourceComponent = c4Button;
-
-                if(backend.control12Type === 2) d1Loader.sourceComponent = d1Pot;
-                if(backend.control12Type === 1) d1Loader.sourceComponent = d1Button;
-
-                if(backend.control13Type === 2) d2Loader.sourceComponent = d2Pot;
-                if(backend.control13Type === 1) d2Loader.sourceComponent = d2Button;
-
-                if(backend.control14Type === 2) d3Loader.sourceComponent = d3Pot;
-                if(backend.control14Type === 1) d3Loader.sourceComponent = d3Button;
-
-                if(backend.control15Type === 2) d4Loader.sourceComponent = d4Pot;
-                if(backend.control15Type === 1) d4Loader.sourceComponent = d4Button;
-
-                a3Loader.sourceComponent = potSelected;
-            }
-        }
-
-    }
-
-    Component{
-        id: a3Button
-        Button{
-            autoExclusive: false
-            //display: AbstractButton.IconOnly
-            checkable: true
-            background: Rectangle {
-                implicitWidth: 81
-                implicitHeight: 81
-                color: a3Button.down ? "#17a81a" : "transparent"
-                Image { source: "content/images/button.svg"}
-            }
-            onClicked:{
-                comp_name.text = qsTr("button a3")
-                backend.selectComponent(2)
-
-                if(backend.control0Type === 2) a1Loader.sourceComponent = a1Pot;
-                if(backend.control0Type === 1) a1Loader.sourceComponent = a1Button;
-
-                if(backend.control1Type === 2) a2Loader.sourceComponent = a2Pot;
-                if(backend.control1Type === 1) a2Loader.sourceComponent = a2Button;
-
-                if(backend.control3Type === 2) a4Loader.sourceComponent = a4Pot;
-                if(backend.control3Type === 1) a4Loader.sourceComponent = a4Button;
-
-                if(backend.control4Type === 2) b1Loader.sourceComponent = b1Pot;
-                if(backend.control4Type === 1) b1Loader.sourceComponent = b1Button;
-
-                if(backend.control5Type === 2) b2Loader.sourceComponent = b2Pot;
-                if(backend.control5Type === 1) b2Loader.sourceComponent = b2Button;
-
-                if(backend.control6Type === 2) b3Loader.sourceComponent = b3Pot;
-                if(backend.control6Type === 1) b3Loader.sourceComponent = b3Button;
-
-                if(backend.control7Type === 2) b4Loader.sourceComponent = b4Pot;
-                if(backend.control7Type === 1) b4Loader.sourceComponent = b4Button;
-
-                if(backend.control8Type === 2) c1Loader.sourceComponent = c1Pot;
-                if(backend.control8Type === 1) c1Loader.sourceComponent = c1Button;
-
-                if(backend.control9Type === 2) c2Loader.sourceComponent = c2Pot;
-                if(backend.control9Type === 1) c2Loader.sourceComponent = c2Button;
-
-                if(backend.control10Type === 2) c3Loader.sourceComponent = c3Pot;
-                if(backend.control10Type === 1) c3Loader.sourceComponent = c3Button;
-
-                if(backend.control11Type === 2) c4Loader.sourceComponent = c4Pot;
-                if(backend.control11Type === 1) c4Loader.sourceComponent = c4Button;
-
-                if(backend.control12Type === 2) d1Loader.sourceComponent = d1Pot;
-                if(backend.control12Type === 1) d1Loader.sourceComponent = d1Button;
-
-                if(backend.control13Type === 2) d2Loader.sourceComponent = d2Pot;
-                if(backend.control13Type === 1) d2Loader.sourceComponent = d2Button;
-
-                if(backend.control14Type === 2) d3Loader.sourceComponent = d3Pot;
-                if(backend.control14Type === 1) d3Loader.sourceComponent = d3Button;
-
-                if(backend.control15Type === 2) d4Loader.sourceComponent = d4Pot;
-                if(backend.control15Type === 1) d4Loader.sourceComponent = d4Button;
-
-                a3Loader.sourceComponent = buttonSelected;
-            }
-        }
-    }
-
-    /*Component{
-        id: a4Back
-        Image { source: "content/images/Knob-w-back.svg"}
-    }*/
-
-    Component{
-        id: a4Pot
-        Button{
-            autoExclusive: false
-            //display: AbstractButton.IconOnly
-            checkable: true
-            background: Rectangle {
-                implicitWidth: 81
-                implicitHeight: 81
-                color: a4Pot.down ? "#17a81a" : "transparent"
-                Image { source: "content/images/knob.svg" }
-            }
-            onClicked:{
-                comp_name.text = qsTr("knob a4")
-                backend.selectComponent(3)
-
-                if(backend.control0Type === 2) a1Loader.sourceComponent = a1Pot;
-                if(backend.control0Type === 1) a1Loader.sourceComponent = a1Button;
-
-                if(backend.control1Type === 2) a2Loader.sourceComponent = a2Pot;
-                if(backend.control1Type === 1) a2Loader.sourceComponent = a2Button;
-
-                if(backend.control2Type === 2) a3Loader.sourceComponent = a3Pot;
-                if(backend.control2Type === 1) a3Loader.sourceComponent = a3Button;
-
-                if(backend.control4Type === 2) b1Loader.sourceComponent = b1Pot;
-                if(backend.control4Type === 1) b1Loader.sourceComponent = b1Button;
-
-                if(backend.control5Type === 2) b2Loader.sourceComponent = b2Pot;
-                if(backend.control5Type === 1) b2Loader.sourceComponent = b2Button;
-
-                if(backend.control6Type === 2) b3Loader.sourceComponent = b3Pot;
-                if(backend.control6Type === 1) b3Loader.sourceComponent = b3Button;
-
-                if(backend.control7Type === 2) b4Loader.sourceComponent = b4Pot;
-                if(backend.control7Type === 1) b4Loader.sourceComponent = b4Button;
-
-                if(backend.control8Type === 2) c1Loader.sourceComponent = c1Pot;
-                if(backend.control8Type === 1) c1Loader.sourceComponent = c1Button;
-
-                if(backend.control9Type === 2) c2Loader.sourceComponent = c2Pot;
-                if(backend.control9Type === 1) c2Loader.sourceComponent = c2Button;
-
-                if(backend.control10Type === 2) c3Loader.sourceComponent = c3Pot;
-                if(backend.control10Type === 1) c3Loader.sourceComponent = c3Button;
-
-                if(backend.control11Type === 2) c4Loader.sourceComponent = c4Pot;
-                if(backend.control11Type === 1) c4Loader.sourceComponent = c4Button;
-
-                if(backend.control12Type === 2) d1Loader.sourceComponent = d1Pot;
-                if(backend.control12Type === 1) d1Loader.sourceComponent = d1Button;
-
-                if(backend.control13Type === 2) d2Loader.sourceComponent = d2Pot;
-                if(backend.control13Type === 1) d2Loader.sourceComponent = d2Button;
-
-                if(backend.control14Type === 2) d3Loader.sourceComponent = d3Pot;
-                if(backend.control14Type === 1) d3Loader.sourceComponent = d3Button;
-
-                if(backend.control15Type === 2) d4Loader.sourceComponent = d4Pot;
-                if(backend.control15Type === 1) d4Loader.sourceComponent = d4Button;
-
-                a4Loader.sourceComponent = potSelected;
-            }
-        }
-
-    }
-
-    Component{
-        id: a4Button
-        Button{
-            autoExclusive: false
-            //display: AbstractButton.IconOnly
-            checkable: true
-            background: Rectangle {
-                implicitWidth: 81
-                implicitHeight: 81
-                color: a4Button.down ? "#17a81a" : "transparent"
-                Image { source: "content/images/button.svg"}
-            }
-            onClicked:{
-                comp_name.text = qsTr("button a4")
-                backend.selectComponent(3)
-
-                if(backend.control0Type === 2) a1Loader.sourceComponent = a1Pot;
-                if(backend.control0Type === 1) a1Loader.sourceComponent = a1Button;
-
-                if(backend.control1Type === 2) a2Loader.sourceComponent = a2Pot;
-                if(backend.control1Type === 1) a2Loader.sourceComponent = a2Button;
-
-                if(backend.control2Type === 2) a3Loader.sourceComponent = a3Pot;
-                if(backend.control2Type === 1) a3Loader.sourceComponent = a3Button;
-
-                if(backend.control4Type === 2) b1Loader.sourceComponent = b1Pot;
-                if(backend.control4Type === 1) b1Loader.sourceComponent = b1Button;
-
-                if(backend.control5Type === 2) b2Loader.sourceComponent = b2Pot;
-                if(backend.control5Type === 1) b2Loader.sourceComponent = b2Button;
-
-                if(backend.control6Type === 2) b3Loader.sourceComponent = b3Pot;
-                if(backend.control6Type === 1) b3Loader.sourceComponent = b3Button;
-
-                if(backend.control7Type === 2) b4Loader.sourceComponent = b4Pot;
-                if(backend.control7Type === 1) b4Loader.sourceComponent = b4Button;
-
-                if(backend.control8Type === 2) c1Loader.sourceComponent = c1Pot;
-                if(backend.control8Type === 1) c1Loader.sourceComponent = c1Button;
-
-                if(backend.control9Type === 2) c2Loader.sourceComponent = c2Pot;
-                if(backend.control9Type === 1) c2Loader.sourceComponent = c2Button;
-
-                if(backend.control10Type === 2) c3Loader.sourceComponent = c3Pot;
-                if(backend.control10Type === 1) c3Loader.sourceComponent = c3Button;
-
-                if(backend.control11Type === 2) c4Loader.sourceComponent = c4Pot;
-                if(backend.control11Type === 1) c4Loader.sourceComponent = c4Button;
-
-                if(backend.control12Type === 2) d1Loader.sourceComponent = d1Pot;
-                if(backend.control12Type === 1) d1Loader.sourceComponent = d1Button;
-
-                if(backend.control13Type === 2) d2Loader.sourceComponent = d2Pot;
-                if(backend.control13Type === 1) d2Loader.sourceComponent = d2Button;
-
-                if(backend.control14Type === 2) d3Loader.sourceComponent = d3Pot;
-                if(backend.control14Type === 1) d3Loader.sourceComponent = d3Button;
-
-                if(backend.control15Type === 2) d4Loader.sourceComponent = d4Pot;
-                if(backend.control15Type === 1) d4Loader.sourceComponent = d4Button;
-
-                a4Loader.sourceComponent = buttonSelected;
-            }
-        }
-    }
-
-    /*Component{
-        id: b1Back
-        Image { source: "content/images/Knob-w-back.svg"}
-    }*/
-
-    Component{
-        id: b1Pot
-        Button{
-            autoExclusive: false
-            //display: AbstractButton.IconOnly
-            checkable: true
-            background: Rectangle {
-                implicitWidth: 81
-                implicitHeight: 81
-                color: b1Pot.down ? "#17a81a" : "transparent"
-                Image { source: "content/images/knob.svg" }
-            }
-            onClicked:{
-                comp_name.text = qsTr("knob b1")
-                backend.selectComponent(4)
-
-                if(backend.control0Type === 2) a1Loader.sourceComponent = a1Pot;
-                if(backend.control0Type === 1) a1Loader.sourceComponent = a1Button;
-
-                if(backend.control1Type === 2) a2Loader.sourceComponent = a2Pot;
-                if(backend.control1Type === 1) a2Loader.sourceComponent = a2Button;
-
-                if(backend.control2Type === 2) a3Loader.sourceComponent = a3Pot;
-                if(backend.control2Type === 1) a3Loader.sourceComponent = a3Button;
-
-                if(backend.control3Type === 2) a4Loader.sourceComponent = a4Pot;
-                if(backend.control3Type === 1) a4Loader.sourceComponent = a4Button;
-
-                if(backend.control5Type === 2) b2Loader.sourceComponent = b2Pot;
-                if(backend.control5Type === 1) b2Loader.sourceComponent = b2Button;
-
-                if(backend.control6Type === 2) b3Loader.sourceComponent = b3Pot;
-                if(backend.control6Type === 1) b3Loader.sourceComponent = b3Button;
-
-                if(backend.control7Type === 2) b4Loader.sourceComponent = b4Pot;
-                if(backend.control7Type === 1) b4Loader.sourceComponent = b4Button;
-
-                if(backend.control8Type === 2) c1Loader.sourceComponent = c1Pot;
-                if(backend.control8Type === 1) c1Loader.sourceComponent = c1Button;
-
-                if(backend.control9Type === 2) c2Loader.sourceComponent = c2Pot;
-                if(backend.control9Type === 1) c2Loader.sourceComponent = c2Button;
-
-                if(backend.control10Type === 2) c3Loader.sourceComponent = c3Pot;
-                if(backend.control10Type === 1) c3Loader.sourceComponent = c3Button;
-
-                if(backend.control11Type === 2) c4Loader.sourceComponent = c4Pot;
-                if(backend.control11Type === 1) c4Loader.sourceComponent = c4Button;
-
-                if(backend.control12Type === 2) d1Loader.sourceComponent = d1Pot;
-                if(backend.control12Type === 1) d1Loader.sourceComponent = d1Button;
-
-                if(backend.control13Type === 2) d2Loader.sourceComponent = d2Pot;
-                if(backend.control13Type === 1) d2Loader.sourceComponent = d2Button;
-
-                if(backend.control14Type === 2) d3Loader.sourceComponent = d3Pot;
-                if(backend.control14Type === 1) d3Loader.sourceComponent = d3Button;
-
-                if(backend.control15Type === 2) d4Loader.sourceComponent = d4Pot;
-                if(backend.control15Type === 1) d4Loader.sourceComponent = d4Button;
-
-                b1Loader.sourceComponent = potSelected;
-            }
-        }
-
-    }
-
-    Component{
-        id: b1Button
-        Button{
-            autoExclusive: false
-            //display: AbstractButton.IconOnly
-            checkable: true
-            background: Rectangle {
-                implicitWidth: 81
-                implicitHeight: 81
-                color: b1Button.down ? "#17a81a" : "transparent"
-                Image { source: "content/images/button.svg"}
-            }
-            onClicked:{
-                comp_name.text = qsTr("button b1")
-                backend.selectComponent(4)
-
-                if(backend.control0Type === 2) a1Loader.sourceComponent = a1Pot;
-                if(backend.control0Type === 1) a1Loader.sourceComponent = a1Button;
-
-                if(backend.control1Type === 2) a2Loader.sourceComponent = a2Pot;
-                if(backend.control1Type === 1) a2Loader.sourceComponent = a2Button;
-
-                if(backend.control2Type === 2) a3Loader.sourceComponent = a3Pot;
-                if(backend.control2Type === 1) a3Loader.sourceComponent = a3Button;
-
-                if(backend.control3Type === 2) a4Loader.sourceComponent = a4Pot;
-                if(backend.control3Type === 1) a4Loader.sourceComponent = a4Button;
-
-                if(backend.control5Type === 2) b2Loader.sourceComponent = b2Pot;
-                if(backend.control5Type === 1) b2Loader.sourceComponent = b2Button;
-
-                if(backend.control6Type === 2) b3Loader.sourceComponent = b3Pot;
-                if(backend.control6Type === 1) b3Loader.sourceComponent = b3Button;
-
-                if(backend.control7Type === 2) b4Loader.sourceComponent = b4Pot;
-                if(backend.control7Type === 1) b4Loader.sourceComponent = b4Button;
-
-                if(backend.control8Type === 2) c1Loader.sourceComponent = c1Pot;
-                if(backend.control8Type === 1) c1Loader.sourceComponent = c1Button;
-
-                if(backend.control9Type === 2) c2Loader.sourceComponent = c2Pot;
-                if(backend.control9Type === 1) c2Loader.sourceComponent = c2Button;
-
-                if(backend.control10Type === 2) c3Loader.sourceComponent = c3Pot;
-                if(backend.control10Type === 1) c3Loader.sourceComponent = c3Button;
-
-                if(backend.control11Type === 2) c4Loader.sourceComponent = c4Pot;
-                if(backend.control11Type === 1) c4Loader.sourceComponent = c4Button;
-
-                if(backend.control12Type === 2) d1Loader.sourceComponent = d1Pot;
-                if(backend.control12Type === 1) d1Loader.sourceComponent = d1Button;
-
-                if(backend.control13Type === 2) d2Loader.sourceComponent = d2Pot;
-                if(backend.control13Type === 1) d2Loader.sourceComponent = d2Button;
-
-                if(backend.control14Type === 2) d3Loader.sourceComponent = d3Pot;
-                if(backend.control14Type === 1) d3Loader.sourceComponent = d3Button;
-
-                if(backend.control15Type === 2) d4Loader.sourceComponent = d4Pot;
-                if(backend.control15Type === 1) d4Loader.sourceComponent = d4Button;
-
-                b1Loader.sourceComponent = buttonSelected;
-            }
-        }
-    }
-
-    /*Component{
-        id: b2Back
-        Image { source: "content/images/Knob-w-back.svg"}
-    }*/
-
-    Component{
-        id: b2Pot
-        Button{
-            autoExclusive: false
-            //display: AbstractButton.IconOnly
-            checkable: true
-            background: Rectangle {
-                implicitWidth: 81
-                implicitHeight: 81
-                color: b2Pot.down ? "#17a81a" : "transparent"
-                Image { source: "content/images/knob.svg" }
-            }
-            onClicked:{
-                comp_name.text = qsTr("knob b2")
-                backend.selectComponent(5)
-
-                if(backend.control0Type === 2) a1Loader.sourceComponent = a1Pot;
-                if(backend.control0Type === 1) a1Loader.sourceComponent = a1Button;
-
-                if(backend.control1Type === 2) a2Loader.sourceComponent = a2Pot;
-                if(backend.control1Type === 1) a2Loader.sourceComponent = a2Button;
-
-                if(backend.control2Type === 2) a3Loader.sourceComponent = a3Pot;
-                if(backend.control2Type === 1) a3Loader.sourceComponent = a3Button;
-
-                if(backend.control3Type === 2) a4Loader.sourceComponent = a4Pot;
-                if(backend.control3Type === 1) a4Loader.sourceComponent = a4Button;
-
-                if(backend.control4Type === 2) b1Loader.sourceComponent = b1Pot;
-                if(backend.control4Type === 1) b1Loader.sourceComponent = b1Button;
-
-                if(backend.control6Type === 2) b3Loader.sourceComponent = b3Pot;
-                if(backend.control6Type === 1) b3Loader.sourceComponent = b3Button;
-
-                if(backend.control7Type === 2) b4Loader.sourceComponent = b4Pot;
-                if(backend.control7Type === 1) b4Loader.sourceComponent = b4Button;
-
-                if(backend.control8Type === 2) c1Loader.sourceComponent = c1Pot;
-                if(backend.control8Type === 1) c1Loader.sourceComponent = c1Button;
-
-                if(backend.control9Type === 2) c2Loader.sourceComponent = c2Pot;
-                if(backend.control9Type === 1) c2Loader.sourceComponent = c2Button;
-
-                if(backend.control10Type === 2) c3Loader.sourceComponent = c3Pot;
-                if(backend.control10Type === 1) c3Loader.sourceComponent = c3Button;
-
-                if(backend.control11Type === 2) c4Loader.sourceComponent = c4Pot;
-                if(backend.control11Type === 1) c4Loader.sourceComponent = c4Button;
-
-                if(backend.control12Type === 2) d1Loader.sourceComponent = d1Pot;
-                if(backend.control12Type === 1) d1Loader.sourceComponent = d1Button;
-
-                if(backend.control13Type === 2) d2Loader.sourceComponent = d2Pot;
-                if(backend.control13Type === 1) d2Loader.sourceComponent = d2Button;
-
-                if(backend.control14Type === 2) d3Loader.sourceComponent = d3Pot;
-                if(backend.control14Type === 1) d3Loader.sourceComponent = d3Button;
-
-                if(backend.control15Type === 2) d4Loader.sourceComponent = d4Pot;
-                if(backend.control15Type === 1) d4Loader.sourceComponent = d4Button;
-
-                b2Loader.sourceComponent = potSelected;
-            }
-        }
-
-    }
-
-    Component{
-        id: b2Button
-        Button{
-            autoExclusive: false
-            //display: AbstractButton.IconOnly
-            checkable: true
-            background: Rectangle {
-                implicitWidth: 81
-                implicitHeight: 81
-                color: b2Button.down ? "#17a81a" : "transparent"
-                Image { source: "content/images/button.svg"}
-            }
-            onClicked:{
-                comp_name.text = qsTr("button b2")
-                backend.selectComponent(5)
-
-                if(backend.control0Type === 2) a1Loader.sourceComponent = a1Pot;
-                if(backend.control0Type === 1) a1Loader.sourceComponent = a1Button;
-
-                if(backend.control1Type === 2) a2Loader.sourceComponent = a2Pot;
-                if(backend.control1Type === 1) a2Loader.sourceComponent = a2Button;
-
-                if(backend.control2Type === 2) a3Loader.sourceComponent = a3Pot;
-                if(backend.control2Type === 1) a3Loader.sourceComponent = a3Button;
-
-                if(backend.control3Type === 2) a4Loader.sourceComponent = a4Pot;
-                if(backend.control3Type === 1) a4Loader.sourceComponent = a4Button;
-
-                if(backend.control4Type === 2) b1Loader.sourceComponent = b1Pot;
-                if(backend.control4Type === 1) b1Loader.sourceComponent = b1Button;
-
-                if(backend.control6Type === 2) b3Loader.sourceComponent = b3Pot;
-                if(backend.control6Type === 1) b3Loader.sourceComponent = b3Button;
-
-                if(backend.control7Type === 2) b4Loader.sourceComponent = b4Pot;
-                if(backend.control7Type === 1) b4Loader.sourceComponent = b4Button;
-
-                if(backend.control8Type === 2) c1Loader.sourceComponent = c1Pot;
-                if(backend.control8Type === 1) c1Loader.sourceComponent = c1Button;
-
-                if(backend.control9Type === 2) c2Loader.sourceComponent = c2Pot;
-                if(backend.control9Type === 1) c2Loader.sourceComponent = c2Button;
-
-                if(backend.control10Type === 2) c3Loader.sourceComponent = c3Pot;
-                if(backend.control10Type === 1) c3Loader.sourceComponent = c3Button;
-
-                if(backend.control11Type === 2) c4Loader.sourceComponent = c4Pot;
-                if(backend.control11Type === 1) c4Loader.sourceComponent = c4Button;
-
-                if(backend.control12Type === 2) d1Loader.sourceComponent = d1Pot;
-                if(backend.control12Type === 1) d1Loader.sourceComponent = d1Button;
-
-                if(backend.control13Type === 2) d2Loader.sourceComponent = d2Pot;
-                if(backend.control13Type === 1) d2Loader.sourceComponent = d2Button;
-
-                if(backend.control14Type === 2) d3Loader.sourceComponent = d3Pot;
-                if(backend.control14Type === 1) d3Loader.sourceComponent = d3Button;
-
-                if(backend.control15Type === 2) d4Loader.sourceComponent = d4Pot;
-                if(backend.control15Type === 1) d4Loader.sourceComponent = d4Button;
-
-                b2Loader.sourceComponent = buttonSelected;
-            }
-        }
-    }
-
-    /*Component{
-        id: b3Back
-        Image { source: "content/images/Knob-w-back.svg"}
-    }*/
-
-    Component{
-        id: b3Pot
-        Button{
-            autoExclusive: false
-            //display: AbstractButton.IconOnly
-            checkable: true
-            background: Rectangle {
-                implicitWidth: 81
-                implicitHeight: 81
-                color: b3Pot.down ? "#17a81a" : "transparent"
-                Image { source: "content/images/knob.svg" }
-            }
-            onClicked:{
-                comp_name.text = qsTr("knob b3")
-                backend.selectComponent(6)
-
-                if(backend.control0Type === 2) a1Loader.sourceComponent = a1Pot;
-                if(backend.control0Type === 1) a1Loader.sourceComponent = a1Button;
-
-                if(backend.control1Type === 2) a2Loader.sourceComponent = a2Pot;
-                if(backend.control1Type === 1) a2Loader.sourceComponent = a2Button;
-
-                if(backend.control2Type === 2) a3Loader.sourceComponent = a3Pot;
-                if(backend.control2Type === 1) a3Loader.sourceComponent = a3Button;
-
-                if(backend.control3Type === 2) a4Loader.sourceComponent = a4Pot;
-                if(backend.control3Type === 1) a4Loader.sourceComponent = a4Button;
-
-                if(backend.control4Type === 2) b1Loader.sourceComponent = b1Pot;
-                if(backend.control4Type === 1) b1Loader.sourceComponent = b1Button;
-
-                if(backend.control5Type === 2) b2Loader.sourceComponent = b2Pot;
-                if(backend.control5Type === 1) b2Loader.sourceComponent = b2Button;
-
-                if(backend.control7Type === 2) b4Loader.sourceComponent = b4Pot;
-                if(backend.control7Type === 1) b4Loader.sourceComponent = b4Button;
-
-                if(backend.control8Type === 2) c1Loader.sourceComponent = c1Pot;
-                if(backend.control8Type === 1) c1Loader.sourceComponent = c1Button;
-
-                if(backend.control9Type === 2) c2Loader.sourceComponent = c2Pot;
-                if(backend.control9Type === 1) c2Loader.sourceComponent = c2Button;
-
-                if(backend.control10Type === 2) c3Loader.sourceComponent = c3Pot;
-                if(backend.control10Type === 1) c3Loader.sourceComponent = c3Button;
-
-                if(backend.control11Type === 2) c4Loader.sourceComponent = c4Pot;
-                if(backend.control11Type === 1) c4Loader.sourceComponent = c4Button;
-
-                if(backend.control12Type === 2) d1Loader.sourceComponent = d1Pot;
-                if(backend.control12Type === 1) d1Loader.sourceComponent = d1Button;
-
-                if(backend.control13Type === 2) d2Loader.sourceComponent = d2Pot;
-                if(backend.control13Type === 1) d2Loader.sourceComponent = d2Button;
-
-                if(backend.control14Type === 2) d3Loader.sourceComponent = d3Pot;
-                if(backend.control14Type === 1) d3Loader.sourceComponent = d3Button;
-
-                if(backend.control15Type === 2) d4Loader.sourceComponent = d4Pot;
-                if(backend.control15Type === 1) d4Loader.sourceComponent = d4Button;
-
-                b3Loader.sourceComponent = potSelected;
-            }
-        }
-
-    }
-
-    Component{
-        id: b3Button
-        Button{
-            autoExclusive: false
-            //display: AbstractButton.IconOnly
-            checkable: true
-            background: Rectangle {
-                implicitWidth: 81
-                implicitHeight: 81
-                color: b3Button.down ? "#17a81a" : "transparent"
-                Image { source: "content/images/button.svg"}
-            }
-            onClicked:{
-                comp_name.text = qsTr("button b3")
-                backend.selectComponent(6)
-
-                if(backend.control0Type === 2) a1Loader.sourceComponent = a1Pot;
-                if(backend.control0Type === 1) a1Loader.sourceComponent = a1Button;
-
-                if(backend.control1Type === 2) a2Loader.sourceComponent = a2Pot;
-                if(backend.control1Type === 1) a2Loader.sourceComponent = a2Button;
-
-                if(backend.control2Type === 2) a3Loader.sourceComponent = a3Pot;
-                if(backend.control2Type === 1) a3Loader.sourceComponent = a3Button;
-
-                if(backend.control3Type === 2) a4Loader.sourceComponent = a4Pot;
-                if(backend.control3Type === 1) a4Loader.sourceComponent = a4Button;
-
-                if(backend.control4Type === 2) b1Loader.sourceComponent = b1Pot;
-                if(backend.control4Type === 1) b1Loader.sourceComponent = b1Button;
-
-                if(backend.control5Type === 2) b2Loader.sourceComponent = b2Pot;
-                if(backend.control5Type === 1) b2Loader.sourceComponent = b2Button;
-
-                if(backend.control7Type === 2) b4Loader.sourceComponent = b4Pot;
-                if(backend.control7Type === 1) b4Loader.sourceComponent = b4Button;
-
-                if(backend.control8Type === 2) c1Loader.sourceComponent = c1Pot;
-                if(backend.control8Type === 1) c1Loader.sourceComponent = c1Button;
-
-                if(backend.control9Type === 2) c2Loader.sourceComponent = c2Pot;
-                if(backend.control9Type === 1) c2Loader.sourceComponent = c2Button;
-
-                if(backend.control10Type === 2) c3Loader.sourceComponent = c3Pot;
-                if(backend.control10Type === 1) c3Loader.sourceComponent = c3Button;
-
-                if(backend.control11Type === 2) c4Loader.sourceComponent = c4Pot;
-                if(backend.control11Type === 1) c4Loader.sourceComponent = c4Button;
-
-                if(backend.control12Type === 2) d1Loader.sourceComponent = d1Pot;
-                if(backend.control12Type === 1) d1Loader.sourceComponent = d1Button;
-
-                if(backend.control13Type === 2) d2Loader.sourceComponent = d2Pot;
-                if(backend.control13Type === 1) d2Loader.sourceComponent = d2Button;
-
-                if(backend.control14Type === 2) d3Loader.sourceComponent = d3Pot;
-                if(backend.control14Type === 1) d3Loader.sourceComponent = d3Button;
-
-                if(backend.control15Type === 2) d4Loader.sourceComponent = d4Pot;
-                if(backend.control15Type === 1) d4Loader.sourceComponent = d4Button;
-
-                b3Loader.sourceComponent = buttonSelected;
-            }
-        }
-    }
-
-    /*Component{
-        id: b4Back
-        Image { source: "content/images/Knob-w-back.svg"}
-    }*/
-
-    Component{
-        id: b4Pot
-        Button{
-            autoExclusive: false
-            //display: AbstractButton.IconOnly
-            checkable: true
-            background: Rectangle {
-                implicitWidth: 81
-                implicitHeight: 81
-                color: b4Pot.down ? "#17a81a" : "transparent"
-                Image { source: "content/images/knob.svg" }
-            }
-            onClicked:{
-                comp_name.text = qsTr("knob b4")
-                backend.selectComponent(7)
-
-                if(backend.control0Type === 2) a1Loader.sourceComponent = a1Pot;
-                if(backend.control0Type === 1) a1Loader.sourceComponent = a1Button;
-
-                if(backend.control1Type === 2) a2Loader.sourceComponent = a2Pot;
-                if(backend.control1Type === 1) a2Loader.sourceComponent = a2Button;
-
-                if(backend.control2Type === 2) a3Loader.sourceComponent = a3Pot;
-                if(backend.control2Type === 1) a3Loader.sourceComponent = a3Button;
-
-                if(backend.control3Type === 2) a4Loader.sourceComponent = a4Pot;
-                if(backend.control3Type === 1) a4Loader.sourceComponent = a4Button;
-
-                if(backend.control4Type === 2) b1Loader.sourceComponent = b1Pot;
-                if(backend.control4Type === 1) b1Loader.sourceComponent = b1Button;
-
-                if(backend.control5Type === 2) b2Loader.sourceComponent = b2Pot;
-                if(backend.control5Type === 1) b2Loader.sourceComponent = b2Button;
-
-                if(backend.control6Type === 2) b3Loader.sourceComponent = b3Pot;
-                if(backend.control6Type === 1) b3Loader.sourceComponent = b3Button;
-
-                if(backend.control8Type === 2) c1Loader.sourceComponent = c1Pot;
-                if(backend.control8Type === 1) c1Loader.sourceComponent = c1Button;
-
-                if(backend.control9Type === 2) c2Loader.sourceComponent = c2Pot;
-                if(backend.control9Type === 1) c2Loader.sourceComponent = c2Button;
-
-                if(backend.control10Type === 2) c3Loader.sourceComponent = c3Pot;
-                if(backend.control10Type === 1) c3Loader.sourceComponent = c3Button;
-
-                if(backend.control11Type === 2) c4Loader.sourceComponent = c4Pot;
-                if(backend.control11Type === 1) c4Loader.sourceComponent = c4Button;
-
-                if(backend.control12Type === 2) d1Loader.sourceComponent = d1Pot;
-                if(backend.control12Type === 1) d1Loader.sourceComponent = d1Button;
-
-                if(backend.control13Type === 2) d2Loader.sourceComponent = d2Pot;
-                if(backend.control13Type === 1) d2Loader.sourceComponent = d2Button;
-
-                if(backend.control14Type === 2) d3Loader.sourceComponent = d3Pot;
-                if(backend.control14Type === 1) d3Loader.sourceComponent = d3Button;
-
-                if(backend.control15Type === 2) d4Loader.sourceComponent = d4Pot;
-                if(backend.control15Type === 1) d4Loader.sourceComponent = d4Button;
-
-                b4Loader.sourceComponent = potSelected;
-            }
-        }
-
-    }
-
-    Component{
-        id: b4Button
-        Button{
-            autoExclusive: false
-            //display: AbstractButton.IconOnly
-            checkable: true
-            background: Rectangle {
-                implicitWidth: 81
-                implicitHeight: 81
-                color: b4Button.down ? "#17a81a" : "transparent"
-                Image { source: "content/images/button.svg"}
-            }
-            onClicked:{
-                comp_name.text = qsTr("button b4")
-                backend.selectComponent(7)
-
-                if(backend.control0Type === 2) a1Loader.sourceComponent = a1Pot;
-                if(backend.control0Type === 1) a1Loader.sourceComponent = a1Button;
-
-                if(backend.control1Type === 2) a2Loader.sourceComponent = a2Pot;
-                if(backend.control1Type === 1) a2Loader.sourceComponent = a2Button;
-
-                if(backend.control2Type === 2) a3Loader.sourceComponent = a3Pot;
-                if(backend.control2Type === 1) a3Loader.sourceComponent = a3Button;
-
-                if(backend.control3Type === 2) a4Loader.sourceComponent = a4Pot;
-                if(backend.control3Type === 1) a4Loader.sourceComponent = a4Button;
-
-                if(backend.control4Type === 2) b1Loader.sourceComponent = b1Pot;
-                if(backend.control4Type === 1) b1Loader.sourceComponent = b1Button;
-
-                if(backend.control5Type === 2) b2Loader.sourceComponent = b2Pot;
-                if(backend.control5Type === 1) b2Loader.sourceComponent = b2Button;
-
-                if(backend.control6Type === 2) b3Loader.sourceComponent = b3Pot;
-                if(backend.control6Type === 1) b3Loader.sourceComponent = b3Button;
-
-                if(backend.control8Type === 2) c1Loader.sourceComponent = c1Pot;
-                if(backend.control8Type === 1) c1Loader.sourceComponent = c1Button;
-
-                if(backend.control9Type === 2) c2Loader.sourceComponent = c2Pot;
-                if(backend.control9Type === 1) c2Loader.sourceComponent = c2Button;
-
-                if(backend.control10Type === 2) c3Loader.sourceComponent = c3Pot;
-                if(backend.control10Type === 1) c3Loader.sourceComponent = c3Button;
-
-                if(backend.control11Type === 2) c4Loader.sourceComponent = c4Pot;
-                if(backend.control11Type === 1) c4Loader.sourceComponent = c4Button;
-
-                if(backend.control12Type === 2) d1Loader.sourceComponent = d1Pot;
-                if(backend.control12Type === 1) d1Loader.sourceComponent = d1Button;
-
-                if(backend.control13Type === 2) d2Loader.sourceComponent = d2Pot;
-                if(backend.control13Type === 1) d2Loader.sourceComponent = d2Button;
-
-                if(backend.control14Type === 2) d3Loader.sourceComponent = d3Pot;
-                if(backend.control14Type === 1) d3Loader.sourceComponent = d3Button;
-
-                if(backend.control15Type === 2) d4Loader.sourceComponent = d4Pot;
-                if(backend.control15Type === 1) d4Loader.sourceComponent = d4Button;
-
-                b4Loader.sourceComponent = buttonSelected;
-            }
-        }
-    }
-
-    /*Component{
-        id: c1Back
-        Image { source: "content/images/Knob-w-back.svg"}
-    }*/
-
-    Component{
-        id: c1Pot
-        Button{
-            autoExclusive: false
-            //display: AbstractButton.IconOnly
-            checkable: true
-            background: Rectangle {
-                implicitWidth: 81
-                implicitHeight: 81
-                color: c1Pot.down ? "#17a81a" : "transparent"
-                Image { source: "content/images/knob.svg" }
-            }
-            onClicked:{
-                comp_name.text = qsTr("knob c1")
-                backend.selectComponent(8)
-
-                if(backend.control0Type === 2) a1Loader.sourceComponent = a1Pot;
-                if(backend.control0Type === 1) a1Loader.sourceComponent = a1Button;
-
-                if(backend.control1Type === 2) a2Loader.sourceComponent = a2Pot;
-                if(backend.control1Type === 1) a2Loader.sourceComponent = a2Button;
-
-                if(backend.control2Type === 2) a3Loader.sourceComponent = a3Pot;
-                if(backend.control2Type === 1) a3Loader.sourceComponent = a3Button;
-
-                if(backend.control3Type === 2) a4Loader.sourceComponent = a4Pot;
-                if(backend.control3Type === 1) a4Loader.sourceComponent = a4Button;
-
-                if(backend.control4Type === 2) b1Loader.sourceComponent = b1Pot;
-                if(backend.control4Type === 1) b1Loader.sourceComponent = b1Button;
-
-                if(backend.control5Type === 2) b2Loader.sourceComponent = b2Pot;
-                if(backend.control5Type === 1) b2Loader.sourceComponent = b2Button;
-
-                if(backend.control6Type === 2) b3Loader.sourceComponent = b3Pot;
-                if(backend.control6Type === 1) b3Loader.sourceComponent = b3Button;
-
-                if(backend.control7Type === 2) b4Loader.sourceComponent = b4Pot;
-                if(backend.control7Type === 1) b4Loader.sourceComponent = b4Button;
-
-                if(backend.control9Type === 2) c2Loader.sourceComponent = c2Pot;
-                if(backend.control9Type === 1) c2Loader.sourceComponent = c2Button;
-
-                if(backend.control10Type === 2) c3Loader.sourceComponent = c3Pot;
-                if(backend.control10Type === 1) c3Loader.sourceComponent = c3Button;
-
-                if(backend.control11Type === 2) c4Loader.sourceComponent = c4Pot;
-                if(backend.control11Type === 1) c4Loader.sourceComponent = c4Button;
-
-                if(backend.control12Type === 2) d1Loader.sourceComponent = d1Pot;
-                if(backend.control12Type === 1) d1Loader.sourceComponent = d1Button;
-
-                if(backend.control13Type === 2) d2Loader.sourceComponent = d2Pot;
-                if(backend.control13Type === 1) d2Loader.sourceComponent = d2Button;
-
-                if(backend.control14Type === 2) d3Loader.sourceComponent = d3Pot;
-                if(backend.control14Type === 1) d3Loader.sourceComponent = d3Button;
-
-                if(backend.control15Type === 2) d4Loader.sourceComponent = d4Pot;
-                if(backend.control15Type === 1) d4Loader.sourceComponent = d4Button;
-
-                c1Loader.sourceComponent = potSelected;
-            }
-        }
-
-    }
-
-    Component{
-        id: c1Button
-        Button{
-            autoExclusive: false
-            //display: AbstractButton.IconOnly
-            checkable: true
-            background: Rectangle {
-                implicitWidth: 81
-                implicitHeight: 81
-                color: c1Button.down ? "#17a81a" : "transparent"
-                Image { source: "content/images/button.svg"}
-            }
-            onClicked:{
-                comp_name.text = qsTr("button c1")
-                backend.selectComponent(8)
-
-                if(backend.control0Type === 2) a1Loader.sourceComponent = a1Pot;
-                if(backend.control0Type === 1) a1Loader.sourceComponent = a1Button;
-
-                if(backend.control1Type === 2) a2Loader.sourceComponent = a2Pot;
-                if(backend.control1Type === 1) a2Loader.sourceComponent = a2Button;
-
-                if(backend.control2Type === 2) a3Loader.sourceComponent = a3Pot;
-                if(backend.control2Type === 1) a3Loader.sourceComponent = a3Button;
-
-                if(backend.control3Type === 2) a4Loader.sourceComponent = a4Pot;
-                if(backend.control3Type === 1) a4Loader.sourceComponent = a4Button;
-
-                if(backend.control4Type === 2) b1Loader.sourceComponent = b1Pot;
-                if(backend.control4Type === 1) b1Loader.sourceComponent = b1Button;
-
-                if(backend.control5Type === 2) b2Loader.sourceComponent = b2Pot;
-                if(backend.control5Type === 1) b2Loader.sourceComponent = b2Button;
-
-                if(backend.control6Type === 2) b3Loader.sourceComponent = b3Pot;
-                if(backend.control6Type === 1) b3Loader.sourceComponent = b3Button;
-
-                if(backend.control7Type === 2) b4Loader.sourceComponent = b4Pot;
-                if(backend.control7Type === 1) b4Loader.sourceComponent = b4Button;
-
-                if(backend.control9Type === 2) c2Loader.sourceComponent = c2Pot;
-                if(backend.control9Type === 1) c2Loader.sourceComponent = c2Button;
-
-                if(backend.control10Type === 2) c3Loader.sourceComponent = c3Pot;
-                if(backend.control10Type === 1) c3Loader.sourceComponent = c3Button;
-
-                if(backend.control11Type === 2) c4Loader.sourceComponent = c4Pot;
-                if(backend.control11Type === 1) c4Loader.sourceComponent = c4Button;
-
-                if(backend.control12Type === 2) d1Loader.sourceComponent = d1Pot;
-                if(backend.control12Type === 1) d1Loader.sourceComponent = d1Button;
-
-                if(backend.control13Type === 2) d2Loader.sourceComponent = d2Pot;
-                if(backend.control13Type === 1) d2Loader.sourceComponent = d2Button;
-
-                if(backend.control14Type === 2) d3Loader.sourceComponent = d3Pot;
-                if(backend.control14Type === 1) d3Loader.sourceComponent = d3Button;
-
-                if(backend.control15Type === 2) d4Loader.sourceComponent = d4Pot;
-                if(backend.control15Type === 1) d4Loader.sourceComponent = d4Button;
-
-                c1Loader.sourceComponent = buttonSelected;
-            }
-        }
-    }
-
-    /*Component{
-        id: c2Back
-        Image { source: "content/images/Knob-w-back.svg"}
-    }*/
-
-    Component{
-        id: c2Pot
-        Button{
-            autoExclusive: false
-            //display: AbstractButton.IconOnly
-            checkable: true
-            background: Rectangle {
-                implicitWidth: 81
-                implicitHeight: 81
-                color: c2Pot.down ? "#17a81a" : "transparent"
-                Image { source: "content/images/knob.svg" }
-            }
-            onClicked:{
-                comp_name.text = qsTr("knob c2")
-                backend.selectComponent(9)
-
-                if(backend.control0Type === 2) a1Loader.sourceComponent = a1Pot;
-                if(backend.control0Type === 1) a1Loader.sourceComponent = a1Button;
-
-                if(backend.control1Type === 2) a2Loader.sourceComponent = a2Pot;
-                if(backend.control1Type === 1) a2Loader.sourceComponent = a2Button;
-
-                if(backend.control2Type === 2) a3Loader.sourceComponent = a3Pot;
-                if(backend.control2Type === 1) a3Loader.sourceComponent = a3Button;
-
-                if(backend.control3Type === 2) a4Loader.sourceComponent = a4Pot;
-                if(backend.control3Type === 1) a4Loader.sourceComponent = a4Button;
-
-                if(backend.control4Type === 2) b1Loader.sourceComponent = b1Pot;
-                if(backend.control4Type === 1) b1Loader.sourceComponent = b1Button;
-
-                if(backend.control5Type === 2) b2Loader.sourceComponent = b2Pot;
-                if(backend.control5Type === 1) b2Loader.sourceComponent = b2Button;
-
-                if(backend.control6Type === 2) b3Loader.sourceComponent = b3Pot;
-                if(backend.control6Type === 1) b3Loader.sourceComponent = b3Button;
-
-                if(backend.control7Type === 2) b4Loader.sourceComponent = b4Pot;
-                if(backend.control7Type === 1) b4Loader.sourceComponent = b4Button;
-
-                if(backend.control8Type === 2) c1Loader.sourceComponent = c1Pot;
-                if(backend.control8Type === 1) c1Loader.sourceComponent = c1Button;
-
-                if(backend.control10Type === 2) c3Loader.sourceComponent = c3Pot;
-                if(backend.control10Type === 1) c3Loader.sourceComponent = c3Button;
-
-                if(backend.control11Type === 2) c4Loader.sourceComponent = c4Pot;
-                if(backend.control11Type === 1) c4Loader.sourceComponent = c4Button;
-
-                if(backend.control12Type === 2) d1Loader.sourceComponent = d1Pot;
-                if(backend.control12Type === 1) d1Loader.sourceComponent = d1Button;
-
-                if(backend.control13Type === 2) d2Loader.sourceComponent = d2Pot;
-                if(backend.control13Type === 1) d2Loader.sourceComponent = d2Button;
-
-                if(backend.control14Type === 2) d3Loader.sourceComponent = d3Pot;
-                if(backend.control14Type === 1) d3Loader.sourceComponent = d3Button;
-
-                if(backend.control15Type === 2) d4Loader.sourceComponent = d4Pot;
-                if(backend.control15Type === 1) d4Loader.sourceComponent = d4Button;
-
-                c2Loader.sourceComponent = potSelected;
-            }
-        }
-
-    }
-
-    Component{
-        id: c2Button
-        Button{
-            autoExclusive: false
-            //display: AbstractButton.IconOnly
-            checkable: true
-            background: Rectangle {
-                implicitWidth: 81
-                implicitHeight: 81
-                color: c1Button.down ? "#17a81a" : "transparent"
-                Image { source: "content/images/button.svg"}
-            }
-            onClicked:{
-                comp_name.text = qsTr("button c2")
-                backend.selectComponent(9)
-
-                if(backend.control0Type === 2) a1Loader.sourceComponent = a1Pot;
-                if(backend.control0Type === 1) a1Loader.sourceComponent = a1Button;
-
-                if(backend.control1Type === 2) a2Loader.sourceComponent = a2Pot;
-                if(backend.control1Type === 1) a2Loader.sourceComponent = a2Button;
-
-                if(backend.control2Type === 2) a3Loader.sourceComponent = a3Pot;
-                if(backend.control2Type === 1) a3Loader.sourceComponent = a3Button;
-
-                if(backend.control3Type === 2) a4Loader.sourceComponent = a4Pot;
-                if(backend.control3Type === 1) a4Loader.sourceComponent = a4Button;
-
-                if(backend.control4Type === 2) b1Loader.sourceComponent = b1Pot;
-                if(backend.control4Type === 1) b1Loader.sourceComponent = b1Button;
-
-                if(backend.control5Type === 2) b2Loader.sourceComponent = b2Pot;
-                if(backend.control5Type === 1) b2Loader.sourceComponent = b2Button;
-
-                if(backend.control6Type === 2) b3Loader.sourceComponent = b3Pot;
-                if(backend.control6Type === 1) b3Loader.sourceComponent = b3Button;
-
-                if(backend.control7Type === 2) b4Loader.sourceComponent = b4Pot;
-                if(backend.control7Type === 1) b4Loader.sourceComponent = b4Button;
-
-                if(backend.control8Type === 2) c1Loader.sourceComponent = c1Pot;
-                if(backend.control8Type === 1) c1Loader.sourceComponent = c1Button;
-
-                if(backend.control10Type === 2) c3Loader.sourceComponent = c3Pot;
-                if(backend.control10Type === 1) c3Loader.sourceComponent = c3Button;
-
-                if(backend.control11Type === 2) c4Loader.sourceComponent = c4Pot;
-                if(backend.control11Type === 1) c4Loader.sourceComponent = c4Button;
-
-                if(backend.control12Type === 2) d1Loader.sourceComponent = d1Pot;
-                if(backend.control12Type === 1) d1Loader.sourceComponent = d1Button;
-
-                if(backend.control13Type === 2) d2Loader.sourceComponent = d2Pot;
-                if(backend.control13Type === 1) d2Loader.sourceComponent = d2Button;
-
-                if(backend.control14Type === 2) d3Loader.sourceComponent = d3Pot;
-                if(backend.control14Type === 1) d3Loader.sourceComponent = d3Button;
-
-                if(backend.control15Type === 2) d4Loader.sourceComponent = d4Pot;
-                if(backend.control15Type === 1) d4Loader.sourceComponent = d4Button;
-
-                c2Loader.sourceComponent = buttonSelected;
-            }
-        }
-    }
-
-    /*Component{
-        id: c3Back
-        Image { source: "content/images/Knob-w-back.svg"}
-    }*/
-
-    Component{
-        id: c3Pot
-        Button{
-            autoExclusive: false
-            //display: AbstractButton.IconOnly
-            checkable: true
-            background: Rectangle {
-                implicitWidth: 81
-                implicitHeight: 81
-                color: c3Pot.down ? "#17a81a" : "transparent"
-                Image { source: "content/images/knob.svg" }
-            }
-            onClicked:{
-                comp_name.text = qsTr("knob c3")
-                backend.selectComponent(10)
-
-                if(backend.control0Type === 2) a1Loader.sourceComponent = a1Pot;
-                if(backend.control0Type === 1) a1Loader.sourceComponent = a1Button;
-
-                if(backend.control1Type === 2) a2Loader.sourceComponent = a2Pot;
-                if(backend.control1Type === 1) a2Loader.sourceComponent = a2Button;
-
-                if(backend.control2Type === 2) a3Loader.sourceComponent = a3Pot;
-                if(backend.control2Type === 1) a3Loader.sourceComponent = a3Button;
-
-                if(backend.control3Type === 2) a4Loader.sourceComponent = a4Pot;
-                if(backend.control3Type === 1) a4Loader.sourceComponent = a4Button;
-
-                if(backend.control4Type === 2) b1Loader.sourceComponent = b1Pot;
-                if(backend.control4Type === 1) b1Loader.sourceComponent = b1Button;
-
-                if(backend.control5Type === 2) b2Loader.sourceComponent = b2Pot;
-                if(backend.control5Type === 1) b2Loader.sourceComponent = b2Button;
-
-                if(backend.control6Type === 2) b3Loader.sourceComponent = b3Pot;
-                if(backend.control6Type === 1) b3Loader.sourceComponent = b3Button;
-
-                if(backend.control7Type === 2) b4Loader.sourceComponent = b4Pot;
-                if(backend.control7Type === 1) b4Loader.sourceComponent = b4Button;
-
-                if(backend.control8Type === 2) c1Loader.sourceComponent = c1Pot;
-                if(backend.control8Type === 1) c1Loader.sourceComponent = c1Button;
-
-                if(backend.control9Type === 2) c2Loader.sourceComponent = c2Pot;
-                if(backend.control9Type === 1) c2Loader.sourceComponent = c2Button;
-
-                if(backend.control11Type === 2) c4Loader.sourceComponent = c4Pot;
-                if(backend.control11Type === 1) c4Loader.sourceComponent = c4Button;
-
-                if(backend.control12Type === 2) d1Loader.sourceComponent = d1Pot;
-                if(backend.control12Type === 1) d1Loader.sourceComponent = d1Button;
-
-                if(backend.control13Type === 2) d2Loader.sourceComponent = d2Pot;
-                if(backend.control13Type === 1) d2Loader.sourceComponent = d2Button;
-
-                if(backend.control14Type === 2) d3Loader.sourceComponent = d3Pot;
-                if(backend.control14Type === 1) d3Loader.sourceComponent = d3Button;
-
-                if(backend.control15Type === 2) d4Loader.sourceComponent = d4Pot;
-                if(backend.control15Type === 1) d4Loader.sourceComponent = d4Button;
-
-                c3Loader.sourceComponent = potSelected;
-            }
-        }
-
-    }
-
-    Component{
-        id: c3Button
-        Button{
-            autoExclusive: false
-            //display: AbstractButton.IconOnly
-            checkable: true
-            background: Rectangle {
-                implicitWidth: 81
-                implicitHeight: 81
-                color: c3Button.down ? "#17a81a" : "transparent"
-                Image { source: "content/images/button.svg"}
-            }
-            onClicked:{
-                comp_name.text = qsTr("button c3")
-                backend.selectComponent(10)
-
-                if(backend.control0Type === 2) a1Loader.sourceComponent = a1Pot;
-                if(backend.control0Type === 1) a1Loader.sourceComponent = a1Button;
-
-                if(backend.control1Type === 2) a2Loader.sourceComponent = a2Pot;
-                if(backend.control1Type === 1) a2Loader.sourceComponent = a2Button;
-
-                if(backend.control2Type === 2) a3Loader.sourceComponent = a3Pot;
-                if(backend.control2Type === 1) a3Loader.sourceComponent = a3Button;
-
-                if(backend.control3Type === 2) a4Loader.sourceComponent = a4Pot;
-                if(backend.control3Type === 1) a4Loader.sourceComponent = a4Button;
-
-                if(backend.control4Type === 2) b1Loader.sourceComponent = b1Pot;
-                if(backend.control4Type === 1) b1Loader.sourceComponent = b1Button;
-
-                if(backend.control5Type === 2) b2Loader.sourceComponent = b2Pot;
-                if(backend.control5Type === 1) b2Loader.sourceComponent = b2Button;
-
-                if(backend.control6Type === 2) b3Loader.sourceComponent = b3Pot;
-                if(backend.control6Type === 1) b3Loader.sourceComponent = b3Button;
-
-                if(backend.control7Type === 2) b4Loader.sourceComponent = b4Pot;
-                if(backend.control7Type === 1) b4Loader.sourceComponent = b4Button;
-
-                if(backend.control8Type === 2) c1Loader.sourceComponent = c1Pot;
-                if(backend.control8Type === 1) c1Loader.sourceComponent = c1Button;
-
-                if(backend.control9Type === 2) c2Loader.sourceComponent = c2Pot;
-                if(backend.control9Type === 1) c2Loader.sourceComponent = c2Button;
-
-                if(backend.control10Type === 2) c4Loader.sourceComponent = c4Pot;
-                if(backend.control10Type === 1) c4Loader.sourceComponent = c4Button;
-
-                if(backend.control12Type === 2) d1Loader.sourceComponent = d1Pot;
-                if(backend.control12Type === 1) d1Loader.sourceComponent = d1Button;
-
-                if(backend.control13Type === 2) d2Loader.sourceComponent = d2Pot;
-                if(backend.control13Type === 1) d2Loader.sourceComponent = d2Button;
-
-                if(backend.control14Type === 2) d3Loader.sourceComponent = d3Pot;
-                if(backend.control14Type === 1) d3Loader.sourceComponent = d3Button;
-
-                if(backend.control15Type === 2) d4Loader.sourceComponent = d4Pot;
-                if(backend.control15Type === 1) d4Loader.sourceComponent = d4Button;
-
-                c3Loader.sourceComponent = buttonSelected;
-            }
-        }
-    }
-
-    /*Component{
-        id: c4Back
-        Image { source: "content/images/Knob-w-back.svg"}
-    }*/
-
-    Component{
-        id: c4Pot
-        Button{
-            autoExclusive: false
-            //display: AbstractButton.IconOnly
-            checkable: true
-            background: Rectangle {
-                implicitWidth: 81
-                implicitHeight: 81
-                color: c4Pot.down ? "#17a81a" : "transparent"
-                Image { source: "content/images/knob.svg" }
-            }
-            onClicked:{
-                comp_name.text = qsTr("knob c4")
-                backend.selectComponent(11)
-
-                if(backend.control0Type === 2) a1Loader.sourceComponent = a1Pot;
-                if(backend.control0Type === 1) a1Loader.sourceComponent = a1Button;
-
-                if(backend.control1Type === 2) a2Loader.sourceComponent = a2Pot;
-                if(backend.control1Type === 1) a2Loader.sourceComponent = a2Button;
-
-                if(backend.control2Type === 2) a3Loader.sourceComponent = a3Pot;
-                if(backend.control2Type === 1) a3Loader.sourceComponent = a3Button;
-
-                if(backend.control3Type === 2) a4Loader.sourceComponent = a4Pot;
-                if(backend.control3Type === 1) a4Loader.sourceComponent = a4Button;
-
-                if(backend.control4Type === 2) b1Loader.sourceComponent = b1Pot;
-                if(backend.control4Type === 1) b1Loader.sourceComponent = b1Button;
-
-                if(backend.control5Type === 2) b2Loader.sourceComponent = b2Pot;
-                if(backend.control5Type === 1) b2Loader.sourceComponent = b2Button;
-
-                if(backend.control6Type === 2) b3Loader.sourceComponent = b3Pot;
-                if(backend.control6Type === 1) b3Loader.sourceComponent = b3Button;
-
-                if(backend.control7Type === 2) b4Loader.sourceComponent = b4Pot;
-                if(backend.control7Type === 1) b4Loader.sourceComponent = b4Button;
-
-                if(backend.control8Type === 2) c1Loader.sourceComponent = c1Pot;
-                if(backend.control8Type === 1) c1Loader.sourceComponent = c1Button;
-
-                if(backend.control9Type === 2) c2Loader.sourceComponent = c2Pot;
-                if(backend.control9Type === 1) c2Loader.sourceComponent = c2Button;
-
-                if(backend.control10Type === 2) c3Loader.sourceComponent = c3Pot;
-                if(backend.control10Type === 1) c3Loader.sourceComponent = c3Button;
-
-                if(backend.control12Type === 2) d1Loader.sourceComponent = d1Pot;
-                if(backend.control12Type === 1) d1Loader.sourceComponent = d1Button;
-
-                if(backend.control13Type === 2) d2Loader.sourceComponent = d2Pot;
-                if(backend.control13Type === 1) d2Loader.sourceComponent = d2Button;
-
-                if(backend.control14Type === 2) d3Loader.sourceComponent = d3Pot;
-                if(backend.control14Type === 1) d3Loader.sourceComponent = d3Button;
-
-                if(backend.control15Type === 2) d4Loader.sourceComponent = d4Pot;
-                if(backend.control15Type === 1) d4Loader.sourceComponent = d4Button;
-
-                c4Loader.sourceComponent = potSelected;
-            }
-        }
-
-    }
-
-    Component{
-        id: c4Button
-        Button{
-            autoExclusive: false
-            //display: AbstractButton.IconOnly
-            checkable: true
-            background: Rectangle {
-                implicitWidth: 81
-                implicitHeight: 81
-                color: c4Button.down ? "#17a81a" : "transparent"
-                Image { source: "content/images/button.svg"}
-            }
-            onClicked:{
-                comp_name.text = qsTr("button c4")
-                backend.selectComponent(11)
-
-                if(backend.control0Type === 2) a1Loader.sourceComponent = a1Pot;
-                if(backend.control0Type === 1) a1Loader.sourceComponent = a1Button;
-
-                if(backend.control1Type === 2) a2Loader.sourceComponent = a2Pot;
-                if(backend.control1Type === 1) a2Loader.sourceComponent = a2Button;
-
-                if(backend.control2Type === 2) a3Loader.sourceComponent = a3Pot;
-                if(backend.control2Type === 1) a3Loader.sourceComponent = a3Button;
-
-                if(backend.control3Type === 2) a4Loader.sourceComponent = a4Pot;
-                if(backend.control3Type === 1) a4Loader.sourceComponent = a4Button;
-
-                if(backend.control4Type === 2) b1Loader.sourceComponent = b1Pot;
-                if(backend.control4Type === 1) b1Loader.sourceComponent = b1Button;
-
-                if(backend.control5Type === 2) b2Loader.sourceComponent = b2Pot;
-                if(backend.control5Type === 1) b2Loader.sourceComponent = b2Button;
-
-                if(backend.control6Type === 2) b3Loader.sourceComponent = b3Pot;
-                if(backend.control6Type === 1) b3Loader.sourceComponent = b3Button;
-
-                if(backend.control7Type === 2) b4Loader.sourceComponent = b4Pot;
-                if(backend.control7Type === 1) b4Loader.sourceComponent = b4Button;
-
-                if(backend.control8Type === 2) c1Loader.sourceComponent = c1Pot;
-                if(backend.control8Type === 1) c1Loader.sourceComponent = c1Button;
-
-                if(backend.control9Type === 2) c2Loader.sourceComponent = c2Pot;
-                if(backend.control9Type === 1) c2Loader.sourceComponent = c2Button;
-
-                if(backend.control10Type === 2) c3Loader.sourceComponent = c3Pot;
-                if(backend.control10Type === 1) c3Loader.sourceComponent = c3Button;
-
-                if(backend.control12Type === 2) d1Loader.sourceComponent = d1Pot;
-                if(backend.control12Type === 1) d1Loader.sourceComponent = d1Button;
-
-                if(backend.control13Type === 2) d2Loader.sourceComponent = d2Pot;
-                if(backend.control13Type === 1) d2Loader.sourceComponent = d2Button;
-
-                if(backend.control14Type === 2) d3Loader.sourceComponent = d3Pot;
-                if(backend.control14Type === 1) d3Loader.sourceComponent = d3Button;
-
-                if(backend.control15Type === 2) d4Loader.sourceComponent = d4Pot;
-                if(backend.control15Type === 1) d4Loader.sourceComponent = d4Button;
-
-                c4Loader.sourceComponent = buttonSelected;
-            }
-        }
-    }
-
-    /*Component{
-        id: d1Back
-        Image { source: "content/images/Knob-w-back.svg"}
-    }*/
-
-    Component{
-        id: d1Pot
-        Button{
-            autoExclusive: false
-            //display: AbstractButton.IconOnly
-            checkable: true
-            background: Rectangle {
-                implicitWidth: 81
-                implicitHeight: 81
-                color: d1Pot.down ? "#17a81a" : "transparent"
-                Image { source: "content/images/knob.svg" }
-            }
-            onClicked:{
-                comp_name.text = qsTr("knob d1")
-                backend.selectComponent(12)
-
-                if(backend.control0Type === 2) a1Loader.sourceComponent = a1Pot;
-                if(backend.control0Type === 1) a1Loader.sourceComponent = a1Button;
-
-                if(backend.control1Type === 2) a2Loader.sourceComponent = a2Pot;
-                if(backend.control1Type === 1) a2Loader.sourceComponent = a2Button;
-
-                if(backend.control2Type === 2) a3Loader.sourceComponent = a3Pot;
-                if(backend.control2Type === 1) a3Loader.sourceComponent = a3Button;
-
-                if(backend.control3Type === 2) a4Loader.sourceComponent = a4Pot;
-                if(backend.control3Type === 1) a4Loader.sourceComponent = a4Button;
-
-                if(backend.control4Type === 2) b1Loader.sourceComponent = b1Pot;
-                if(backend.control4Type === 1) b1Loader.sourceComponent = b1Button;
-
-                if(backend.control5Type === 2) b2Loader.sourceComponent = b2Pot;
-                if(backend.control5Type === 1) b2Loader.sourceComponent = b2Button;
-
-                if(backend.control6Type === 2) b3Loader.sourceComponent = b3Pot;
-                if(backend.control6Type === 1) b3Loader.sourceComponent = b3Button;
-
-                if(backend.control7Type === 2) b4Loader.sourceComponent = b4Pot;
-                if(backend.control7Type === 1) b4Loader.sourceComponent = b4Button;
-
-                if(backend.control8Type === 2) c1Loader.sourceComponent = c1Pot;
-                if(backend.control8Type === 1) c1Loader.sourceComponent = c1Button;
-
-                if(backend.control9Type === 2) c2Loader.sourceComponent = c2Pot;
-                if(backend.control9Type === 1) c2Loader.sourceComponent = c2Button;
-
-                if(backend.control10Type === 2) c3Loader.sourceComponent = c3Pot;
-                if(backend.control10Type === 1) c3Loader.sourceComponent = c3Button;
-
-                if(backend.control11Type === 2) c4Loader.sourceComponent = c4Pot;
-                if(backend.control11Type === 1) c4Loader.sourceComponent = c4Button;
-
-                if(backend.control13Type === 2) d2Loader.sourceComponent = d2Pot;
-                if(backend.control13Type === 1) d2Loader.sourceComponent = d2Button;
-
-                if(backend.control14Type === 2) d3Loader.sourceComponent = d3Pot;
-                if(backend.control14Type === 1) d3Loader.sourceComponent = d3Button;
-
-                if(backend.control15Type === 2) d4Loader.sourceComponent = d4Pot;
-                if(backend.control15Type === 1) d4Loader.sourceComponent = d4Button;
-
-                d1Loader.sourceComponent = potSelected;
-            }
-        }
-
-    }
-
-    Component{
-        id: d1Button
-        Button{
-            autoExclusive: false
-            //display: AbstractButton.IconOnly
-            checkable: true
-            background: Rectangle {
-                implicitWidth: 81
-                implicitHeight: 81
-                color: c1Button.down ? "#17a81a" : "transparent"
-                Image { source: "content/images/button.svg"}
-            }
-            onClicked:{
-                comp_name.text = qsTr("button d1")
-                backend.selectComponent(12)
-
-                if(backend.control0Type === 2) a1Loader.sourceComponent = a1Pot;
-                if(backend.control0Type === 1) a1Loader.sourceComponent = a1Button;
-
-                if(backend.control1Type === 2) a2Loader.sourceComponent = a2Pot;
-                if(backend.control1Type === 1) a2Loader.sourceComponent = a2Button;
-
-                if(backend.control2Type === 2) a3Loader.sourceComponent = a3Pot;
-                if(backend.control2Type === 1) a3Loader.sourceComponent = a3Button;
-
-                if(backend.control3Type === 2) a4Loader.sourceComponent = a4Pot;
-                if(backend.control3Type === 1) a4Loader.sourceComponent = a4Button;
-
-                if(backend.control4Type === 2) b1Loader.sourceComponent = b1Pot;
-                if(backend.control4Type === 1) b1Loader.sourceComponent = b1Button;
-
-                if(backend.control5Type === 2) b2Loader.sourceComponent = b2Pot;
-                if(backend.control5Type === 1) b2Loader.sourceComponent = b2Button;
-
-                if(backend.control6Type === 2) b3Loader.sourceComponent = b3Pot;
-                if(backend.control6Type === 1) b3Loader.sourceComponent = b3Button;
-
-                if(backend.control7Type === 2) b4Loader.sourceComponent = b4Pot;
-                if(backend.control7Type === 1) b4Loader.sourceComponent = b4Button;
-
-                if(backend.control8Type === 2) c1Loader.sourceComponent = c1Pot;
-                if(backend.control8Type === 1) c1Loader.sourceComponent = c1Button;
-
-                if(backend.control9Type === 2) c2Loader.sourceComponent = c2Pot;
-                if(backend.control9Type === 1) c2Loader.sourceComponent = c2Button;
-
-                if(backend.control10Type === 2) c3Loader.sourceComponent = c3Pot;
-                if(backend.control10Type === 1) c3Loader.sourceComponent = c3Button;
-
-                if(backend.control11Type === 2) c4Loader.sourceComponent = c4Pot;
-                if(backend.control11Type === 1) c4Loader.sourceComponent = c4Button;
-
-                if(backend.control13Type === 2) d2Loader.sourceComponent = d2Pot;
-                if(backend.control13Type === 1) d2Loader.sourceComponent = d2Button;
-
-                if(backend.control14Type === 2) d3Loader.sourceComponent = d3Pot;
-                if(backend.control14Type === 1) d3Loader.sourceComponent = d3Button;
-
-                if(backend.control15Type === 2) d4Loader.sourceComponent = d4Pot;
-                if(backend.control15Type === 1) d4Loader.sourceComponent = d4Button;
-
-                d1Loader.sourceComponent = buttonSelected;
-            }
-        }
-    }
-
-    /*Component{
-        id: d2Back
-        Image { source: "content/images/Knob-w-back.svg"}
-    }*/
-
-    Component{
-        id: d2Pot
-        Button{
-            autoExclusive: false
-            //display: AbstractButton.IconOnly
-            checkable: true
-            background: Rectangle {
-                implicitWidth: 81
-                implicitHeight: 81
-                color: d2Pot.down ? "#17a81a" : "transparent"
-                Image { source: "content/images/knob.svg" }
-            }
-            onClicked:{
-                comp_name.text = qsTr("knob d2")
-                backend.selectComponent(13)
-
-                if(backend.control0Type === 2) a1Loader.sourceComponent = a1Pot;
-                if(backend.control0Type === 1) a1Loader.sourceComponent = a1Button;
-
-                if(backend.control1Type === 2) a2Loader.sourceComponent = a2Pot;
-                if(backend.control1Type === 1) a2Loader.sourceComponent = a2Button;
-
-                if(backend.control2Type === 2) a3Loader.sourceComponent = a3Pot;
-                if(backend.control2Type === 1) a3Loader.sourceComponent = a3Button;
-
-                if(backend.control3Type === 2) a4Loader.sourceComponent = a4Pot;
-                if(backend.control3Type === 1) a4Loader.sourceComponent = a4Button;
-
-                if(backend.control4Type === 2) b1Loader.sourceComponent = b1Pot;
-                if(backend.control4Type === 1) b1Loader.sourceComponent = b1Button;
-
-                if(backend.control5Type === 2) b2Loader.sourceComponent = b2Pot;
-                if(backend.control5Type === 1) b2Loader.sourceComponent = b2Button;
-
-                if(backend.control6Type === 2) b3Loader.sourceComponent = b3Pot;
-                if(backend.control6Type === 1) b3Loader.sourceComponent = b3Button;
-
-                if(backend.control7Type === 2) b4Loader.sourceComponent = b4Pot;
-                if(backend.control7Type === 1) b4Loader.sourceComponent = b4Button;
-
-                if(backend.control8Type === 2) c1Loader.sourceComponent = c1Pot;
-                if(backend.control8Type === 1) c1Loader.sourceComponent = c1Button;
-
-                if(backend.control9Type === 2) c2Loader.sourceComponent = c2Pot;
-                if(backend.control9Type === 1) c2Loader.sourceComponent = c2Button;
-
-                if(backend.control10Type === 2) c3Loader.sourceComponent = c3Pot;
-                if(backend.control10Type === 1) c3Loader.sourceComponent = c3Button;
-
-                if(backend.control11Type === 2) c4Loader.sourceComponent = c4Pot;
-                if(backend.control11Type === 1) c4Loader.sourceComponent = c4Button;
-
-                if(backend.control12Type === 2) d1Loader.sourceComponent = d1Pot;
-                if(backend.control12Type === 1) d1Loader.sourceComponent = d1Button;
-
-                if(backend.control14Type === 2) d3Loader.sourceComponent = d3Pot;
-                if(backend.control14Type === 1) d3Loader.sourceComponent = d3Button;
-
-                if(backend.control15Type === 2) d4Loader.sourceComponent = d4Pot;
-                if(backend.control15Type === 1) d4Loader.sourceComponent = d4Button;
-
-                d2Loader.sourceComponent = potSelected;
-            }
-        }
-
-    }
-
-    Component{
-        id: d2Button
-        Button{
-            autoExclusive: false
-            //display: AbstractButton.IconOnly
-            checkable: true
-            background: Rectangle {
-                implicitWidth: 81
-                implicitHeight: 81
-                color: d2Button.down ? "#17a81a" : "transparent"
-                Image { source: "content/images/button.svg"}
-            }
-            onClicked:{
-                comp_name.text = qsTr("button d2")
-                backend.selectComponent(13)
-
-                if(backend.control0Type === 2) a1Loader.sourceComponent = a1Pot;
-                if(backend.control0Type === 1) a1Loader.sourceComponent = a1Button;
-
-                if(backend.control1Type === 2) a2Loader.sourceComponent = a2Pot;
-                if(backend.control1Type === 1) a2Loader.sourceComponent = a2Button;
-
-                if(backend.control2Type === 2) a3Loader.sourceComponent = a3Pot;
-                if(backend.control2Type === 1) a3Loader.sourceComponent = a3Button;
-
-                if(backend.control3Type === 2) a4Loader.sourceComponent = a4Pot;
-                if(backend.control3Type === 1) a4Loader.sourceComponent = a4Button;
-
-                if(backend.control4Type === 2) b1Loader.sourceComponent = b1Pot;
-                if(backend.control4Type === 1) b1Loader.sourceComponent = b1Button;
-
-                if(backend.control5Type === 2) b2Loader.sourceComponent = b2Pot;
-                if(backend.control5Type === 1) b2Loader.sourceComponent = b2Button;
-
-                if(backend.control6Type === 2) b3Loader.sourceComponent = b3Pot;
-                if(backend.control6Type === 1) b3Loader.sourceComponent = b3Button;
-
-                if(backend.control7Type === 2) b4Loader.sourceComponent = b4Pot;
-                if(backend.control7Type === 1) b4Loader.sourceComponent = b4Button;
-
-                if(backend.control8Type === 2) c1Loader.sourceComponent = c1Pot;
-                if(backend.control8Type === 1) c1Loader.sourceComponent = c1Button;
-
-                if(backend.control9Type === 2) c2Loader.sourceComponent = c2Pot;
-                if(backend.control9Type === 1) c2Loader.sourceComponent = c2Button;
-
-                if(backend.control10Type === 2) c3Loader.sourceComponent = c3Pot;
-                if(backend.control10Type === 1) c3Loader.sourceComponent = c3Button;
-
-                if(backend.control11Type === 2) c4Loader.sourceComponent = c4Pot;
-                if(backend.control11Type === 1) c4Loader.sourceComponent = c4Button;
-
-                if(backend.control12Type === 2) d1Loader.sourceComponent = d1Pot;
-                if(backend.control12Type === 1) d1Loader.sourceComponent = d1Button;
-
-                if(backend.control14Type === 2) d3Loader.sourceComponent = d3Pot;
-                if(backend.control14Type === 1) d3Loader.sourceComponent = d3Button;
-
-                if(backend.control15Type === 2) d4Loader.sourceComponent = d4Pot;
-                if(backend.control15Type === 1) d4Loader.sourceComponent = d4Button;
-
-                d2Loader.sourceComponent = buttonSelected;
-            }
-        }
-    }
-
-    /*Component{
-        id: d3Back
-        Image { source: "content/images/Knob-w-back.svg"}
-    }*/
-
-    Component{
-        id: d3Pot
-        Button{
-            autoExclusive: false
-            //display: AbstractButton.IconOnly
-            checkable: true
-            background: Rectangle {
-                implicitWidth: 81
-                implicitHeight: 81
-                color: d3Pot.down ? "#17a81a" : "transparent"
-                Image { source: "content/images/knob.svg" }
-            }
-            onClicked:{
-                comp_name.text = qsTr("knob d3")
-                backend.selectComponent(14)
-
-                if(backend.control0Type === 2) a1Loader.sourceComponent = a1Pot;
-                if(backend.control0Type === 1) a1Loader.sourceComponent = a1Button;
-
-                if(backend.control1Type === 2) a2Loader.sourceComponent = a2Pot;
-                if(backend.control1Type === 1) a2Loader.sourceComponent = a2Button;
-
-                if(backend.control2Type === 2) a3Loader.sourceComponent = a3Pot;
-                if(backend.control2Type === 1) a3Loader.sourceComponent = a3Button;
-
-                if(backend.control3Type === 2) a4Loader.sourceComponent = a4Pot;
-                if(backend.control3Type === 1) a4Loader.sourceComponent = a4Button;
-
-                if(backend.control4Type === 2) b1Loader.sourceComponent = b1Pot;
-                if(backend.control4Type === 1) b1Loader.sourceComponent = b1Button;
-
-                if(backend.control5Type === 2) b2Loader.sourceComponent = b2Pot;
-                if(backend.control5Type === 1) b2Loader.sourceComponent = b2Button;
-
-                if(backend.control6Type === 2) b3Loader.sourceComponent = b3Pot;
-                if(backend.control6Type === 1) b3Loader.sourceComponent = b3Button;
-
-                if(backend.control7Type === 2) b4Loader.sourceComponent = b4Pot;
-                if(backend.control7Type === 1) b4Loader.sourceComponent = b4Button;
-
-                if(backend.control8Type === 2) c1Loader.sourceComponent = c1Pot;
-                if(backend.control8Type === 1) c1Loader.sourceComponent = c1Button;
-
-                if(backend.control9Type === 2) c2Loader.sourceComponent = c2Pot;
-                if(backend.control9Type === 1) c2Loader.sourceComponent = c2Button;
-
-                if(backend.control10Type === 2) c3Loader.sourceComponent = c3Pot;
-                if(backend.control10Type === 1) c3Loader.sourceComponent = c3Button;
-
-                if(backend.control11Type === 2) c4Loader.sourceComponent = c4Pot;
-                if(backend.control11Type === 1) c4Loader.sourceComponent = c4Button;
-
-                if(backend.control12Type === 2) d1Loader.sourceComponent = d1Pot;
-                if(backend.control12Type === 1) d1Loader.sourceComponent = d1Button;
-
-                if(backend.control13Type === 2) d2Loader.sourceComponent = d2Pot;
-                if(backend.control13Type === 1) d2Loader.sourceComponent = d2Button;
-
-                if(backend.control15Type === 2) d4Loader.sourceComponent = d4Pot;
-                if(backend.control15Type === 1) d4Loader.sourceComponent = d4Button;
-
-                d3Loader.sourceComponent = potSelected;
-            }
-        }
-
-    }
-
-    Component{
-        id: d3Button
-        Button{
-            autoExclusive: false
-            //display: AbstractButton.IconOnly
-            checkable: true
-            background: Rectangle {
-                implicitWidth: 81
-                implicitHeight: 81
-                color: d3Button.down ? "#17a81a" : "transparent"
-                Image { source: "content/images/button.svg"}
-            }
-            onClicked:{
-                comp_name.text = qsTr("button d3")
-                backend.selectComponent(14)
-
-                if(backend.control0Type === 2) a1Loader.sourceComponent = a1Pot;
-                if(backend.control0Type === 1) a1Loader.sourceComponent = a1Button;
-
-                if(backend.control1Type === 2) a2Loader.sourceComponent = a2Pot;
-                if(backend.control1Type === 1) a2Loader.sourceComponent = a2Button;
-
-                if(backend.control2Type === 2) a3Loader.sourceComponent = a3Pot;
-                if(backend.control2Type === 1) a3Loader.sourceComponent = a3Button;
-
-                if(backend.control3Type === 2) a4Loader.sourceComponent = a4Pot;
-                if(backend.control3Type === 1) a4Loader.sourceComponent = a4Button;
-
-                if(backend.control4Type === 2) b1Loader.sourceComponent = b1Pot;
-                if(backend.control4Type === 1) b1Loader.sourceComponent = b1Button;
-
-                if(backend.control5Type === 2) b2Loader.sourceComponent = b2Pot;
-                if(backend.control5Type === 1) b2Loader.sourceComponent = b2Button;
-
-                if(backend.control6Type === 2) b3Loader.sourceComponent = b3Pot;
-                if(backend.control6Type === 1) b3Loader.sourceComponent = b3Button;
-
-                if(backend.control7Type === 2) b4Loader.sourceComponent = b4Pot;
-                if(backend.control7Type === 1) b4Loader.sourceComponent = b4Button;
-
-                if(backend.control8Type === 2) c1Loader.sourceComponent = c1Pot;
-                if(backend.control8Type === 1) c1Loader.sourceComponent = c1Button;
-
-                if(backend.control9Type === 2) c2Loader.sourceComponent = c2Pot;
-                if(backend.control9Type === 1) c2Loader.sourceComponent = c2Button;
-
-                if(backend.control10Type === 2) c3Loader.sourceComponent = c3Pot;
-                if(backend.control10Type === 1) c3Loader.sourceComponent = c3Button;
-
-                if(backend.control11Type === 2) c4Loader.sourceComponent = c4Pot;
-                if(backend.control11Type === 1) c4Loader.sourceComponent = c4Button;
-
-                if(backend.control12Type === 2) d1Loader.sourceComponent = d1Pot;
-                if(backend.control12Type === 1) d1Loader.sourceComponent = d1Button;
-
-                if(backend.control13Type === 2) d2Loader.sourceComponent = d2Pot;
-                if(backend.control13Type === 1) d2Loader.sourceComponent = d2Button;
-
-                if(backend.control15Type === 2) d4Loader.sourceComponent = d4Pot;
-                if(backend.control15Type === 1) d4Loader.sourceComponent = d4Button;
-
-                d3Loader.sourceComponent = buttonSelected;
-            }
-        }
-    }
-
-    /*Component{
-        id: d4Back
-        Image { source: "content/images/Knob-w-back.svg"}
-    }*/
-
-    Component{
-        id: d4Pot
-        Button{
-            autoExclusive: false
-            //display: AbstractButton.IconOnly
-            checkable: true
-            background: Rectangle {
-                implicitWidth: 81
-                implicitHeight: 81
-                color: d4Pot.down ? "#17a81a" : "transparent"
-                Image { source: "content/images/knob.svg" }
-            }
-            onClicked:{
-                comp_name.text = qsTr("knob d4")
-                backend.selectComponent(15)
-
-                if(backend.control0Type === 2) a1Loader.sourceComponent = a1Pot;
-                if(backend.control0Type === 1) a1Loader.sourceComponent = a1Button;
-
-                if(backend.control1Type === 2) a2Loader.sourceComponent = a2Pot;
-                if(backend.control1Type === 1) a2Loader.sourceComponent = a2Button;
-
-                if(backend.control2Type === 2) a3Loader.sourceComponent = a3Pot;
-                if(backend.control2Type === 1) a3Loader.sourceComponent = a3Button;
-
-                if(backend.control3Type === 2) a4Loader.sourceComponent = a4Pot;
-                if(backend.control3Type === 1) a4Loader.sourceComponent = a4Button;
-
-                if(backend.control4Type === 2) b1Loader.sourceComponent = b1Pot;
-                if(backend.control4Type === 1) b1Loader.sourceComponent = b1Button;
-
-                if(backend.control5Type === 2) b2Loader.sourceComponent = b2Pot;
-                if(backend.control5Type === 1) b2Loader.sourceComponent = b2Button;
-
-                if(backend.control6Type === 2) b3Loader.sourceComponent = b3Pot;
-                if(backend.control6Type === 1) b3Loader.sourceComponent = b3Button;
-
-                if(backend.control7Type === 2) b4Loader.sourceComponent = b4Pot;
-                if(backend.control7Type === 1) b4Loader.sourceComponent = b4Button;
-
-                if(backend.control8Type === 2) c1Loader.sourceComponent = c1Pot;
-                if(backend.control8Type === 1) c1Loader.sourceComponent = c1Button;
-
-                if(backend.control9Type === 2) c2Loader.sourceComponent = c2Pot;
-                if(backend.control9Type === 1) c2Loader.sourceComponent = c2Button;
-
-                if(backend.control10Type === 2) c3Loader.sourceComponent = c3Pot;
-                if(backend.control10Type === 1) c3Loader.sourceComponent = c3Button;
-
-                if(backend.control11Type === 2) c4Loader.sourceComponent = c4Pot;
-                if(backend.control11Type === 1) c4Loader.sourceComponent = c4Button;
-
-                if(backend.control12Type === 2) d1Loader.sourceComponent = d1Pot;
-                if(backend.control12Type === 1) d1Loader.sourceComponent = d1Button;
-
-                if(backend.control13Type === 2) d2Loader.sourceComponent = d2Pot;
-                if(backend.control13Type === 1) d2Loader.sourceComponent = d2Button;
-
-                if(backend.control14Type === 2) d3Loader.sourceComponent = d3Pot;
-                if(backend.control14Type === 1) d3Loader.sourceComponent = d3Button;
-
-                d4Loader.sourceComponent = potSelected;
-            }
-        }
-
-    }
-
-    Component{
-        id: d4Button
-        Button{
-            autoExclusive: false
-            //display: AbstractButton.IconOnly
-            checkable: true
-            background: Rectangle {
-                implicitWidth: 81
-                implicitHeight: 81
-                color: d4Button.down ? "#17a81a" : "transparent"
-                Image { source: "content/images/button.svg"}
-            }
-            onClicked:{
-                comp_name.text = qsTr("button d4")
-                backend.selectComponent(15)
-
-                if(backend.control0Type === 2) a1Loader.sourceComponent = a1Pot;
-                if(backend.control0Type === 1) a1Loader.sourceComponent = a1Button;
-
-                if(backend.control1Type === 2) a2Loader.sourceComponent = a2Pot;
-                if(backend.control1Type === 1) a2Loader.sourceComponent = a2Button;
-
-                if(backend.control2Type === 2) a3Loader.sourceComponent = a3Pot;
-                if(backend.control2Type === 1) a3Loader.sourceComponent = a3Button;
-
-                if(backend.control3Type === 2) a4Loader.sourceComponent = a4Pot;
-                if(backend.control3Type === 1) a4Loader.sourceComponent = a4Button;
-
-                if(backend.control4Type === 2) b1Loader.sourceComponent = b1Pot;
-                if(backend.control4Type === 1) b1Loader.sourceComponent = b1Button;
-
-                if(backend.control5Type === 2) b2Loader.sourceComponent = b2Pot;
-                if(backend.control5Type === 1) b2Loader.sourceComponent = b2Button;
-
-                if(backend.control6Type === 2) b3Loader.sourceComponent = b3Pot;
-                if(backend.control6Type === 1) b3Loader.sourceComponent = b3Button;
-
-                if(backend.control7Type === 2) b4Loader.sourceComponent = b4Pot;
-                if(backend.control7Type === 1) b4Loader.sourceComponent = b4Button;
-
-                if(backend.control8Type === 2) c1Loader.sourceComponent = c1Pot;
-                if(backend.control8Type === 1) c1Loader.sourceComponent = c1Button;
-
-                if(backend.control9Type === 2) c2Loader.sourceComponent = c2Pot;
-                if(backend.control9Type === 1) c2Loader.sourceComponent = c2Button;
-
-                if(backend.control10Type === 2) c3Loader.sourceComponent = c3Pot;
-                if(backend.control10Type === 1) c3Loader.sourceComponent = c3Button;
-
-                if(backend.control11Type === 2) c4Loader.sourceComponent = c4Pot;
-                if(backend.control11Type === 1) c4Loader.sourceComponent = c4Button;
-
-                if(backend.control12Type === 2) d1Loader.sourceComponent = d1Pot;
-                if(backend.control12Type === 1) d1Loader.sourceComponent = d1Button;
-
-                if(backend.control13Type === 2) d2Loader.sourceComponent = d2Pot;
-                if(backend.control13Type === 1) d2Loader.sourceComponent = d2Button;
-
-                if(backend.control14Type === 2) d3Loader.sourceComponent = d3Pot;
-                if(backend.control14Type === 1) d3Loader.sourceComponent = d3Button;
-
-                d4Loader.sourceComponent = buttonSelected;
-            }
-        }
-    }
-
 
     Image {
         id: image
@@ -2947,260 +622,521 @@ Window {
             height: 393
             source: "content/images/back.svg"
 
-            Loader{
-                id: a1BackLoader
-                x: 34
-                y: 47
-                width: 81
-                height: 81
-            }
+            Rectangle{
+                Button{
+                    id: a1ComponentB
+                    x: 34
+                    y: 50
+                    autoExclusive: true
+                    checkable: true
 
-            Loader{
-                id: a1Loader
-                x: 34
-                y: 50
-                width: 81
-                height: 81
-            }
+                    contentItem: Image {
+                        width: 81
+                        height: 81
+                        source: {
+                            if(backend.control0Type === 1)
+                                a1ComponentB.checked ? "content/images/buttonS.svg" : "content/images/button.svg"
+                            if(backend.control0Type === 2)
+                                a1ComponentB.checked ? "content/images/knobS.svg" : "content/images/knob.svg"
+                        }
+                    }
 
-            Loader{
-                id: a2BackLoader
-                x: 115
-                y: 47
-                width: 81
-                height: 81
-            }
+                    background: Rectangle{
+                        color : "transparent"
+                    }
 
-            Loader{
-                id: a2Loader
-                x: 115
-                y: 50
-                width: 81
-                height: 81
-            }
+                    onClicked:{
+                        if(backend.control0Type === 1)
+                            comp_name.text = qsTr("button a1");
+                        if(backend.control0Type === 2)
+                            comp_name.text = qsTr("knob a1");
 
-            Loader{
-                id: a3BackLoader
-                x: 196
-                y: 47
-                width: 81
-                height: 81
-            }
+                        backend.selectComponent(0);
+                    }
+                }
 
-            Loader{
-                id: a3Loader
-                x: 196
-                y: 50
-                width: 81
-                height: 81
-            }
+                Button{
+                    id: a2ComponentB
+                    x: 115
+                    y: 50
+                    autoExclusive: true
+                    checkable: true
 
-            Loader{
-                id: a4BackLoader
-                x: 277
-                y: 47
-                width: 81
-                height: 81
-            }
+                    contentItem: Image {
+                        width: 81
+                        height: 81
+                        source: {
+                            if(backend.control1Type === 1)
+                                a2ComponentB.checked ? "content/images/buttonS.svg" : "content/images/button.svg"
+                            if(backend.control1Type === 2)
+                                a2ComponentB.checked ? "content/images/knobS.svg" : "content/images/knob.svg"
+                        }
+                    }
 
-            Loader{
-                id: a4Loader
-                x: 277
-                y: 50
-                width: 81
-                height: 81
-            }
+                    background: Rectangle {
+                        color: "transparent"
+                    }
 
-            Loader{
-                id: b1BackLoader
-                x: 34
-                y: 128
-                width: 81
-                height: 81
-            }
+                    onClicked:{
+                        if(backend.control1Type === 1)
+                            comp_name.text = qsTr("button a2");
+                        if(backend.control1Type === 2)
+                            comp_name.text = qsTr("knob a2");
 
-            Loader{
-                id: b1Loader
-                x: 34
-                y: 131
-                width: 81
-                height: 81
-            }
+                        backend.selectComponent(1);
+                    }
+                }
 
-            Loader{
-                id: b2BackLoader
-                x: 115
-                y: 128
-                width: 81
-                height: 81
-            }
+                Button{
+                    id: a3ComponentB
+                    x: 196
+                    y: 50
+                    autoExclusive: true
+                    checkable: true
 
-            Loader{
-                id: b2Loader
-                x: 115
-                y: 131
-                width: 81
-                height: 81
-            }
+                    contentItem: Image {
+                        width: 81
+                        height: 81
+                        source: {
+                            if(backend.control2Type === 1)
+                                a3ComponentB.checked ? "content/images/buttonS.svg" : "content/images/button.svg"
+                            if(backend.control2Type === 2)
+                                a3ComponentB.checked ? "content/images/knobS.svg" : "content/images/knob.svg"
+                        }
+                    }
 
-            Loader{
-                id: b3BackLoader
-                x: 196
-                y: 128
-                width: 81
-                height: 81
-            }
+                    background: Rectangle{
+                        color: "transparent"
+                    }
 
-            Loader{
-                id: b3Loader
-                x: 196
-                y: 131
-                width: 81
-                height: 81
-            }
+                    onClicked:{
+                        if(backend.control2Type === 1)
+                            comp_name.text = qsTr("button a3");
+                        if(backend.control2Type === 2)
+                            comp_name.text = qsTr("knob a3");
 
-            Loader{
-                id: b4BackLoader
-                x: 277
-                y: 128
-                width: 81
-                height: 81
-            }
+                        backend.selectComponent(2);
+                    }
+                }
 
-            Loader{
-                id: b4Loader
-                x: 277
-                y: 131
-                width: 81
-                height: 81
-            }
+                Button{
+                    id: a4ComponentB
+                    x: 277
+                    y: 50
+                    autoExclusive: true
+                    checkable: true
 
-            Loader{
-                id: c1BackLoader
-                x: 34
-                y: 209
-                width: 81
-                height: 81
-            }
+                    contentItem: Image {
+                        id: a4Image
+                        width: 81
+                        height: 81
+                        source: {
+                            if(backend.control3Type === 1)
+                                a4ComponentB.checked ? "content/images/buttonS.svg" : "content/images/button.svg"
+                            if(backend.control3Type === 2)
+                                a4ComponentB.checked ? "content/images/knobS.svg" : "content/images/knob.svg"
+                        }
+                    }
 
-            Loader{
-                id: c1Loader
-                x: 34
-                y: 212
-                width: 81
-                height: 81
-            }
+                    background: Rectangle {
+                        color: "transparent"
+                    }
 
-            Loader{
-                id: c2BackLoader
-                x: 115
-                y: 209
-                width: 81
-                height: 81
-            }
+                    onClicked:{
+                        if(backend.control3Type === 1)
+                            comp_name.text = qsTr("button a4");
+                        if(backend.control3Type === 2)
+                            comp_name.text = qsTr("knob a4");
 
-            Loader{
-                id: c2Loader
-                x: 115
-                y: 212
-                width: 81
-                height: 81
-            }
+                        backend.selectComponent(3);
+                    }
+                }
 
-            Loader{
-                id: c3BackLoader
-                x: 196
-                y: 209
-                width: 81
-                height: 81
-            }
+                Button{
+                    id: b1ComponentB
+                    x: 34
+                    y: 131
+                    autoExclusive: true
+                    checkable: true
 
-            Loader{
-                id: c3Loader
-                x: 196
-                y: 212
-                width: 81
-                height: 81
-            }
+                    contentItem: Image {
+                        width: 81
+                        height: 81
+                        source: {
+                            if(backend.control4Type === 1)
+                                b1ComponentB.checked ? "content/images/buttonS.svg" : "content/images/button.svg"
+                            if(backend.control4Type === 2)
+                                b1ComponentB.checked ? "content/images/knobS.svg" : "content/images/knob.svg"
+                        }
+                    }
 
-            Loader{
-                id: c4BackLoader
-                x: 277
-                y: 209
-                width: 81
-                height: 81
-            }
+                    background: Rectangle {
+                        color: "transparent"
+                    }
 
-            Loader{
-                id: c4Loader
-                x: 277
-                y: 212
-                width: 81
-                height: 81
-            }
+                    onClicked:{
+                        if(backend.control4Type === 1)
+                            comp_name.text = qsTr("button b1");
+                        if(backend.control4Type === 2)
+                            comp_name.text = qsTr("knob b1");
 
-            Loader{
-                id: d1BackLoader
-                x: 34
-                y: 290
-                width: 81
-                height: 81
-            }
+                        backend.selectComponent(4);
+                    }
+                }
 
-            Loader{
-                id: d1Loader
-                x: 34
-                y: 293
-                width: 81
-                height: 81
-            }
+                Button{
+                    id: b2ComponentB
+                    x: 115
+                    y: 131
+                    autoExclusive: true
+                    checkable: true
 
-            Loader{
-                id: d2BackLoader
-                x: 115
-                y: 290
-                width: 81
-                height: 81
-            }
+                    contentItem: Image {
+                        width: 81
+                        height: 81
+                        source: {
+                            if(backend.control5Type === 1)
+                                b2ComponentB.checked ? "content/images/buttonS.svg" : "content/images/button.svg"
+                            if(backend.control5Type === 2)
+                                b2ComponentB.checked ? "content/images/knobS.svg" : "content/images/knob.svg"
+                        }
+                    }
 
-            Loader{
-                id: d2Loader
-                x: 115
-                y: 293
-                width: 81
-                height: 81
-            }
+                    background: Rectangle {
+                        color: "transparent"
+                    }
 
-            Loader{
-                id: d3BackLoader
-                x: 196
-                y: 290
-                width: 81
-                height: 81
-            }
+                    onClicked:{
+                        if(backend.control5Type === 1)
+                            comp_name.text = qsTr("button b2");
+                        if(backend.control5Type === 2)
+                            comp_name.text = qsTr("knob b2");
 
-            Loader{
-                id: d3Loader
-                x: 196
-                y: 293
-                width: 81
-                height: 81
-            }
+                        backend.selectComponent(5);
+                    }
+                }
 
-            Loader{
-                id: d4BackLoader
-                x: 277
-                y: 290
-                width: 81
-                height: 81
-            }
+                Button{
+                    id: b3ComponentB
+                    x: 196
+                    y: 131
+                    autoExclusive: true
+                    checkable: true
 
-            Loader{
-                id: d4Loader
-                x: 277
-                y: 293
-                width: 81
-                height: 81
+                    contentItem: Image {
+                        width: 81
+                        height: 81
+                        source: {
+                            if(backend.control6Type === 1)
+                                b3ComponentB.checked ? "content/images/buttonS.svg" : "content/images/button.svg"
+                            if(backend.control6Type === 2)
+                                b3ComponentB.checked ? "content/images/knobS.svg" : "content/images/knob.svg"
+                        }
+                    }
+
+                    background: Rectangle {
+                        color: "transparent"
+                    }
+
+                    onClicked:{
+                        if(backend.control6Type === 1)
+                            comp_name.text = qsTr("button b3");
+                        if(backend.control6Type === 2)
+                            comp_name.text = qsTr("knob b3");
+
+                        backend.selectComponent(6);
+                    }
+                }
+
+                Button{
+                    id: b4ComponentB
+                    x: 277
+                    y: 131
+                    autoExclusive: true
+                    checkable: true
+
+                    contentItem: Image {
+                        width: 81
+                        height: 81
+                        source: {
+                            if(backend.control7Type === 1)
+                                b4ComponentB.checked ? "content/images/buttonS.svg" : "content/images/button.svg"
+                            if(backend.control7Type === 2)
+                                b4ComponentB.checked ? "content/images/knobS.svg" : "content/images/knob.svg"
+                        }
+                    }
+
+                    background: Rectangle{
+                        color: "transparent"
+                    }
+
+                    onClicked:{
+                        if(backend.control7Type === 1)
+                            comp_name.text = qsTr("button b4");
+                        if(backend.control7Type === 2)
+                            comp_name.text = qsTr("knob b4");
+
+                        backend.selectComponent(7);
+                    }
+                }
+
+                Button{
+                    id: c1ComponentB
+                    x: 34
+                    y: 212
+                    autoExclusive: true
+                    checkable: true
+
+                    contentItem: Image {
+                        width: 81
+                        height: 81
+                        source: {
+                            if(backend.control8Type === 1)
+                                c1ComponentB.checked ? "content/images/buttonS.svg" : "content/images/button.svg"
+                            if(backend.control8Type === 2)
+                                c1ComponentB.checked ? "content/images/knobS.svg" : "content/images/knob.svg"
+                        }
+                    }
+
+                    background: Rectangle {
+                        color: "transparent"
+                    }
+
+                    onClicked:{
+                        if(backend.control8Type === 1)
+                            comp_name.text = qsTr("button c1");
+                        if(backend.control8Type === 2)
+                            comp_name.text = qsTr("knob c1");
+
+                        backend.selectComponent(8);
+                    }
+                }
+
+                Button{
+                    id: c2ComponentB
+                    x: 115
+                    y: 212
+                    autoExclusive: true
+                    checkable: true
+
+                    contentItem: Image {
+                        width: 81
+                        height: 81
+                        source: {
+                            if(backend.control9Type === 1)
+                                c2ComponentB.checked ? "content/images/buttonS.svg" : "content/images/button.svg"
+                            if(backend.control9Type === 2)
+                                c2ComponentB.checked ? "content/images/knobS.svg" : "content/images/knob.svg"
+                        }
+                    }
+
+                    background: Rectangle {
+                        color: "transparent"
+                    }
+
+                    onClicked:{
+                        if(backend.control9Type === 1)
+                            comp_name.text = qsTr("button c2");
+                        if(backend.control9Type === 2)
+                            comp_name.text = qsTr("knob c2");
+
+                        backend.selectComponent(9);
+                    }
+                }
+
+                Button{
+                    id: c3ComponentB
+                    x: 196
+                    y: 212
+                    autoExclusive: true
+                    checkable: true
+
+                    contentItem: Image {
+                        width: 81
+                        height: 81
+                        source: {
+                            if(backend.control10Type === 1)
+                                c3ComponentB.checked ? "content/images/buttonS.svg" : "content/images/button.svg"
+                            if(backend.control10Type === 2)
+                                c3ComponentB.checked ? "content/images/knobS.svg" : "content/images/knob.svg"
+                        }
+                    }
+
+                    background: Rectangle {
+                        color: "transparent"
+                    }
+
+                    onClicked:{
+                        if(backend.control10Type === 1)
+                            comp_name.text = qsTr("button c3");
+                        if(backend.control10Type === 2)
+                            comp_name.text = qsTr("knob c3");
+
+                        backend.selectComponent(10);
+                    }
+                }
+
+                Button{
+                    id: c4ComponentB
+                    x: 277
+                    y: 212
+                    autoExclusive: true
+                    checkable: true
+
+                    contentItem: Image {
+                        width: 81
+                        height: 81
+                        source: {
+                            if(backend.control11Type === 1)
+                                c4ComponentB.checked ? "content/images/buttonS.svg" : "content/images/button.svg"
+                            if(backend.control11Type === 2)
+                                c4ComponentB.checked ? "content/images/knobS.svg" : "content/images/knob.svg"
+                        }
+                    }
+
+                    background: Rectangle {
+                        color: "transparent"
+                    }
+
+                    onClicked:{
+                        if(backend.control11Type === 1)
+                            comp_name.text = qsTr("button c4");
+                        if(backend.control11Type === 2)
+                            comp_name.text = qsTr("knob c4");
+
+                        backend.selectComponent(11);
+                    }
+                }
+
+
+
+                Button{
+                    id: d1ComponentB
+                    x: 34
+                    y: 293
+                    autoExclusive: true
+                    checkable: true
+
+                    contentItem: Image {
+                        width: 81
+                        height: 81
+                        source: {
+                            if(backend.control12Type === 1)
+                                d1ComponentB.checked ? "content/images/buttonS.svg" : "content/images/button.svg"
+                            if(backend.control12Type === 2)
+                                d1ComponentB.checked ? "content/images/knobS.svg" : "content/images/knob.svg"
+                        }
+                    }
+
+                    background: Rectangle {
+                        color: "transparent"
+                    }
+
+                    onClicked:{
+                        if(backend.control12Type === 1)
+                            comp_name.text = qsTr("button d1");
+                        if(backend.control12Type === 2)
+                            comp_name.text = qsTr("knob d1");
+
+                        backend.selectComponent(12);
+                    }
+                }
+
+                Button{
+                    id: d2ComponentB
+                    x: 115
+                    y: 293
+                    autoExclusive: true
+                    checkable: true
+
+                    contentItem: Image {
+                        width: 81
+                        height: 81
+                        source: {
+                            if(backend.control13Type === 1)
+                                d2ComponentB.checked ? "content/images/buttonS.svg" : "content/images/button.svg"
+                            if(backend.control13Type === 2)
+                                d2ComponentB.checked ? "content/images/knobS.svg" : "content/images/knob.svg"
+                        }
+                    }
+
+                    background: Rectangle {
+                        color: "transparent"
+                    }
+
+                    onClicked:{
+                        if(backend.control13Type === 1)
+                            comp_name.text = qsTr("button d2");
+                        if(backend.control13Type === 2)
+                            comp_name.text = qsTr("knob d2");
+
+                        backend.selectComponent(13);
+                    }
+                }
+
+                Button{
+                    id: d3ComponentB
+                    x: 196
+                    y: 293
+                    autoExclusive: true
+                    checkable: true
+
+                    contentItem: Image {
+                        width: 81
+                        height: 81
+                        source: {
+                            if(backend.control14Type === 1)
+                                d3ComponentB.checked ? "content/images/buttonS.svg" : "content/images/button.svg"
+                            if(backend.control14Type === 2)
+                                d3ComponentB.checked ? "content/images/knobS.svg" : "content/images/knob.svg"
+                        }
+                    }
+
+                    background: Rectangle {
+                        color: "transparent"
+                    }
+
+                    onClicked:{
+                        if(backend.control14Type === 1)
+                            comp_name.text = qsTr("button d3");
+                        if(backend.control14Type === 2)
+                            comp_name.text = qsTr("knob d3");
+
+                        backend.selectComponent(14);
+                    }
+                }
+
+                Button{
+                    id: d4ComponentB
+                    x: 277
+                    y: 293
+                    autoExclusive: true
+                    checkable: true
+
+                    contentItem: Image {
+                        width: 81
+                        height: 81
+                        source: {
+                            if(backend.control15Type === 1)
+                                d4ComponentB.checked ? "content/images/buttonS.svg" : "content/images/button.svg"
+                            if(backend.control15Type === 2)
+                                d4ComponentB.checked ? "content/images/knobS.svg" : "content/images/knob.svg"
+                        }
+                    }
+
+                    background: Rectangle {
+                        color: "transparent"
+                    }
+
+                    onClicked:{
+                        if(backend.control15Type === 1)
+                            comp_name.text = qsTr("button d4");
+                        if(backend.control15Type === 2)
+                            comp_name.text = qsTr("knob d4");
+
+                        backend.selectComponent(15);
+                    }
+                }
             }
         }
 

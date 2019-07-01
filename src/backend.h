@@ -287,7 +287,7 @@ signals:
 
 protected:
         hid_device *md1_device;
-        bool connected;
+        bool deviceConnected;
 
 private:
         DeviceStatus m_deviceStatus;
