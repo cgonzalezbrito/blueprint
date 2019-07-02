@@ -214,6 +214,10 @@ public:
         void pollUSB(uint16_t deviceVIDtoPoll, uint16_t devicePIDtoPoll);
         ErrorCode open(uint16_t deviceVIDtoOpen, uint16_t devicePIDtoOpen);
 
+        int timerLoopInterval;
+        int timerReadInterval;
+        int timerSyncInterval;
+
 public slots:
         void syncHost2Device();
 
@@ -312,7 +316,7 @@ private:
         bool m_sync;
         /*unsigned char *m_value = new unsigned char [16];*/
 
-        QTimer *timer;
+        QTimer *timerLoop;
         QTimer *timerRead;
         QTimer *timerSync;
 
