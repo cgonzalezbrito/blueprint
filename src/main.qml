@@ -622,6 +622,101 @@ Window {
             height: 393
             source: "content/images/back.svg"
 
+            property var i: 0
+            property var j: 0
+            property var component: 0
+
+            function selectComponentWithKeys(){
+                back_controler.component = back_controler.i * 4 + back_controler.j;
+
+                switch(back_controler.component){
+                case 0:
+                    a1ComponentB.checked = true;
+                    break;
+                case 1:
+                    a2ComponentB.checked = true;
+                    break;
+                case 2:
+                    a3ComponentB.checked = true;
+                    break;
+                case 3:
+                    a4ComponentB.checked = true;
+                    break;
+                case 4:
+                    b1ComponentB.checked = true;
+                    break;
+                case 5:
+                    b2ComponentB.checked = true;
+                    break;
+                case 6:
+                    b3ComponentB.checked = true;
+                    break;
+                case 7:
+                    b4ComponentB.checked = true;
+                    break;
+                case 8:
+                    c1ComponentB.checked = true;
+                    break;
+                case 9:
+                    c2ComponentB.checked = true;
+                    break;
+                case 10:
+                    c3ComponentB.checked = true;
+                    break;
+                case 11:
+                    c4ComponentB.checked = true;
+                    break;
+                case 12:
+                    d1ComponentB.checked = true;
+                    break;
+                case 13:
+                    d2ComponentB.checked = true;
+                    break;
+                case 14:
+                    d3ComponentB.checked = true;
+                    break;
+                case 15:
+                    d4ComponentB.checked = true;
+                    break;
+                }
+            }
+
+            Keys.onUpPressed: {
+                console.log("up")
+
+                if(back_controler.i > 0)
+                    back_controler.i--;
+
+                selectComponentWithKeys();
+            }
+
+            Keys.onDownPressed: {
+                console.log("down")
+
+                if(back_controler.i < 3)
+                    back_controler.i++;
+
+                selectComponentWithKeys();
+            }
+
+            Keys.onRightPressed:  {
+                console.log("right")
+
+                if(back_controler.j < 3)
+                    back_controler.j++;
+
+                selectComponentWithKeys();
+            }
+
+            Keys.onLeftPressed: {
+                console.log("left")
+
+                if(back_controler.j > 0)
+                    back_controler.j--;
+
+                selectComponentWithKeys();
+            }
+
             Rectangle{
                 Button{
                     id: a1ComponentB
@@ -645,11 +740,14 @@ Window {
                         color : "transparent"
                     }
 
-                    onClicked:{
+                    onCheckedChanged: {
                         if(backend.control0Type === 1)
                             comp_name.text = qsTr("button a1");
                         if(backend.control0Type === 2)
                             comp_name.text = qsTr("knob a1");
+
+                        back_controler.i = 0;
+                        back_controler.j = 0;
 
                         backend.selectComponent(0);
                     }
@@ -677,11 +775,14 @@ Window {
                         color: "transparent"
                     }
 
-                    onClicked:{
+                    onCheckedChanged: {
                         if(backend.control1Type === 1)
                             comp_name.text = qsTr("button a2");
                         if(backend.control1Type === 2)
                             comp_name.text = qsTr("knob a2");
+
+                        back_controler.i = 0;
+                        back_controler.j = 1;
 
                         backend.selectComponent(1);
                     }
@@ -709,11 +810,14 @@ Window {
                         color: "transparent"
                     }
 
-                    onClicked:{
+                    onCheckedChanged: {
                         if(backend.control2Type === 1)
                             comp_name.text = qsTr("button a3");
                         if(backend.control2Type === 2)
                             comp_name.text = qsTr("knob a3");
+
+                        back_controler.i = 0;
+                        back_controler.j = 2;
 
                         backend.selectComponent(2);
                     }
@@ -742,11 +846,14 @@ Window {
                         color: "transparent"
                     }
 
-                    onClicked:{
+                    onCheckedChanged: {
                         if(backend.control3Type === 1)
                             comp_name.text = qsTr("button a4");
                         if(backend.control3Type === 2)
                             comp_name.text = qsTr("knob a4");
+
+                        back_controler.i = 0;
+                        back_controler.j = 3;
 
                         backend.selectComponent(3);
                     }
@@ -774,11 +881,14 @@ Window {
                         color: "transparent"
                     }
 
-                    onClicked:{
+                    onCheckedChanged: {
                         if(backend.control4Type === 1)
                             comp_name.text = qsTr("button b1");
                         if(backend.control4Type === 2)
                             comp_name.text = qsTr("knob b1");
+
+                        back_controler.i = 1;
+                        back_controler.j = 0;
 
                         backend.selectComponent(4);
                     }
@@ -806,11 +916,14 @@ Window {
                         color: "transparent"
                     }
 
-                    onClicked:{
+                    onCheckedChanged: {
                         if(backend.control5Type === 1)
                             comp_name.text = qsTr("button b2");
                         if(backend.control5Type === 2)
                             comp_name.text = qsTr("knob b2");
+
+                        back_controler.i = 1;
+                        back_controler.j = 1;
 
                         backend.selectComponent(5);
                     }
@@ -838,11 +951,14 @@ Window {
                         color: "transparent"
                     }
 
-                    onClicked:{
+                    onCheckedChanged: {
                         if(backend.control6Type === 1)
                             comp_name.text = qsTr("button b3");
                         if(backend.control6Type === 2)
                             comp_name.text = qsTr("knob b3");
+
+                        back_controler.i = 1;
+                        back_controler.j = 2;
 
                         backend.selectComponent(6);
                     }
@@ -870,11 +986,14 @@ Window {
                         color: "transparent"
                     }
 
-                    onClicked:{
+                    onCheckedChanged: {
                         if(backend.control7Type === 1)
                             comp_name.text = qsTr("button b4");
                         if(backend.control7Type === 2)
                             comp_name.text = qsTr("knob b4");
+
+                        back_controler.i = 1;
+                        back_controler.j = 3;
 
                         backend.selectComponent(7);
                     }
@@ -902,11 +1021,14 @@ Window {
                         color: "transparent"
                     }
 
-                    onClicked:{
+                    onCheckedChanged: {
                         if(backend.control8Type === 1)
                             comp_name.text = qsTr("button c1");
                         if(backend.control8Type === 2)
                             comp_name.text = qsTr("knob c1");
+
+                        back_controler.i = 2;
+                        back_controler.j = 0;
 
                         backend.selectComponent(8);
                     }
@@ -934,11 +1056,14 @@ Window {
                         color: "transparent"
                     }
 
-                    onClicked:{
+                    onCheckedChanged: {
                         if(backend.control9Type === 1)
                             comp_name.text = qsTr("button c2");
                         if(backend.control9Type === 2)
                             comp_name.text = qsTr("knob c2");
+
+                        back_controler.i = 2;
+                        back_controler.j = 1;
 
                         backend.selectComponent(9);
                     }
@@ -966,11 +1091,14 @@ Window {
                         color: "transparent"
                     }
 
-                    onClicked:{
+                    onCheckedChanged: {
                         if(backend.control10Type === 1)
                             comp_name.text = qsTr("button c3");
                         if(backend.control10Type === 2)
                             comp_name.text = qsTr("knob c3");
+
+                        back_controler.i = 2;
+                        back_controler.j = 2;
 
                         backend.selectComponent(10);
                     }
@@ -998,11 +1126,14 @@ Window {
                         color: "transparent"
                     }
 
-                    onClicked:{
+                    onCheckedChanged: {
                         if(backend.control11Type === 1)
                             comp_name.text = qsTr("button c4");
                         if(backend.control11Type === 2)
                             comp_name.text = qsTr("knob c4");
+
+                        back_controler.i = 2;
+                        back_controler.j = 3;
 
                         backend.selectComponent(11);
                     }
@@ -1032,11 +1163,14 @@ Window {
                         color: "transparent"
                     }
 
-                    onClicked:{
+                    onCheckedChanged: {
                         if(backend.control12Type === 1)
                             comp_name.text = qsTr("button d1");
                         if(backend.control12Type === 2)
                             comp_name.text = qsTr("knob d1");
+
+                        back_controler.i = 3;
+                        back_controler.j = 0;
 
                         backend.selectComponent(12);
                     }
@@ -1064,11 +1198,14 @@ Window {
                         color: "transparent"
                     }
 
-                    onClicked:{
+                    onCheckedChanged: {
                         if(backend.control13Type === 1)
                             comp_name.text = qsTr("button d2");
                         if(backend.control13Type === 2)
                             comp_name.text = qsTr("knob d2");
+
+                        back_controler.i = 3;
+                        back_controler.j = 1;
 
                         backend.selectComponent(13);
                     }
@@ -1096,11 +1233,14 @@ Window {
                         color: "transparent"
                     }
 
-                    onClicked:{
+                    onCheckedChanged: {
                         if(backend.control14Type === 1)
                             comp_name.text = qsTr("button d3");
                         if(backend.control14Type === 2)
                             comp_name.text = qsTr("knob d3");
+
+                        back_controler.i = 3;
+                        back_controler.j = 2;
 
                         backend.selectComponent(14);
                     }
@@ -1128,11 +1268,14 @@ Window {
                         color: "transparent"
                     }
 
-                    onClicked:{
+                    onCheckedChanged: {
                         if(backend.control15Type === 1)
                             comp_name.text = qsTr("button d4");
                         if(backend.control15Type === 2)
                             comp_name.text = qsTr("knob d4");
+
+                        back_controler.i = 3;
+                        back_controler.j = 3;
 
                         backend.selectComponent(15);
                     }
@@ -1436,5 +1579,6 @@ Window {
                 NumberAnimation { duration: 1250 }
             }
         }
-    }
+
+    }    
 }
