@@ -622,6 +622,11 @@ Window {
             height: 393
             source: "content/images/back.svg"
 
+            property int dx: 81
+            property int dy: 81
+            property int xo: 34
+            property int yo: 50
+
             property var i: 0
             property var j: 0
             property var component: 0
@@ -718,566 +723,291 @@ Window {
             }
 
             Rectangle{
-                Button{
+                ComponentButton{
                     id: a1ComponentB
-                    x: 34
-                    y: 50
+                    row: 0
+                    column: 0
                     autoExclusive: true
                     checkable: true
-
-                    contentItem: Image {
-                        width: 81
-                        height: 81
-                        source: {
-                            if(backend.control0Type === 1)
-                                a1ComponentB.checked ? "content/images/buttonS.svg" : "content/images/button.svg"
-                            if(backend.control0Type === 2)
-                                a1ComponentB.checked ? "content/images/knobS.svg" : "content/images/knob.svg"
-                        }
-                    }
-
-                    background: Rectangle{
-                        color : "transparent"
-                    }
+                    name: "a1"
+                    type: backend.control0Type
 
                     onCheckedChanged: {
-                        if(backend.control0Type === 1)
-                            comp_name.text = qsTr("button a1");
-                        if(backend.control0Type === 2)
-                            comp_name.text = qsTr("knob a1");
+                        comp_name.text = codeName();
+                        back_controler.i = row;
+                        back_controler.j = column;
 
-                        back_controler.i = 0;
-                        back_controler.j = 0;
-
-                        backend.selectComponent(0);
+                        backend.selectComponent(a1ComponentB.index);
                     }
                 }
 
-                Button{
+                ComponentButton{
                     id: a2ComponentB
-                    x: 115
-                    y: 50
+                    row: 0
+                    column: 1
                     autoExclusive: true
                     checkable: true
-
-                    contentItem: Image {
-                        width: 81
-                        height: 81
-                        source: {
-                            if(backend.control1Type === 1)
-                                a2ComponentB.checked ? "content/images/buttonS.svg" : "content/images/button.svg"
-                            if(backend.control1Type === 2)
-                                a2ComponentB.checked ? "content/images/knobS.svg" : "content/images/knob.svg"
-                        }
-                    }
-
-                    background: Rectangle {
-                        color: "transparent"
-                    }
+                    name: "a2"
+                    type: backend.control1Type
 
                     onCheckedChanged: {
-                        if(backend.control1Type === 1)
-                            comp_name.text = qsTr("button a2");
-                        if(backend.control1Type === 2)
-                            comp_name.text = qsTr("knob a2");
+                        comp_name.text = codeName();
+                        back_controler.i = row;
+                        back_controler.j = column;
 
-                        back_controler.i = 0;
-                        back_controler.j = 1;
-
-                        backend.selectComponent(1);
+                        backend.selectComponent(a2ComponentB.index);
                     }
                 }
 
-                Button{
+                ComponentButton{
                     id: a3ComponentB
-                    x: 196
-                    y: 50
+                    row: 0
+                    column: 2
                     autoExclusive: true
                     checkable: true
-
-                    contentItem: Image {
-                        width: 81
-                        height: 81
-                        source: {
-                            if(backend.control2Type === 1)
-                                a3ComponentB.checked ? "content/images/buttonS.svg" : "content/images/button.svg"
-                            if(backend.control2Type === 2)
-                                a3ComponentB.checked ? "content/images/knobS.svg" : "content/images/knob.svg"
-                        }
-                    }
-
-                    background: Rectangle{
-                        color: "transparent"
-                    }
+                    name: "a3"
+                    type: backend.control2Type
 
                     onCheckedChanged: {
-                        if(backend.control2Type === 1)
-                            comp_name.text = qsTr("button a3");
-                        if(backend.control2Type === 2)
-                            comp_name.text = qsTr("knob a3");
+                        comp_name.text = codeName();
+                        back_controler.i = row;
+                        back_controler.j = column;
 
-                        back_controler.i = 0;
-                        back_controler.j = 2;
-
-                        backend.selectComponent(2);
+                        backend.selectComponent(a3ComponentB.index);
                     }
                 }
 
-                Button{
+                ComponentButton{
                     id: a4ComponentB
-                    x: 277
-                    y: 50
+                    row: 0
+                    column: 3
                     autoExclusive: true
                     checkable: true
-
-                    contentItem: Image {
-                        id: a4Image
-                        width: 81
-                        height: 81
-                        source: {
-                            if(backend.control3Type === 1)
-                                a4ComponentB.checked ? "content/images/buttonS.svg" : "content/images/button.svg"
-                            if(backend.control3Type === 2)
-                                a4ComponentB.checked ? "content/images/knobS.svg" : "content/images/knob.svg"
-                        }
-                    }
-
-                    background: Rectangle {
-                        color: "transparent"
-                    }
+                    name: "a4"
+                    type: backend.control3Type
 
                     onCheckedChanged: {
-                        if(backend.control3Type === 1)
-                            comp_name.text = qsTr("button a4");
-                        if(backend.control3Type === 2)
-                            comp_name.text = qsTr("knob a4");
+                        comp_name.text = codeName();
+                        back_controler.i = row;
+                        back_controler.j = column;
 
-                        back_controler.i = 0;
-                        back_controler.j = 3;
-
-                        backend.selectComponent(3);
+                        backend.selectComponent(a4ComponentB.index);
                     }
                 }
 
-                Button{
+                ComponentButton{
                     id: b1ComponentB
-                    x: 34
-                    y: 131
+                    row: 1
+                    column: 0
                     autoExclusive: true
                     checkable: true
-
-                    contentItem: Image {
-                        width: 81
-                        height: 81
-                        source: {
-                            if(backend.control4Type === 1)
-                                b1ComponentB.checked ? "content/images/buttonS.svg" : "content/images/button.svg"
-                            if(backend.control4Type === 2)
-                                b1ComponentB.checked ? "content/images/knobS.svg" : "content/images/knob.svg"
-                        }
-                    }
-
-                    background: Rectangle {
-                        color: "transparent"
-                    }
+                    name: "b1"
+                    type: backend.control4Type
 
                     onCheckedChanged: {
-                        if(backend.control4Type === 1)
-                            comp_name.text = qsTr("button b1");
-                        if(backend.control4Type === 2)
-                            comp_name.text = qsTr("knob b1");
+                        comp_name.text = codeName();
+                        back_controler.i = row;
+                        back_controler.j = column;
 
-                        back_controler.i = 1;
-                        back_controler.j = 0;
-
-                        backend.selectComponent(4);
+                        backend.selectComponent(b1ComponentB.index);
                     }
                 }
 
-                Button{
+                ComponentButton{
                     id: b2ComponentB
-                    x: 115
-                    y: 131
+                    row: 1
+                    column: 1
                     autoExclusive: true
                     checkable: true
-
-                    contentItem: Image {
-                        width: 81
-                        height: 81
-                        source: {
-                            if(backend.control5Type === 1)
-                                b2ComponentB.checked ? "content/images/buttonS.svg" : "content/images/button.svg"
-                            if(backend.control5Type === 2)
-                                b2ComponentB.checked ? "content/images/knobS.svg" : "content/images/knob.svg"
-                        }
-                    }
-
-                    background: Rectangle {
-                        color: "transparent"
-                    }
+                    name: "b2"
+                    type: backend.control5Type
 
                     onCheckedChanged: {
-                        if(backend.control5Type === 1)
-                            comp_name.text = qsTr("button b2");
-                        if(backend.control5Type === 2)
-                            comp_name.text = qsTr("knob b2");
+                        comp_name.text = codeName();
+                        back_controler.i = row;
+                        back_controler.j = column;
 
-                        back_controler.i = 1;
-                        back_controler.j = 1;
-
-                        backend.selectComponent(5);
+                        backend.selectComponent(b2ComponentB.index);
                     }
                 }
 
-                Button{
+                ComponentButton{
                     id: b3ComponentB
-                    x: 196
-                    y: 131
+                    row: 1
+                    column: 2
                     autoExclusive: true
                     checkable: true
-
-                    contentItem: Image {
-                        width: 81
-                        height: 81
-                        source: {
-                            if(backend.control6Type === 1)
-                                b3ComponentB.checked ? "content/images/buttonS.svg" : "content/images/button.svg"
-                            if(backend.control6Type === 2)
-                                b3ComponentB.checked ? "content/images/knobS.svg" : "content/images/knob.svg"
-                        }
-                    }
-
-                    background: Rectangle {
-                        color: "transparent"
-                    }
+                    name: "b3"
+                    type: backend.control6Type
 
                     onCheckedChanged: {
-                        if(backend.control6Type === 1)
-                            comp_name.text = qsTr("button b3");
-                        if(backend.control6Type === 2)
-                            comp_name.text = qsTr("knob b3");
+                        comp_name.text = codeName();
+                        back_controler.i = row;
+                        back_controler.j = column;
 
-                        back_controler.i = 1;
-                        back_controler.j = 2;
-
-                        backend.selectComponent(6);
+                        backend.selectComponent(b3ComponentB.index);
                     }
                 }
 
-                Button{
+                ComponentButton{
                     id: b4ComponentB
-                    x: 277
-                    y: 131
+                    row: 1
+                    column: 3
                     autoExclusive: true
                     checkable: true
-
-                    contentItem: Image {
-                        width: 81
-                        height: 81
-                        source: {
-                            if(backend.control7Type === 1)
-                                b4ComponentB.checked ? "content/images/buttonS.svg" : "content/images/button.svg"
-                            if(backend.control7Type === 2)
-                                b4ComponentB.checked ? "content/images/knobS.svg" : "content/images/knob.svg"
-                        }
-                    }
-
-                    background: Rectangle{
-                        color: "transparent"
-                    }
+                    name: "b4"
+                    type: backend.control7Type
 
                     onCheckedChanged: {
-                        if(backend.control7Type === 1)
-                            comp_name.text = qsTr("button b4");
-                        if(backend.control7Type === 2)
-                            comp_name.text = qsTr("knob b4");
+                        comp_name.text = codeName();
+                        back_controler.i = row;
+                        back_controler.j = column;
 
-                        back_controler.i = 1;
-                        back_controler.j = 3;
-
-                        backend.selectComponent(7);
+                        backend.selectComponent(b4ComponentB.index);
                     }
                 }
 
-                Button{
+                ComponentButton{
                     id: c1ComponentB
-                    x: 34
-                    y: 212
+                    row: 2
+                    column: 0
                     autoExclusive: true
                     checkable: true
-
-                    contentItem: Image {
-                        width: 81
-                        height: 81
-                        source: {
-                            if(backend.control8Type === 1)
-                                c1ComponentB.checked ? "content/images/buttonS.svg" : "content/images/button.svg"
-                            if(backend.control8Type === 2)
-                                c1ComponentB.checked ? "content/images/knobS.svg" : "content/images/knob.svg"
-                        }
-                    }
-
-                    background: Rectangle {
-                        color: "transparent"
-                    }
+                    name: "c1"
+                    type: backend.control8Type
 
                     onCheckedChanged: {
-                        if(backend.control8Type === 1)
-                            comp_name.text = qsTr("button c1");
-                        if(backend.control8Type === 2)
-                            comp_name.text = qsTr("knob c1");
+                        comp_name.text = codeName();
+                        back_controler.i = row;
+                        back_controler.j = column;
 
-                        back_controler.i = 2;
-                        back_controler.j = 0;
-
-                        backend.selectComponent(8);
+                        backend.selectComponent(c1ComponentB.index);
                     }
                 }
 
-                Button{
+                ComponentButton{
                     id: c2ComponentB
-                    x: 115
-                    y: 212
+                    row: 2
+                    column: 1
                     autoExclusive: true
                     checkable: true
-
-                    contentItem: Image {
-                        width: 81
-                        height: 81
-                        source: {
-                            if(backend.control9Type === 1)
-                                c2ComponentB.checked ? "content/images/buttonS.svg" : "content/images/button.svg"
-                            if(backend.control9Type === 2)
-                                c2ComponentB.checked ? "content/images/knobS.svg" : "content/images/knob.svg"
-                        }
-                    }
-
-                    background: Rectangle {
-                        color: "transparent"
-                    }
+                    name: "c2"
+                    type: backend.control9Type
 
                     onCheckedChanged: {
-                        if(backend.control9Type === 1)
-                            comp_name.text = qsTr("button c2");
-                        if(backend.control9Type === 2)
-                            comp_name.text = qsTr("knob c2");
+                        comp_name.text = codeName();
+                        back_controler.i = row;
+                        back_controler.j = column;
 
-                        back_controler.i = 2;
-                        back_controler.j = 1;
-
-                        backend.selectComponent(9);
+                        backend.selectComponent(c2ComponentB.index);
                     }
                 }
 
-                Button{
+                ComponentButton{
                     id: c3ComponentB
-                    x: 196
-                    y: 212
+                    row: 2
+                    column: 2
                     autoExclusive: true
                     checkable: true
-
-                    contentItem: Image {
-                        width: 81
-                        height: 81
-                        source: {
-                            if(backend.control10Type === 1)
-                                c3ComponentB.checked ? "content/images/buttonS.svg" : "content/images/button.svg"
-                            if(backend.control10Type === 2)
-                                c3ComponentB.checked ? "content/images/knobS.svg" : "content/images/knob.svg"
-                        }
-                    }
-
-                    background: Rectangle {
-                        color: "transparent"
-                    }
+                    name: "c3"
+                    type: backend.control10Type
 
                     onCheckedChanged: {
-                        if(backend.control10Type === 1)
-                            comp_name.text = qsTr("button c3");
-                        if(backend.control10Type === 2)
-                            comp_name.text = qsTr("knob c3");
+                        comp_name.text = codeName();
+                        back_controler.i = row;
+                        back_controler.j = column;
 
-                        back_controler.i = 2;
-                        back_controler.j = 2;
-
-                        backend.selectComponent(10);
+                        backend.selectComponent(c3ComponentB.index);
                     }
                 }
 
-                Button{
+                ComponentButton{
                     id: c4ComponentB
-                    x: 277
-                    y: 212
+                    row: 2
+                    column: 3
                     autoExclusive: true
                     checkable: true
-
-                    contentItem: Image {
-                        width: 81
-                        height: 81
-                        source: {
-                            if(backend.control11Type === 1)
-                                c4ComponentB.checked ? "content/images/buttonS.svg" : "content/images/button.svg"
-                            if(backend.control11Type === 2)
-                                c4ComponentB.checked ? "content/images/knobS.svg" : "content/images/knob.svg"
-                        }
-                    }
-
-                    background: Rectangle {
-                        color: "transparent"
-                    }
+                    name: "c4"
+                    type: backend.control11Type
 
                     onCheckedChanged: {
-                        if(backend.control11Type === 1)
-                            comp_name.text = qsTr("button c4");
-                        if(backend.control11Type === 2)
-                            comp_name.text = qsTr("knob c4");
+                        comp_name.text = codeName();
+                        back_controler.i = row;
+                        back_controler.j = column;
 
-                        back_controler.i = 2;
-                        back_controler.j = 3;
-
-                        backend.selectComponent(11);
+                        backend.selectComponent(c4ComponentB.index);
                     }
                 }
 
-
-
-                Button{
+                ComponentButton{
                     id: d1ComponentB
-                    x: 34
-                    y: 293
+                    row: 3
+                    column: 0
                     autoExclusive: true
                     checkable: true
-
-                    contentItem: Image {
-                        width: 81
-                        height: 81
-                        source: {
-                            if(backend.control12Type === 1)
-                                d1ComponentB.checked ? "content/images/buttonS.svg" : "content/images/button.svg"
-                            if(backend.control12Type === 2)
-                                d1ComponentB.checked ? "content/images/knobS.svg" : "content/images/knob.svg"
-                        }
-                    }
-
-                    background: Rectangle {
-                        color: "transparent"
-                    }
+                    name: "d1"
+                    type: backend.control12Type
 
                     onCheckedChanged: {
-                        if(backend.control12Type === 1)
-                            comp_name.text = qsTr("button d1");
-                        if(backend.control12Type === 2)
-                            comp_name.text = qsTr("knob d1");
+                        comp_name.text = codeName();
+                        back_controler.i = row;
+                        back_controler.j = column;
 
-                        back_controler.i = 3;
-                        back_controler.j = 0;
-
-                        backend.selectComponent(12);
+                        backend.selectComponent(d1ComponentB.index);
                     }
                 }
 
-                Button{
+                ComponentButton{
                     id: d2ComponentB
-                    x: 115
-                    y: 293
+                    row: 3
+                    column: 1
                     autoExclusive: true
                     checkable: true
-
-                    contentItem: Image {
-                        width: 81
-                        height: 81
-                        source: {
-                            if(backend.control13Type === 1)
-                                d2ComponentB.checked ? "content/images/buttonS.svg" : "content/images/button.svg"
-                            if(backend.control13Type === 2)
-                                d2ComponentB.checked ? "content/images/knobS.svg" : "content/images/knob.svg"
-                        }
-                    }
-
-                    background: Rectangle {
-                        color: "transparent"
-                    }
+                    name: "d2"
+                    type: backend.control13Type
 
                     onCheckedChanged: {
-                        if(backend.control13Type === 1)
-                            comp_name.text = qsTr("button d2");
-                        if(backend.control13Type === 2)
-                            comp_name.text = qsTr("knob d2");
+                        comp_name.text = codeName();
+                        back_controler.i = row;
+                        back_controler.j = column;
 
-                        back_controler.i = 3;
-                        back_controler.j = 1;
-
-                        backend.selectComponent(13);
+                        backend.selectComponent(d2ComponentB.index);
                     }
                 }
 
-                Button{
+                ComponentButton{
                     id: d3ComponentB
-                    x: 196
-                    y: 293
+                    row: 3
+                    column: 2
                     autoExclusive: true
                     checkable: true
-
-                    contentItem: Image {
-                        width: 81
-                        height: 81
-                        source: {
-                            if(backend.control14Type === 1)
-                                d3ComponentB.checked ? "content/images/buttonS.svg" : "content/images/button.svg"
-                            if(backend.control14Type === 2)
-                                d3ComponentB.checked ? "content/images/knobS.svg" : "content/images/knob.svg"
-                        }
-                    }
-
-                    background: Rectangle {
-                        color: "transparent"
-                    }
+                    name: "d3"
+                    type: backend.control14Type
 
                     onCheckedChanged: {
-                        if(backend.control14Type === 1)
-                            comp_name.text = qsTr("button d3");
-                        if(backend.control14Type === 2)
-                            comp_name.text = qsTr("knob d3");
+                        comp_name.text = codeName();
+                        back_controler.i = row;
+                        back_controler.j = column;
 
-                        back_controler.i = 3;
-                        back_controler.j = 2;
-
-                        backend.selectComponent(14);
+                        backend.selectComponent(d3ComponentB.index);
                     }
                 }
 
-                Button{
+                ComponentButton{
                     id: d4ComponentB
-                    x: 277
-                    y: 293
+                    row: 3
+                    column: 3
                     autoExclusive: true
                     checkable: true
-
-                    contentItem: Image {
-                        width: 81
-                        height: 81
-                        source: {
-                            if(backend.control15Type === 1)
-                                d4ComponentB.checked ? "content/images/buttonS.svg" : "content/images/button.svg"
-                            if(backend.control15Type === 2)
-                                d4ComponentB.checked ? "content/images/knobS.svg" : "content/images/knob.svg"
-                        }
-                    }
-
-                    background: Rectangle {
-                        color: "transparent"
-                    }
+                    name: "d4"
+                    type: backend.control15Type
 
                     onCheckedChanged: {
-                        if(backend.control15Type === 1)
-                            comp_name.text = qsTr("button d4");
-                        if(backend.control15Type === 2)
-                            comp_name.text = qsTr("knob d4");
+                        comp_name.text = codeName();
+                        back_controler.i = row;
+                        back_controler.j = column;
 
-                        back_controler.i = 3;
-                        back_controler.j = 3;
-
-                        backend.selectComponent(15);
+                        backend.selectComponent(d4ComponentB.index);
                     }
                 }
             }
