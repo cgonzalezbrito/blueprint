@@ -15,6 +15,7 @@
 *.dylib
 
 # Qt-es
+object_script.*.Linux
 object_script.*.Release
 object_script.*.Debug
 *_plugin_import.cpp
@@ -83,3 +84,8 @@ compile_commands.json
 
 # End of https://www.gitignore.io/api/qt,qtcreator
 
+# GGG
+.DS_Store*
+/mac*
+/linux*
+/win*

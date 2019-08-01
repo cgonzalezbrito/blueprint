@@ -2,10 +2,22 @@
 #define DEFS_H
 
 /* Control Device Values */
+#define SOF                                     0xA0
 #define HOST_REQUIRES_READING                   0XA1
 #define HOST_REQUIRES_WRITING                   0XA2
 #define OK                                      0XA3
 #define FINISH                                  0XA5
+
+/*Comand values*/
+#define CMD_LAYOUT                              0x01
+#define CMD_PRESET                              0x02
+#define CMD_CHANGES                             0x03
+
+/*Control Values*/
+#define LAYOUT_NUMBER                           0x00 /*0-15 LAYOUT NUMBER*/
+#define COMPONENT_NUMBER                        0x01 /*0-15*/
+#define CONTROL_TYPE                            0x03
+
 
 /* Code Index Number (CIN) values */
 /*   Table 4-1 of midi10.pdf      */
@@ -37,18 +49,17 @@ enum controlType_t
 {
     tNone,
     tButton_pulse,
-    tButton_toggle,
     tPot
 };
 
-enum message_t
+enum property_t
 {
-    voiceNote,
-    voicePolyPressure,
-    voiceControlChange,
-    voiceProgramChange,
-    voiceChannelPreassure,
-    voicePitchBend
+    property_mode,
+    property_ccNumber,
+    property_channel,
+    property_minValue,
+    property_maxValue,
+
 };
 
 #endif // DEFS_H
